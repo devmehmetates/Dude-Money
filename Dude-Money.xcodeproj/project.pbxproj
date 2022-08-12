@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C0ACB93E28A2D8CA00968F26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ACB93D28A2D8CA00968F26 /* AppDelegate.swift */; };
 		C0ACB94028A2D8CA00968F26 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ACB93F28A2D8CA00968F26 /* SceneDelegate.swift */; };
-		C0ACB94228A2D8CA00968F26 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ACB94128A2D8CA00968F26 /* ViewController.swift */; };
 		C0ACB94528A2D8CA00968F26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0ACB94328A2D8CA00968F26 /* Main.storyboard */; };
 		C0ACB94728A2D8CC00968F26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0ACB94628A2D8CC00968F26 /* Assets.xcassets */; };
 		C0ACB94A28A2D8CC00968F26 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0ACB94828A2D8CC00968F26 /* LaunchScreen.storyboard */; };
@@ -19,7 +18,6 @@
 		C0ACB93A28A2D8CA00968F26 /* Dude-Money.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dude-Money.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0ACB93D28A2D8CA00968F26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0ACB93F28A2D8CA00968F26 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C0ACB94128A2D8CA00968F26 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C0ACB94428A2D8CA00968F26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C0ACB94628A2D8CC00968F26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C0ACB94928A2D8CC00968F26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -37,6 +35,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C031E70F28A65A4F002CA97A /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				C0ACB93D28A2D8CA00968F26 /* AppDelegate.swift */,
+				C0ACB93F28A2D8CA00968F26 /* SceneDelegate.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		C031E71028A65A5C002CA97A /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		C031E71128A65A68002CA97A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		C031E71228A65A87002CA97A /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				C0ACB94828A2D8CC00968F26 /* LaunchScreen.storyboard */,
+				C0ACB94328A2D8CA00968F26 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		C031E71328A65ACF002CA97A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		C031E71428A65AEB002CA97A /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		C0ACB93128A2D8CA00968F26 = {
 			isa = PBXGroup;
 			children = (
@@ -56,12 +100,13 @@
 		C0ACB93C28A2D8CA00968F26 /* Dude-Money */ = {
 			isa = PBXGroup;
 			children = (
-				C0ACB93D28A2D8CA00968F26 /* AppDelegate.swift */,
-				C0ACB93F28A2D8CA00968F26 /* SceneDelegate.swift */,
-				C0ACB94128A2D8CA00968F26 /* ViewController.swift */,
-				C0ACB94328A2D8CA00968F26 /* Main.storyboard */,
+				C031E70F28A65A4F002CA97A /* Core */,
+				C031E71428A65AEB002CA97A /* Constants */,
+				C031E71028A65A5C002CA97A /* Modules */,
+				C031E71328A65ACF002CA97A /* Services */,
+				C031E71228A65A87002CA97A /* Storyboards */,
+				C031E71128A65A68002CA97A /* Utils */,
 				C0ACB94628A2D8CC00968F26 /* Assets.xcassets */,
-				C0ACB94828A2D8CC00968F26 /* LaunchScreen.storyboard */,
 				C0ACB94B28A2D8CC00968F26 /* Info.plist */,
 			);
 			path = "Dude-Money";
@@ -138,7 +183,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0ACB94228A2D8CA00968F26 /* ViewController.swift in Sources */,
 				C0ACB93E28A2D8CA00968F26 /* AppDelegate.swift in Sources */,
 				C0ACB94028A2D8CA00968F26 /* SceneDelegate.swift in Sources */,
 			);
