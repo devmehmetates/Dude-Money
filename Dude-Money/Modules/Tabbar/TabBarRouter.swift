@@ -21,7 +21,8 @@ final class TabBarRouter {
         let router = TabBarRouter()
         let presenter = TabBarPresenter()
         let interactor = TabBarInteractor()
-        let view = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "tabbarVC") as! TabBarViewController
+        guard let view = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "tabbarVC")
+                as? TabBarViewController else { return TabBarViewController() }
         
         presenter.interactor = interactor
         presenter.router = router
