@@ -10,3 +10,8 @@ protocol TabBarInteractorInterface { }
 final class TabBarInteractor {
     weak var presenter: TabBarPresenter? // Neden weak
 }
+
+// MARK: - Interface Setup
+extension TabBarInteractor: TabBarInteractorInterface {
+    
+}

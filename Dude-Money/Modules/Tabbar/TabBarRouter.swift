@@ -35,3 +35,14 @@ final class TabBarRouter {
         return view
     }
 }
+
+// MARK: - Interface Setup
+extension TabBarRouter: TabBarRouterInterface {
+    func performSegue(with identifier: String) {
+        
+    }
+    
+    func presentPopup(with message: String) {
+        navigationController?.popViewController(animated: true)
+    }
+}

@@ -21,7 +21,7 @@ class TabBarViewController: UITabBarController {
     }
 }
 
-// MARK: - View Setup
+// MARK: - Interface Setup
 extension TabBarViewController: TabBarViewInterface {
     
     func setupView() {
