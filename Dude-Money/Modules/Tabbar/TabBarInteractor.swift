@@ -7,6 +7,6 @@
 
 protocol TabBarInteractorInterface { }
 
-class TabBarInteractor {
+final class TabBarInteractor {
     weak var presenter: TabBarPresenter? // Neden weak
 }

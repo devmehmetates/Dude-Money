@@ -12,7 +12,7 @@ protocol TabBarRouterInterface {
     func presentPopup(with message: String)
 }
 
-class TabBarRouter {
+final class TabBarRouter {
     // buralarda da neden weak var?
     weak var presenter: TabBarPresenter?
     weak var navigationController: UINavigationController?
@@ -21,7 +21,7 @@ class TabBarRouter {
         let router = TabBarRouter()
         let presenter = TabBarPresenter()
         let interactor = TabBarInteractor()
-        let view = TabBarViewController()
+        let view = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "tabbarVC") as! TabBarViewController
         
         presenter.interactor = interactor
         presenter.router = router

@@ -10,7 +10,7 @@ protocol TabBarPresenterInterface {
     func notifyViewWillAppear()
 }
 
-class TabBarPresenter {
+final class TabBarPresenter {
     
     var view: TabBarViewController?
     var router: TabBarRouter?
