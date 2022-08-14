@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C031E72D28A69B3F002CA97A /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C031E72C28A69B3F002CA97A /* IQKeyboardManagerSwift */; };
 		C089233228A80526005F6A2B /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089233128A80526005F6A2B /* TabBarViewController.swift */; };
 		C089233528A80AB1005F6A2B /* TabBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089233428A80AB1005F6A2B /* TabBarPresenter.swift */; };
 		C089233728A80ABA005F6A2B /* TabBarInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089233628A80ABA005F6A2B /* TabBarInteractor.swift */; };
@@ -37,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C031E72D28A69B3F002CA97A /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +150,9 @@
 			dependencies = (
 			);
 			name = "Dude-Money";
+			packageProductDependencies = (
+				C031E72C28A69B3F002CA97A /* IQKeyboardManagerSwift */,
+			);
 			productName = "Dude-Money";
 			productReference = C0ACB93A28A2D8CA00968F26 /* Dude-Money.app */;
 			productType = "com.apple.product-type.application";
@@ -176,6 +181,9 @@
 				Base,
 			);
 			mainGroup = C0ACB93128A2D8CA00968F26;
+			packageReferences = (
+				C031E72B28A69B3F002CA97A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+			);
 			productRefGroup = C0ACB93B28A2D8CA00968F26 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -426,6 +434,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C031E72B28A69B3F002CA97A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C031E72C28A69B3F002CA97A /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C031E72B28A69B3F002CA97A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C0ACB93228A2D8CA00968F26 /* Project object */;
 }
