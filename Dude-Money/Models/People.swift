@@ -16,7 +16,8 @@ struct People: Codable {
     var debts: [Bill]
     var receivables: [Bill]
     
-    static let exampleModel = People(username: "example", name: "example", surname: "example", icon: "example1", balance: 0, friends: [], debts: [], receivables: [])
+    static let exampleModel = People(username: "example", name: "example", surname: "example", icon: "example1", balance: 0, friends: [exampleFriend], debts: [], receivables: [])
+    static let exampleFriend = People(username: "friend", name: "Friend", surname: "Friend", icon: "example1", balance: 0, friends: [], debts: [], receivables: [])
 }
 
 struct Bill: Codable {
