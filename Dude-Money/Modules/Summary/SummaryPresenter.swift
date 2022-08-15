@@ -8,6 +8,7 @@
 protocol SummaryPresenterInterface {
     func notifyViewLoaded()
     func notifyViewWillAppear()
+    func fetchPeople()
 }
 
 final class SummaryPresenter {
@@ -15,15 +16,19 @@ final class SummaryPresenter {
     var view: SummaryViewInterface?
     var router: SummaryRouterInterface?
     var interactor: SummaryInteractorInterface?
-    var bills: [Bill]? = []
-    var people: People = People.exampleModel
+    var people: People?
 }
 
 // MARK: - Interface Setup
 extension SummaryPresenter: SummaryPresenterInterface {
+    func fetchPeople() {
+        people = interactor?.readPeople()
+    }
+    
     func notifyViewLoaded() {
         view?.setupView()
         view?.setupToolbar()
+        fetchPeople()
     }
     
     func notifyViewWillAppear() {

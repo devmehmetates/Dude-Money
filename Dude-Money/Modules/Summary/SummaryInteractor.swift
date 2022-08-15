@@ -7,7 +7,9 @@
 
 import Foundation
 
-protocol SummaryInteractorInterface { }
+protocol SummaryInteractorInterface {
+    func readPeople() -> People?
+}
 
 final class SummaryInteractor {
     weak var presenter: SummaryPresenter?
@@ -16,4 +18,7 @@ final class SummaryInteractor {
 // MARK: - Interface Setup
 extension SummaryInteractor: SummaryInteractorInterface {
     
+    func readPeople() -> People? {
+        LocalSaveService.readUser()
+    }
 }
