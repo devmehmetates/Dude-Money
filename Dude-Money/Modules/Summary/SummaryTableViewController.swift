@@ -30,30 +30,53 @@ class SummaryTableViewController: UITableViewController {
         switch section {
             
         case 1:
-            return presenter?.bills?.filter { $0.ammount > 0 }.count ?? 0
+            return presenter?.people?.receivables.count ?? 0
             
         case 2:
-            return presenter?.bills?.filter { !($0.ammount > 0) }.count ?? 0
+            return presenter?.people?.debts.count ?? 0
         default:
             return 1
         }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: UITableViewCell = UITableViewCell()
+        var cell: BillTableViewCell? = BillTableViewCell()
         
         if indexPath.section == 0 {
-            cell = tableView.dequeueReusableCell(withIdentifier: "summaryCell", for: indexPath)
+            cell = tableView.dequeueReusableCell(withIdentifier: "summaryCell", for: indexPath) as? BillTableViewCell
         } else {
-            cell = tableView.dequeueReusableCell(withIdentifier: "billCell", for: indexPath)
+            cell = tableView.dequeueReusableCell(withIdentifier: "billCell", for: indexPath) as? BillTableViewCell
         }
+        
+        var bill: Bill?
+        var friend: People?
         
         if indexPath.section == 1 {
-            cell.backgroundColor = .systemGreen.withAlphaComponent(0.2)
+            if presenter?.people?.receivables.count ?? 0 > indexPath.row {
+                bill = presenter?.people?.receivables[indexPath.row]
+                friend = presenter?.people?.friends.first { $0.username == bill?.whose }
+            }
+            
+            cell?.backgroundColor = .systemGreen.withAlphaComponent(0.2)
+            cell?.amountLabel.text = bill?.ammount.format
+            cell?.nameLabel.text = (friend?.name ?? "") + " " + (friend?.surname ?? "")
+            cell?.profileImageView.image = UIImage(named: friend?.icon ?? "") ?? UIImage(systemName: "person.circle")!
         } else if indexPath.section == 2 {
-            cell.backgroundColor = .systemRed.withAlphaComponent(0.2)
+            if presenter?.people?.debts.count ?? 0 > indexPath.row {
+                bill = presenter?.people?.debts[indexPath.row]
+                friend = presenter?.people?.friends.first { $0.username == bill?.whose }
+            }
+            
+            cell?.backgroundColor = .systemRed.withAlphaComponent(0.2)
+            cell?.amountLabel.text = bill?.ammount.format
+            cell?.nameLabel.text = (friend?.name ?? "") + " " + (friend?.surname ?? "")
+            cell?.profileImageView.image = UIImage(named: friend?.icon ?? "") ?? UIImage(systemName: "person.circle")!
         }
         
+        guard let cell = cell else {
+            return UITableViewCell()
+        }
+
         return cell
     }
     
@@ -134,14 +157,17 @@ extension SummaryTableViewController: SummaryViewInterface {
     
     @objc
     func addAction() {
-        presenter?.bills?.append(Bill(whose: "bLA", ammount: 200))
-        presenter?.bills?.append(Bill(whose: "bLA", ammount: -200))
+        presenter?.people?.debts.append(Bill(whose: "friend", ammount: Double.random(in: (-1000)...(-500))))
+        presenter?.people?.receivables.append(Bill(whose: "friend", ammount: Double.random(in: 500...1000)))
         tableView.reloadData()
-        print(presenter?.bills)
     }
     
     
     func setupView() {
         self.title = "Borçların"
     }
+}
+
+extension Double {
+    var format: String { return String(format: "%0.2f", self)}
 }
