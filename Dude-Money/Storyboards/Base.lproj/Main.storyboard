@@ -94,6 +94,11 @@
                                         <constraint firstItem="oNv-2a-QBi" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qZY-n6-PhI" secondAttribute="trailing" constant="8" symbolic="YES" id="bfY-nZ-hEp"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="amountLabel" destination="oNv-2a-QBi" id="kST-Bl-dxO"/>
+                                    <outlet property="nameLabel" destination="qZY-n6-PhI" id="Jqw-TL-MOI"/>
+                                    <outlet property="profileImageView" destination="Nad-NM-7NW" id="qBD-Jt-1vQ"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

@@ -8,7 +8,10 @@
 import UIKit
 
 class BillTableViewCell: UITableViewCell {
-
+    @IBOutlet var profileImageView: UIImageView!
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var amountLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
