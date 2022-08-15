@@ -17,6 +17,12 @@
 		C0ACB94528A2D8CA00968F26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0ACB94328A2D8CA00968F26 /* Main.storyboard */; };
 		C0ACB94728A2D8CC00968F26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0ACB94628A2D8CC00968F26 /* Assets.xcassets */; };
 		C0ACB94A28A2D8CC00968F26 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0ACB94828A2D8CC00968F26 /* LaunchScreen.storyboard */; };
+		C0B99F5828AA3E44007687F9 /* SummaryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B99F5728AA3E44007687F9 /* SummaryTableViewController.swift */; };
+		C0B99F5B28AA477C007687F9 /* BillTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B99F5A28AA477C007687F9 /* BillTableViewCell.swift */; };
+		C0B99F5E28AA7E41007687F9 /* People.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B99F5D28AA7E41007687F9 /* People.swift */; };
+		C0F642DF28A8E39200B75EC9 /* SummaryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F642DE28A8E39200B75EC9 /* SummaryPresenter.swift */; };
+		C0F642E128A8E39B00B75EC9 /* SummaryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F642E028A8E39B00B75EC9 /* SummaryInteractor.swift */; };
+		C0F642E328A8E3A400B75EC9 /* SummaryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F642E228A8E3A400B75EC9 /* SummaryRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +37,12 @@
 		C0ACB94628A2D8CC00968F26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C0ACB94928A2D8CC00968F26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C0ACB94B28A2D8CC00968F26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C0B99F5728AA3E44007687F9 /* SummaryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryTableViewController.swift; sourceTree = "<group>"; };
+		C0B99F5A28AA477C007687F9 /* BillTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillTableViewCell.swift; sourceTree = "<group>"; };
+		C0B99F5D28AA7E41007687F9 /* People.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = People.swift; sourceTree = "<group>"; };
+		C0F642DE28A8E39200B75EC9 /* SummaryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPresenter.swift; sourceTree = "<group>"; };
+		C0F642E028A8E39B00B75EC9 /* SummaryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryInteractor.swift; sourceTree = "<group>"; };
+		C0F642E228A8E3A400B75EC9 /* SummaryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +69,7 @@
 		C031E71028A65A5C002CA97A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				C0F642D928A8E1C400B75EC9 /* Summary */,
 				C089233028A804F8005F6A2B /* Tabbar */,
 			);
 			path = Modules;
@@ -122,6 +135,7 @@
 		C0ACB93C28A2D8CA00968F26 /* Dude-Money */ = {
 			isa = PBXGroup;
 			children = (
+				C0B99F5C28AA7E36007687F9 /* Models */,
 				C031E70F28A65A4F002CA97A /* Core */,
 				C031E71428A65AEB002CA97A /* Constants */,
 				C031E71028A65A5C002CA97A /* Modules */,
@@ -132,6 +146,34 @@
 				C0ACB94B28A2D8CC00968F26 /* Info.plist */,
 			);
 			path = "Dude-Money";
+			sourceTree = "<group>";
+		};
+		C0B99F5928AA476A007687F9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C0B99F5A28AA477C007687F9 /* BillTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C0B99F5C28AA7E36007687F9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C0B99F5D28AA7E41007687F9 /* People.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C0F642D928A8E1C400B75EC9 /* Summary */ = {
+			isa = PBXGroup;
+			children = (
+				C0F642DE28A8E39200B75EC9 /* SummaryPresenter.swift */,
+				C0F642E028A8E39B00B75EC9 /* SummaryInteractor.swift */,
+				C0F642E228A8E3A400B75EC9 /* SummaryRouter.swift */,
+				C0B99F5728AA3E44007687F9 /* SummaryTableViewController.swift */,
+				C0B99F5928AA476A007687F9 /* View */,
+			);
+			path = Summary;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,12 +253,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0B99F5828AA3E44007687F9 /* SummaryTableViewController.swift in Sources */,
 				C089233928A80AC5005F6A2B /* TabBarRouter.swift in Sources */,
 				C089233528A80AB1005F6A2B /* TabBarPresenter.swift in Sources */,
 				C089233728A80ABA005F6A2B /* TabBarInteractor.swift in Sources */,
+				C0B99F5E28AA7E41007687F9 /* People.swift in Sources */,
+				C0B99F5B28AA477C007687F9 /* BillTableViewCell.swift in Sources */,
 				C089233228A80526005F6A2B /* TabBarViewController.swift in Sources */,
 				C0ACB93E28A2D8CA00968F26 /* AppDelegate.swift in Sources */,
 				C0ACB94028A2D8CA00968F26 /* SceneDelegate.swift in Sources */,
+				C0F642DF28A8E39200B75EC9 /* SummaryPresenter.swift in Sources */,
+				C0F642E128A8E39B00B75EC9 /* SummaryInteractor.swift in Sources */,
+				C0F642E328A8E3A400B75EC9 /* SummaryRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

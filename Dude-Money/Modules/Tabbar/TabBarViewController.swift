@@ -26,9 +26,8 @@ extension TabBarViewController: TabBarViewInterface {
     
     func setupView() {
         viewControllers = [
-            configureTabbarButton(for: MockViewController(), title: "Mock", image: UIImage(systemName: "homekit")!),
+            configureTabbarButton(for: SummaryRouter.createModule(using: UINavigationController()), title: "Özet", image: UIImage(systemName: "chart.xyaxis.line")!),
             configureTabbarButton(for: MockViewController(), title: "Mock2", image: UIImage(systemName: "homekit")!),
-            configureTabbarButton(for: MockViewController(), title: "Mock3", image: UIImage(systemName: "homekit")!),
             configureTabbarButton(for: MockViewController(), title: "Mock4", image: UIImage(systemName: "homekit")!)
         ]
     }
