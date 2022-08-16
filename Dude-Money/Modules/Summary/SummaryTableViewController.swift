@@ -21,23 +21,48 @@ class SummaryTableViewController: UITableViewController {
         presenter?.notifyViewLoaded()
     }
 
-    // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
+}
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-            
-        case 1:
-            return (presenter?.people?.receivables.isEmpty ?? false) ? 1 : presenter?.people?.receivables.count ?? 0
-            
-        case 2:
-            return (presenter?.people?.debts.isEmpty ?? false) ? 1 : presenter?.people?.debts.count ?? 0
-        default:
-            return 1
-        }
+// MARK: - Interface setup
+extension SummaryTableViewController: SummaryViewInterface {
+    
+    func setupToolbar() {
+        let addButton = UIBarButtonItem(systemItem: .add)
+        self.navigationItem.rightBarButtonItem = addButton
+        addButton.target = self
+        addButton.action = #selector(addAction)
+        
+        let profileIcon = UIImageView(image: UIImage(named: presenter?.people?.icon ?? ""))
+        profileIcon.image = profileIcon.image?.withRenderingMode(.alwaysOriginal)
+        profileIcon.backgroundColor = .systemRed
+        profileIcon.layer.cornerRadius = 20
+        NSLayoutConstraint.activate([
+            profileIcon.widthAnchor.constraint(equalToConstant: 40),
+            profileIcon.heightAnchor.constraint(equalToConstant: 40)
+        ])
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileIcon)
     }
+    
+    @objc
+    func addAction() {
+//        presenter?.router?.performSegue(with: "addAction")
+        presenter?.people?.debts.append(Bill(whose: "friend", ammount: Double.random(in: (-1000)...(-500))))
+        presenter?.people?.receivables.append(Bill(whose: "friend", ammount: Double.random(in: 500...1000)))
+        tableView.reloadData()
+    }
+    
+    
+    func setupView() {
+        self.title = "Borçların"
+    }
+}
+
+// MARK: - TableViewCell Configuration
+extension SummaryTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: BillTableViewCell? = BillTableViewCell()
@@ -94,13 +119,31 @@ class SummaryTableViewController: UITableViewController {
 
         return cell
     }
+}
+
+// MARK: - TableViewCell Sections and Counts Configuration
+extension SummaryTableViewController {
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func numberOfSections(in tableView: UITableView) -> Int { 3 }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         switch section {
-            
+        case 1:
+            return (presenter?.people?.receivables.isEmpty ?? false) ? 1 : presenter?.people?.receivables.count ?? 0
+        case 2:
+            return (presenter?.people?.debts.isEmpty ?? false) ? 1 : presenter?.people?.debts.count ?? 0
+        default:
+            return 1
+        }
+    }
+    
+    // TODO: !string constants!
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        switch section {
         case 1:
             return "Alınacaklar 🤑"
-            
         case 2:
             return "Borçlar 🥲"
         default:
@@ -108,7 +151,9 @@ class SummaryTableViewController: UITableViewController {
         }
     }
     
+    // TODO: !height constants!
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
         if indexPath.section == 0 {
             return 210
         } else {
@@ -116,14 +161,13 @@ class SummaryTableViewController: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        30
-    }
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat { 30 }
+}
+
+// MARK: - TableViewCell SwipeActionsConfiguration
+extension SummaryTableViewController {
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
+    // TODO: !string constants!
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         var swipeConfiguration: UISwipeActionsConfiguration = UISwipeActionsConfiguration()
         
@@ -144,56 +188,16 @@ class SummaryTableViewController: UITableViewController {
     }
     
     private func createGainAction(indexPath: IndexPath) -> UIContextualAction {
-        return UIContextualAction(style: .normal, title: nil) { [weak self] (_, _, completionHandler) in
-            guard let self = self else { return }
-            
+        return UIContextualAction(style: .normal, title: nil) { (_, _, completionHandler) in
+            // TODO: Gain Action
             completionHandler(true)
         }
     }
     
     private func createDeptAction(indexPath: IndexPath) -> UIContextualAction {
-        return UIContextualAction(style: .normal, title: nil) { [weak self] (_, _, completionHandler) in
-            guard let self = self else { return }
-            
+        return UIContextualAction(style: .normal, title: nil) { (_, _, completionHandler) in
+            // TODO: Dept Action
             completionHandler(true)
         }
     }
-}
-
-// MARK: - Interface setup
-extension SummaryTableViewController: SummaryViewInterface {
-    
-    func setupToolbar() {
-        let addButton = UIBarButtonItem(systemItem: .add)
-        self.navigationItem.rightBarButtonItem = addButton
-        addButton.target = self
-        addButton.action = #selector(addAction)
-        
-        let profileIcon = UIImageView(image: UIImage(named: presenter?.people?.icon ?? ""))
-        profileIcon.image = profileIcon.image?.withRenderingMode(.alwaysOriginal)
-        profileIcon.backgroundColor = .systemRed
-        profileIcon.layer.cornerRadius = 20
-        NSLayoutConstraint.activate([
-            profileIcon.widthAnchor.constraint(equalToConstant: 40),
-            profileIcon.heightAnchor.constraint(equalToConstant: 40)
-        ])
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileIcon)
-    }
-    
-    @objc
-    func addAction() {
-//        presenter?.router?.performSegue(with: "addAction")
-        presenter?.people?.debts.append(Bill(whose: "friend", ammount: Double.random(in: (-1000)...(-500))))
-        presenter?.people?.receivables.append(Bill(whose: "friend", ammount: Double.random(in: 500...1000)))
-        tableView.reloadData()
-    }
-    
-    
-    func setupView() {
-        self.title = "Borçların"
-    }
-}
-
-extension Double {
-    var format: String { return String(format: "%0.2f", self)}
 }

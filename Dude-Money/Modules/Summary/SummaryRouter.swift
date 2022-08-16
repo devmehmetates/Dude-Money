@@ -12,7 +12,7 @@ protocol SummaryRouterInterface {
     func presentPopup(with message: String)
 }
 
-
+// TODO: !string constants!
 final class SummaryRouter {
     weak var presenter: SummaryPresenter?
     weak var navigationController: UINavigationController?
@@ -37,6 +37,7 @@ final class SummaryRouter {
 
 // MARK: - Interface Setup
 extension SummaryRouter: SummaryRouterInterface {
+    
     func performSegue(with identifier: String) {
         presenter?.view?.performSegue(withIdentifier: identifier, sender: self)
     }
