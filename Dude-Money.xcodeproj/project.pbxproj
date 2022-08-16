@@ -10,7 +10,6 @@
 		C031E72D28A69B3F002CA97A /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C031E72C28A69B3F002CA97A /* IQKeyboardManagerSwift */; };
 		C089233228A80526005F6A2B /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089233128A80526005F6A2B /* TabBarViewController.swift */; };
 		C089233528A80AB1005F6A2B /* TabBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089233428A80AB1005F6A2B /* TabBarPresenter.swift */; };
-		C089233728A80ABA005F6A2B /* TabBarInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089233628A80ABA005F6A2B /* TabBarInteractor.swift */; };
 		C089233928A80AC5005F6A2B /* TabBarRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089233828A80AC5005F6A2B /* TabBarRouter.swift */; };
 		C0ACB93E28A2D8CA00968F26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ACB93D28A2D8CA00968F26 /* AppDelegate.swift */; };
 		C0ACB94028A2D8CA00968F26 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ACB93F28A2D8CA00968F26 /* SceneDelegate.swift */; };
@@ -22,7 +21,6 @@
 /* Begin PBXFileReference section */
 		C089233128A80526005F6A2B /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		C089233428A80AB1005F6A2B /* TabBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPresenter.swift; sourceTree = "<group>"; };
-		C089233628A80ABA005F6A2B /* TabBarInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarInteractor.swift; sourceTree = "<group>"; };
 		C089233828A80AC5005F6A2B /* TabBarRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarRouter.swift; sourceTree = "<group>"; };
 		C0ACB93A28A2D8CA00968F26 /* Dude-Money.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dude-Money.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0ACB93D28A2D8CA00968F26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -97,7 +95,6 @@
 			children = (
 				C089233128A80526005F6A2B /* TabBarViewController.swift */,
 				C089233428A80AB1005F6A2B /* TabBarPresenter.swift */,
-				C089233628A80ABA005F6A2B /* TabBarInteractor.swift */,
 				C089233828A80AC5005F6A2B /* TabBarRouter.swift */,
 			);
 			path = Tabbar;
@@ -213,7 +210,6 @@
 			files = (
 				C089233928A80AC5005F6A2B /* TabBarRouter.swift in Sources */,
 				C089233528A80AB1005F6A2B /* TabBarPresenter.swift in Sources */,
-				C089233728A80ABA005F6A2B /* TabBarInteractor.swift in Sources */,
 				C089233228A80526005F6A2B /* TabBarViewController.swift in Sources */,
 				C0ACB93E28A2D8CA00968F26 /* AppDelegate.swift in Sources */,
 				C0ACB94028A2D8CA00968F26 /* SceneDelegate.swift in Sources */,

@@ -3,22 +3,6 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <scenes>
-        <!--Tab Bar View Controller-->
-        <scene sceneID="ozp-F0-CA3">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nC4-uM-l0u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tabBarController storyboardIdentifier="tabbarVC" id="GeA-dD-gAc" customClass="TabBarViewController" customModule="Dude_Money" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BE7-8n-KzB">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
-                </tabBarController>
-            </objects>
-            <point key="canvasLocation" x="-2332" y="1139"/>
-        </scene>
-    </scenes>
+    <scenes/>
 </document>
