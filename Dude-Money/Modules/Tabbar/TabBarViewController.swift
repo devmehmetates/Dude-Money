@@ -13,7 +13,7 @@ protocol TabBarViewInterface: AnyObject {
 
 class TabBarViewController: UITabBarController {
     
-    lazy var mockVC: UIViewController = {
+    private lazy var mockVC: UIViewController = {
         let navigationController = UINavigationController()
         let mockViewController = MockViewController()
         navigationController.viewControllers = [mockViewController]
