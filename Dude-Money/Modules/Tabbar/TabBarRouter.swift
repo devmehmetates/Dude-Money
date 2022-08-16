@@ -13,7 +13,7 @@ protocol TabBarRouterInterface: AnyObject {
 
 final class TabBarRouter {
     
-    weak var navigationController: UINavigationController?
+    private weak var navigationController: UINavigationController?
     
     static func createModule(using navigationController: UINavigationController) -> TabBarViewController {
         let router = TabBarRouter()
