@@ -20,7 +20,11 @@ class SummaryTableViewController: UITableViewController {
         super.viewDidLoad()
         presenter?.notifyViewLoaded()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.notifyViewWillAppear()
+    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -31,11 +35,18 @@ class SummaryTableViewController: UITableViewController {
 extension SummaryTableViewController: SummaryViewInterface {
     
     func setupToolbar() {
+        configureRightNavigationBarButton()
+        configureLeftNavigationBarButton()
+    }
+    
+    private func configureRightNavigationBarButton() {
         let addButton = UIBarButtonItem(systemItem: .add)
         self.navigationItem.rightBarButtonItem = addButton
         addButton.target = self
         addButton.action = #selector(addAction)
-        
+    }
+    
+    private func configureLeftNavigationBarButton() {
         let profileIcon = UIImageView(image: UIImage(named: presenter?.people?.icon ?? ""))
         profileIcon.image = profileIcon.image?.withRenderingMode(.alwaysOriginal)
         profileIcon.backgroundColor = .systemRed
@@ -55,9 +66,8 @@ extension SummaryTableViewController: SummaryViewInterface {
         tableView.reloadData()
     }
     
-    
     func setupView() {
-        self.title = "Borçların"
+        self.title = ScreenTexts.summaryScreenTitle
     }
 }
 
@@ -68,11 +78,11 @@ extension SummaryTableViewController {
         var cell: BillTableViewCell? = BillTableViewCell()
         
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "summaryCell", for: indexPath) as? SummaryTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: SummaryTableViewCell.cellId, for: indexPath) as? SummaryTableViewCell
             cell?.setBalance = presenter?.people?.balance
             return cell ?? UITableViewCell()
         } else {
-            cell = tableView.dequeueReusableCell(withIdentifier: "billCell", for: indexPath) as? BillTableViewCell
+            cell = tableView.dequeueReusableCell(withIdentifier: BillTableViewCell.cellId, for: indexPath) as? BillTableViewCell
         }
         
         var bill: Bill?
@@ -84,7 +94,6 @@ extension SummaryTableViewController {
                 friend = presenter?.people?.friends.first { $0.username == bill?.whose }
             }
             
-            
             if let bill = bill, let friend = friend {
                 cell?.setAmountLabel = bill.ammount
                 cell?.setNameLabel = (friend.name) + " " + (friend.surname)
@@ -92,7 +101,7 @@ extension SummaryTableViewController {
                 cell?.backgroundColor = .systemGreen.withAlphaComponent(0.2)
             } else {
                 cell?.setAmountLabel = nil
-                cell?.setNameLabel = "Alınacak para kalmamış kanka"
+                cell?.setNameLabel = ScreenTexts.emptyReceivablesText
                 cell?.setProfileImageWithSystemName = "hand.thumbsdown"
             }
         } else if indexPath.section == 2 {
@@ -108,8 +117,8 @@ extension SummaryTableViewController {
                 cell?.backgroundColor = .systemRed.withAlphaComponent(0.2)
             } else {
                 cell?.setAmountLabel = nil
-                cell?.setNameLabel = "Borç mu? O da ne!"
-                cell?.setProfileImageWithSystemName =  "hands.sparkles"
+                cell?.setNameLabel = ScreenTexts.emptyDebtText
+                cell?.setProfileImageWithSystemName = "hands.sparkles"
             }
         }
         
@@ -138,26 +147,24 @@ extension SummaryTableViewController {
         }
     }
     
-    // TODO: !string constants!
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         switch section {
         case 1:
-            return "Alınacaklar 🤑"
+            return ScreenTexts.receivablesSectionTitle
         case 2:
-            return "Borçlar 🥲"
+            return ScreenTexts.debtSectionTitle
         default:
             return ""
         }
     }
     
-    // TODO: !height constants!
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         if indexPath.section == 0 {
-            return 210
+            return SummaryTableViewCell.cellHeight
         } else {
-            return 70
+            return BillTableViewCell.cellHeight
         }
     }
     
@@ -167,18 +174,17 @@ extension SummaryTableViewController {
 // MARK: - TableViewCell SwipeActionsConfiguration
 extension SummaryTableViewController {
     
-    // TODO: !string constants!
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         var swipeConfiguration: UISwipeActionsConfiguration = UISwipeActionsConfiguration()
         
         if indexPath.section == 1, !(presenter?.people?.receivables.isEmpty ?? false) {
             let gainAction = createGainAction(indexPath: indexPath)
-            gainAction.title = "Alındı İşaretle"
+            gainAction.title = ScreenTexts.receivablesSwipeActionText
             gainAction.backgroundColor = .systemGreen
             swipeConfiguration = UISwipeActionsConfiguration(actions: [gainAction])
         } else if indexPath.section == 2, !(presenter?.people?.debts.isEmpty ?? false) {
             let deptAction = createGainAction(indexPath: indexPath)
-            deptAction.title = "Öde"
+            deptAction.title = ScreenTexts.debtSwipeActionText
             deptAction.backgroundColor = .systemRed
             swipeConfiguration = UISwipeActionsConfiguration(actions: [deptAction])
         }

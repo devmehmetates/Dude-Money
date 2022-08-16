@@ -8,6 +8,7 @@
 import UIKit
 
 class BillTableViewCell: UITableViewCell {
+    
     @IBOutlet private var profileImageView: UIImageView!
     @IBOutlet private var nameLabel: UILabel!
     @IBOutlet private var amountLabel: UILabel!
@@ -48,4 +49,7 @@ class BillTableViewCell: UITableViewCell {
             }
         }
     }
+    
+    static let cellId = "billCell"
+    static let cellHeight: CGFloat = 70
 }
