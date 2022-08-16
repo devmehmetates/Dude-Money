@@ -30,10 +30,10 @@ class SummaryTableViewController: UITableViewController {
         switch section {
             
         case 1:
-            return presenter?.people?.receivables.count ?? 0
+            return (presenter?.people?.receivables.isEmpty ?? false) ? 1 : presenter?.people?.receivables.count ?? 0
             
         case 2:
-            return presenter?.people?.debts.count ?? 0
+            return (presenter?.people?.debts.isEmpty ?? false) ? 1 : presenter?.people?.debts.count ?? 0
         default:
             return 1
         }
@@ -57,20 +57,33 @@ class SummaryTableViewController: UITableViewController {
                 friend = presenter?.people?.friends.first { $0.username == bill?.whose }
             }
             
-            cell?.backgroundColor = .systemGreen.withAlphaComponent(0.2)
-            cell?.amountLabel.text = bill?.ammount.format
-            cell?.nameLabel.text = (friend?.name ?? "") + " " + (friend?.surname ?? "")
-            cell?.profileImageView.image = UIImage(named: friend?.icon ?? "") ?? UIImage(systemName: "person.circle")!
+            
+            if let bill = bill, let friend = friend {
+                cell?.amountLabel.text = bill.ammount.format
+                cell?.nameLabel.text = (friend.name) + " " + (friend.surname)
+                cell?.profileImageView.image = UIImage(named: friend.icon) ?? UIImage(systemName: "person.circle")!
+                cell?.backgroundColor = .systemGreen.withAlphaComponent(0.2)
+            } else {
+                cell?.amountLabel.text = ""
+                cell?.nameLabel.text = "Alınacak para kalmamış kanka"
+                cell?.profileImageView.image = UIImage(systemName: "hand.thumbsdown")!
+            }
         } else if indexPath.section == 2 {
             if presenter?.people?.debts.count ?? 0 > indexPath.row {
                 bill = presenter?.people?.debts[indexPath.row]
                 friend = presenter?.people?.friends.first { $0.username == bill?.whose }
             }
             
-            cell?.backgroundColor = .systemRed.withAlphaComponent(0.2)
-            cell?.amountLabel.text = bill?.ammount.format
-            cell?.nameLabel.text = (friend?.name ?? "") + " " + (friend?.surname ?? "")
-            cell?.profileImageView.image = UIImage(named: friend?.icon ?? "") ?? UIImage(systemName: "person.circle")!
+            if let bill = bill, let friend = friend {
+                cell?.amountLabel.text = bill.ammount.format
+                cell?.nameLabel.text = (friend.name) + " " + (friend.surname)
+                cell?.profileImageView.image = UIImage(named: friend.icon) ?? UIImage(systemName: "person.circle")!
+                cell?.backgroundColor = .systemRed.withAlphaComponent(0.2)
+            } else {
+                cell?.amountLabel.text = ""
+                cell?.nameLabel.text = "Borç mu? O da ne!"
+                cell?.profileImageView.image = UIImage(systemName: "hands.sparkles")!
+            }
         }
         
         guard let cell = cell else {
@@ -112,12 +125,12 @@ class SummaryTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         var swipeConfiguration: UISwipeActionsConfiguration = UISwipeActionsConfiguration()
         
-        if indexPath.section == 1 {
+        if indexPath.section == 1, !(presenter?.people?.receivables.isEmpty ?? false) {
             let gainAction = createGainAction(indexPath: indexPath)
             gainAction.title = "Alındı İşaretle"
             gainAction.backgroundColor = .systemGreen
             swipeConfiguration = UISwipeActionsConfiguration(actions: [gainAction])
-        } else if indexPath.section == 2 {
+        } else if indexPath.section == 2, !(presenter?.people?.debts.isEmpty ?? false) {
             let deptAction = createGainAction(indexPath: indexPath)
             deptAction.title = "Öde"
             deptAction.backgroundColor = .systemRed
