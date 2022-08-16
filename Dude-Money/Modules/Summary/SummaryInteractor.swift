@@ -7,13 +7,11 @@
 
 import Foundation
 
-protocol SummaryInteractorInterface {
+protocol SummaryInteractorInterface: AnyObject {
     func readPeople() -> People?
 }
 
-final class SummaryInteractor {
-    weak var presenter: SummaryPresenter?
-}
+final class SummaryInteractor { }
 
 // MARK: - Interface Setup
 extension SummaryInteractor: SummaryInteractorInterface {

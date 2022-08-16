@@ -7,28 +7,22 @@
 
 import UIKit
 
-protocol SummaryRouterInterface {
+protocol SummaryRouterInterface: AnyObject {
     func performSegue(with identifier: String)
     func presentPopup(with message: String)
 }
 
-// TODO: !string constants!
 final class SummaryRouter {
-    weak var presenter: SummaryPresenter?
-    weak var navigationController: UINavigationController?
     
-    static func createModule(using navigationController: UINavigationController) -> SummaryTableViewController {
+    private weak var navigationController: UINavigationController?
+    
+    static func createModule(using navigationController: UINavigationController) -> SummaryCollectionViewController {
         let router = SummaryRouter()
-        let presenter = SummaryPresenter()
+        guard let view = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "summaryVC") as? SummaryCollectionViewController else { return SummaryCollectionViewController() }
         let interactor = SummaryInteractor()
-        guard let view = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "summaryVC") as? SummaryTableViewController else { return SummaryTableViewController() }
+        let presenter = SummaryPresenter(view: view, router: router, interactor: interactor)
         
-        presenter.interactor = interactor
-        presenter.router = router
-        presenter.view = view
         view.presenter = presenter
-        interactor.presenter = presenter
-        router.presenter = presenter
         router.navigationController = navigationController
         
         return view
@@ -39,7 +33,7 @@ final class SummaryRouter {
 extension SummaryRouter: SummaryRouterInterface {
     
     func performSegue(with identifier: String) {
-        presenter?.view?.performSegue(withIdentifier: identifier, sender: self)
+        self.navigationController?.present(MockViewController(), animated: true)
     }
     
     func presentPopup(with message: String) {

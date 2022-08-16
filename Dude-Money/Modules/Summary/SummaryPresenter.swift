@@ -5,22 +5,28 @@
 //  Created by Mehmet Ateş on 14.08.2022.
 //
 
-protocol SummaryPresenterInterface {
+protocol SummaryPresenterInterface: AnyObject {
     func notifyViewLoaded()
-    func notifyViewWillAppear()
     func fetchPeople()
 }
 
 final class SummaryPresenter {
     
-    var view: SummaryTableViewController?
-    var router: SummaryRouterInterface?
-    var interactor: SummaryInteractorInterface?
-    var people: People?
+    private weak var view: SummaryViewInterface?
+    private weak var router: SummaryRouterInterface?
+    private weak var interactor: SummaryInteractorInterface?
+    private var people: People?
+    
+    init(view: SummaryViewInterface?, router: SummaryRouterInterface?, interactor: SummaryInteractorInterface?) {
+        self.view = view
+        self.router = router
+        self.interactor = interactor
+    }
 }
 
 // MARK: - Interface Setup
 extension SummaryPresenter: SummaryPresenterInterface {
+    
     func fetchPeople() {
         people = interactor?.readPeople()
     }
@@ -29,9 +35,5 @@ extension SummaryPresenter: SummaryPresenterInterface {
         view?.setupView()
         fetchPeople()
         view?.setupToolbar()
-    }
-    
-    func notifyViewWillAppear() {
-        
     }
 }
