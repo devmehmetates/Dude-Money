@@ -5,16 +5,19 @@
 //  Created by Mehmet Ateş on 13.08.2022.
 //
 
-protocol TabBarPresenterInterface {
+protocol TabBarPresenterInterface: AnyObject {
     func notifyViewLoaded()
-    func notifyViewWillAppear()
 }
 
 final class TabBarPresenter {
     
-    var view: TabBarViewController?
-    var router: TabBarRouter?
-    var interactor: TabBarInteractor?
+    private weak var view: TabBarViewInterface?
+    private weak var router: TabBarRouterInterface?
+    
+    init(view: TabBarViewInterface?, router: TabBarRouterInterface?) {
+        self.view = view
+        self.router = router
+    }
 }
 
 // MARK: - Interface Setup
@@ -22,9 +25,5 @@ extension TabBarPresenter: TabBarPresenterInterface {
     
     func notifyViewLoaded() {
         view?.setupView()
-    }
-    
-    func notifyViewWillAppear() {
-        // running when view closing
     }
 }

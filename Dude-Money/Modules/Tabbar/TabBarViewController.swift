@@ -7,17 +7,29 @@
 
 import UIKit
 
-protocol TabBarViewInterface {
+protocol TabBarViewInterface: AnyObject {
     func setupView()
 }
 
 class TabBarViewController: UITabBarController {
     
-    var presenter: TabBarPresenterInterface?
+    private lazy var mockVC: UIViewController = {
+        let navigationController = UINavigationController()
+        let mockViewController = MockViewController()
+        navigationController.viewControllers = [mockViewController]
+        navigationController.tabBarItem.title = "Mock"
+        navigationController.tabBarItem.image = UIImage(systemName: "homekit")!
+        return navigationController
+    }()
+    
+    var presenter: TabBarPresenterInterface? {
+        didSet {
+            presenter?.notifyViewLoaded()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter?.notifyViewLoaded()
     }
 }
 
@@ -26,20 +38,12 @@ extension TabBarViewController: TabBarViewInterface {
     
     func setupView() {
         viewControllers = [
-            configureTabbarButton(for: SummaryRouter.createModule(using: UINavigationController()), title: "Özet", image: UIImage(systemName: "chart.xyaxis.line")!),
-            configureTabbarButton(for: MockViewController(), title: "Mock2", image: UIImage(systemName: "homekit")!),
-            configureTabbarButton(for: MockViewController(), title: "Mock4", image: UIImage(systemName: "homekit")!)
+            mockVC,
         ]
-    }
-    
-    private func configureTabbarButton(for rootViewController: UIViewController, title: String, image: UIImage) -> UIViewController {
-        let navController = UINavigationController(rootViewController: rootViewController)
-        navController.tabBarItem.title = title
-        navController.tabBarItem.image = image
-        return navController
     }
 }
 
+// TODO: When completed that project delete this
 class MockViewController: UIViewController {
     
     override func viewDidLoad() {
