@@ -8,9 +8,9 @@
 import UIKit
 
 class BillTableViewCell: UITableViewCell {
-    @IBOutlet var profileImageView: UIImageView!
-    @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var amountLabel: UILabel!
+    @IBOutlet private var profileImageView: UIImageView!
+    @IBOutlet private var nameLabel: UILabel!
+    @IBOutlet private var amountLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -18,5 +18,34 @@ class BillTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    var setProfileImageWithNamed: String? {
+        didSet {
+            self.profileImageView.image = UIImage(named: setProfileImageWithNamed ?? "") ?? UIImage(systemName: "person.circle")
+        }
+    }
+    
+    
+    var setProfileImageWithSystemName: String? {
+        didSet {
+            self.profileImageView.image = UIImage(systemName: setProfileImageWithSystemName ?? "") ?? UIImage(systemName: "person.circle")
+        }
+    }
+    
+    var setNameLabel: String? {
+        didSet {
+            self.nameLabel.text = setNameLabel
+        }
+    }
+    
+    var setAmountLabel: Double? {
+        didSet {
+            if let setAmountLabel = setAmountLabel {
+                self.amountLabel.text = setAmountLabel.format + "₺"
+            } else {
+                self.amountLabel.text = ""
+            }
+        }
     }
 }

@@ -43,7 +43,9 @@ class SummaryTableViewController: UITableViewController {
         var cell: BillTableViewCell? = BillTableViewCell()
         
         if indexPath.section == 0 {
-            cell = tableView.dequeueReusableCell(withIdentifier: "summaryCell", for: indexPath) as? BillTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "summaryCell", for: indexPath) as? SummaryTableViewCell
+            cell?.setBalance = presenter?.people?.balance
+            return cell ?? UITableViewCell()
         } else {
             cell = tableView.dequeueReusableCell(withIdentifier: "billCell", for: indexPath) as? BillTableViewCell
         }
@@ -59,14 +61,14 @@ class SummaryTableViewController: UITableViewController {
             
             
             if let bill = bill, let friend = friend {
-                cell?.amountLabel.text = bill.ammount.format
-                cell?.nameLabel.text = (friend.name) + " " + (friend.surname)
-                cell?.profileImageView.image = UIImage(named: friend.icon) ?? UIImage(systemName: "person.circle")!
+                cell?.setAmountLabel = bill.ammount
+                cell?.setNameLabel = (friend.name) + " " + (friend.surname)
+                cell?.setProfileImageWithNamed = friend.icon
                 cell?.backgroundColor = .systemGreen.withAlphaComponent(0.2)
             } else {
-                cell?.amountLabel.text = ""
-                cell?.nameLabel.text = "Alınacak para kalmamış kanka"
-                cell?.profileImageView.image = UIImage(systemName: "hand.thumbsdown")!
+                cell?.setAmountLabel = nil
+                cell?.setNameLabel = "Alınacak para kalmamış kanka"
+                cell?.setProfileImageWithSystemName = "hand.thumbsdown"
             }
         } else if indexPath.section == 2 {
             if presenter?.people?.debts.count ?? 0 > indexPath.row {
@@ -75,14 +77,14 @@ class SummaryTableViewController: UITableViewController {
             }
             
             if let bill = bill, let friend = friend {
-                cell?.amountLabel.text = bill.ammount.format
-                cell?.nameLabel.text = (friend.name) + " " + (friend.surname)
-                cell?.profileImageView.image = UIImage(named: friend.icon) ?? UIImage(systemName: "person.circle")!
+                cell?.setAmountLabel = bill.ammount
+                cell?.setNameLabel = (friend.name) + " " + (friend.surname)
+                cell?.setProfileImageWithNamed = friend.icon
                 cell?.backgroundColor = .systemRed.withAlphaComponent(0.2)
             } else {
-                cell?.amountLabel.text = ""
-                cell?.nameLabel.text = "Borç mu? O da ne!"
-                cell?.profileImageView.image = UIImage(systemName: "hands.sparkles")!
+                cell?.setAmountLabel = nil
+                cell?.setNameLabel = "Borç mu? O da ne!"
+                cell?.setProfileImageWithSystemName =  "hands.sparkles"
             }
         }
         
@@ -166,10 +168,21 @@ extension SummaryTableViewController: SummaryViewInterface {
         self.navigationItem.rightBarButtonItem = addButton
         addButton.target = self
         addButton.action = #selector(addAction)
+        
+        let profileIcon = UIImageView(image: UIImage(named: presenter?.people?.icon ?? ""))
+        profileIcon.image = profileIcon.image?.withRenderingMode(.alwaysOriginal)
+        profileIcon.backgroundColor = .systemRed
+        profileIcon.layer.cornerRadius = 20
+        NSLayoutConstraint.activate([
+            profileIcon.widthAnchor.constraint(equalToConstant: 40),
+            profileIcon.heightAnchor.constraint(equalToConstant: 40)
+        ])
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileIcon)
     }
     
     @objc
     func addAction() {
+//        presenter?.router?.performSegue(with: "addAction")
         presenter?.people?.debts.append(Bill(whose: "friend", ammount: Double.random(in: (-1000)...(-500))))
         presenter?.people?.receivables.append(Bill(whose: "friend", ammount: Double.random(in: 500...1000)))
         tableView.reloadData()

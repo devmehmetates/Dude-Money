@@ -38,7 +38,7 @@ final class SummaryRouter {
 // MARK: - Interface Setup
 extension SummaryRouter: SummaryRouterInterface {
     func performSegue(with identifier: String) {
-        
+        presenter?.view?.performSegue(withIdentifier: identifier, sender: self)
     }
     
     func presentPopup(with message: String) {

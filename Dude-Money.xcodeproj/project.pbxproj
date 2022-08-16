@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C00E931928ABA7C8000CEAFC /* SummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00E931828ABA7C8000CEAFC /* SummaryTableViewCell.swift */; };
 		C01D06A928AABE58007F499E /* LocalSaveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01D06A828AABE58007F499E /* LocalSaveService.swift */; };
 		C031E72D28A69B3F002CA97A /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C031E72C28A69B3F002CA97A /* IQKeyboardManagerSwift */; };
 		C089233228A80526005F6A2B /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089233128A80526005F6A2B /* TabBarViewController.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C00E931828ABA7C8000CEAFC /* SummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryTableViewCell.swift; sourceTree = "<group>"; };
 		C01D06A828AABE58007F499E /* LocalSaveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocalSaveService.swift; path = "Dude-Money/Models/LocalSaveService.swift"; sourceTree = SOURCE_ROOT; };
 		C089233128A80526005F6A2B /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		C089233428A80AB1005F6A2B /* TabBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPresenter.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				C0B99F5A28AA477C007687F9 /* BillTableViewCell.swift */,
+				C00E931828ABA7C8000CEAFC /* SummaryTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				C0ACB94028A2D8CA00968F26 /* SceneDelegate.swift in Sources */,
 				C0F642DF28A8E39200B75EC9 /* SummaryPresenter.swift in Sources */,
 				C0F642E128A8E39B00B75EC9 /* SummaryInteractor.swift in Sources */,
+				C00E931928ABA7C8000CEAFC /* SummaryTableViewCell.swift in Sources */,
 				C0F642E328A8E3A400B75EC9 /* SummaryRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,7 +13,7 @@ protocol SummaryPresenterInterface {
 
 final class SummaryPresenter {
     
-    var view: SummaryViewInterface?
+    var view: SummaryTableViewController?
     var router: SummaryRouterInterface?
     var interactor: SummaryInteractorInterface?
     var people: People?
@@ -27,8 +27,8 @@ extension SummaryPresenter: SummaryPresenterInterface {
     
     func notifyViewLoaded() {
         view?.setupView()
-        view?.setupToolbar()
         fetchPeople()
+        view?.setupToolbar()
     }
     
     func notifyViewWillAppear() {
