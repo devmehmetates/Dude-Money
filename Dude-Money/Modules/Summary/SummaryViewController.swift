@@ -19,6 +19,9 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate {
     private var listConfig = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
     var presenter: SummaryPresenterInterface?
     
+    let summarySectionIndex: Int = 0
+    let receivablesSectionIndex: Int = 1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.notifyViewLoaded()
@@ -88,7 +91,7 @@ extension SummaryViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // MARK: SummaryCell
-        if indexPath.section == 0 {
+        if indexPath.section == summarySectionIndex {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SummaryCollectionViewCell.cellId, for: indexPath)
                     as? SummaryCollectionViewCell else { return UICollectionViewCell() }
             cell.contentView.heightAnchor.constraint(equalToConstant: SummaryCollectionViewCell.cellHeight).isActive = true
@@ -97,7 +100,7 @@ extension SummaryViewController: UICollectionViewDataSource {
             
         }
         // MARK: ReceiavablesCell
-        else if indexPath.section == 1 {
+        else if indexPath.section == receivablesSectionIndex {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BillCollectionViewCell.cellId, for: indexPath)
                     as? BillCollectionViewCell else { return UICollectionViewCell() }
             
