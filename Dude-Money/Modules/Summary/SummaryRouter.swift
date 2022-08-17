@@ -16,9 +16,9 @@ final class SummaryRouter {
     
     private weak var navigationController: UINavigationController?
     
-    static func createModule(using navigationController: UINavigationController) -> SummaryCollectionViewController {
+    static func createModule(using navigationController: UINavigationController) -> SummaryViewController {
         let router = SummaryRouter()
-        guard let view = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "summaryVC") as? SummaryCollectionViewController else { return SummaryCollectionViewController() }
+        guard let view = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "summaryVC") as? SummaryViewController else { return SummaryViewController() }
         let interactor = SummaryInteractor()
         let presenter = SummaryPresenter(view: view, router: router, interactor: interactor)
         
