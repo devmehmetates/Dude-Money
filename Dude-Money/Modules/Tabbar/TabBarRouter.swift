@@ -8,7 +8,7 @@
 import UIKit
 
 protocol TabBarRouterInterface: AnyObject {
-    func presentPopup(with message: String)
+    func popView()
 }
 
 final class TabBarRouter {
@@ -30,7 +30,7 @@ final class TabBarRouter {
 // MARK: - Interface Setup
 extension TabBarRouter: TabBarRouterInterface {
     
-    func presentPopup(with message: String) {
+    func popView() {
         navigationController?.popViewController(animated: true)
     }
 }
