@@ -9,7 +9,7 @@ import UIKit
 
 class HeaderCollectionReusableView: UICollectionReusableView {
     
-    @IBOutlet weak private var headerLabel: UILabel!
+    @IBOutlet private weak var headerLabel: UILabel!
     
     func setHeaderLabel(_ title: String) {
         self.headerLabel.text = title

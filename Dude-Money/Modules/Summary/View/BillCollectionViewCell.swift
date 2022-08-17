@@ -9,9 +9,9 @@ import UIKit
 
 class BillCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet private var profileImageView: UIImageView!
-    @IBOutlet private var nameLabel: UILabel!
-    @IBOutlet private var amountLabel: UILabel!
+    @IBOutlet private weak var profileImageView: UIImageView!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var amountLabel: UILabel!
     
     func configureContents(
         friend: People? = nil,

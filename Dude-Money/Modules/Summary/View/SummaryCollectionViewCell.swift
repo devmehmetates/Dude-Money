@@ -9,7 +9,7 @@ import UIKit
 
 class SummaryCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet private var amountLabel: UILabel!
+    @IBOutlet private weak var amountLabel: UILabel!
     
     func configureContent(amount: Double) {
         amountLabel.text = amount.format + "₺"

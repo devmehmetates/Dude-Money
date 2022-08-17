@@ -15,7 +15,7 @@ protocol SummaryViewInterface: AnyObject {
 
 class SummaryViewController: UIViewController, UICollectionViewDelegate {
     
-    @IBOutlet private var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     private var listConfig = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
     var presenter: SummaryPresenterInterface?
     
