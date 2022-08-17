@@ -8,15 +8,16 @@
 import Foundation
 
 protocol SummaryInteractorInterface: AnyObject {
-    func readPeople() -> People?
+    var readPeople: People? { get }
 }
 
 final class SummaryInteractor { }
 
 // MARK: - Interface Setup
 extension SummaryInteractor: SummaryInteractorInterface {
-    
-    func readPeople() -> People? {
-        LocalSaveService.readUser()
+    var readPeople: People? {
+        get {
+            LocalSaveService.readUser()
+        }
     }
 }
