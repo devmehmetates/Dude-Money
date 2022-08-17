@@ -17,6 +17,4 @@ class SummaryCollectionViewCell: UICollectionViewCell {
     
     static let cellId: String = "summaryCell"
     static let cellHeight: CGFloat = 210
-    
-    
 }
