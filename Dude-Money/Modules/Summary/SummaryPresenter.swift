@@ -47,7 +47,6 @@ extension SummaryPresenter: SummaryPresenterInterface {
         people?.receivables.isEmpty ?? false
     }
     
-    
     func getDebtDataByIndex(_ index: Int) -> (bill: Bill, friend: People)? {
         guard people?.debts.isEmpty == false else { return nil }
         guard let bill = people?.debts[index] else { return nil }
