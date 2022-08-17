@@ -70,7 +70,7 @@ extension SummaryPresenter: SummaryPresenterInterface {
     }
     
     func fetchPeople() {
-        self.people = interactor?.readPeople
+        people = interactor?.readPeople
     }
     
     func notifyViewLoaded() {
