@@ -29,6 +29,10 @@
 		C0F642DF28A8E39200B75EC9 /* SummaryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F642DE28A8E39200B75EC9 /* SummaryPresenter.swift */; };
 		C0F642E128A8E39B00B75EC9 /* SummaryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F642E028A8E39B00B75EC9 /* SummaryInteractor.swift */; };
 		C0F642E328A8E3A400B75EC9 /* SummaryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F642E228A8E3A400B75EC9 /* SummaryRouter.swift */; };
+		C0FE41C528ACBA9E00A1E36F /* ResponsiveSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FE41C428ACBA9E00A1E36F /* ResponsiveSizes.swift */; };
+		C0FE41C728ACBD2800A1E36F /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FE41C628ACBD2800A1E36F /* HeaderCollectionReusableView.swift */; };
+		C0FE41C928ACC97D00A1E36F /* BillCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FE41C828ACC97D00A1E36F /* BillCollectionViewCell.swift */; };
+		C0FE41CD28ACE33400A1E36F /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FE41CC28ACE33400A1E36F /* SummaryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +59,10 @@
 		C0F642DE28A8E39200B75EC9 /* SummaryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPresenter.swift; sourceTree = "<group>"; };
 		C0F642E028A8E39B00B75EC9 /* SummaryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryInteractor.swift; sourceTree = "<group>"; };
 		C0F642E228A8E3A400B75EC9 /* SummaryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryRouter.swift; sourceTree = "<group>"; };
+		C0FE41C428ACBA9E00A1E36F /* ResponsiveSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponsiveSizes.swift; sourceTree = "<group>"; };
+		C0FE41C628ACBD2800A1E36F /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		C0FE41C828ACC97D00A1E36F /* BillCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCollectionViewCell.swift; sourceTree = "<group>"; };
+		C0FE41CC28ACE33400A1E36F /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				C00E931B28ABB23F000CEAFC /* DoubleFormatter.swift */,
+				C0FE41C428ACBA9E00A1E36F /* ResponsiveSizes.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -176,6 +185,8 @@
 				C0B99F5A28AA477C007687F9 /* BillTableViewCell.swift */,
 				C00E931828ABA7C8000CEAFC /* SummaryTableViewCell.swift */,
 				C050432A28AC3A6600744385 /* SummaryCollectionViewCell.swift */,
+				C0FE41C628ACBD2800A1E36F /* HeaderCollectionReusableView.swift */,
+				C0FE41C828ACC97D00A1E36F /* BillCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -192,6 +203,7 @@
 		C0F642D928A8E1C400B75EC9 /* Summary */ = {
 			isa = PBXGroup;
 			children = (
+				C0FE41CC28ACE33400A1E36F /* SummaryViewController.swift */,
 				C0F642DE28A8E39200B75EC9 /* SummaryPresenter.swift */,
 				C0F642E028A8E39B00B75EC9 /* SummaryInteractor.swift */,
 				C0F642E228A8E3A400B75EC9 /* SummaryRouter.swift */,
@@ -287,14 +299,18 @@
 				C050432928AC325900744385 /* SummaryCollectionViewController.swift in Sources */,
 				C089233528A80AB1005F6A2B /* TabBarPresenter.swift in Sources */,
 				C0B99F5E28AA7E41007687F9 /* People.swift in Sources */,
+				C0FE41C728ACBD2800A1E36F /* HeaderCollectionReusableView.swift in Sources */,
 				C0B99F5B28AA477C007687F9 /* BillTableViewCell.swift in Sources */,
 				C050432B28AC3A6600744385 /* SummaryCollectionViewCell.swift in Sources */,
+				C0FE41C928ACC97D00A1E36F /* BillCollectionViewCell.swift in Sources */,
 				C089233228A80526005F6A2B /* TabBarViewController.swift in Sources */,
 				C0ACB93E28A2D8CA00968F26 /* AppDelegate.swift in Sources */,
 				C0ACB94028A2D8CA00968F26 /* SceneDelegate.swift in Sources */,
+				C0FE41CD28ACE33400A1E36F /* SummaryViewController.swift in Sources */,
 				C0F642DF28A8E39200B75EC9 /* SummaryPresenter.swift in Sources */,
 				C0F642E128A8E39B00B75EC9 /* SummaryInteractor.swift in Sources */,
 				C00E931928ABA7C8000CEAFC /* SummaryTableViewCell.swift in Sources */,
+				C0FE41C528ACBA9E00A1E36F /* ResponsiveSizes.swift in Sources */,
 				C0F642E328A8E3A400B75EC9 /* SummaryRouter.swift in Sources */,
 				C0B9EB4828ABD19F00F3B681 /* Bill.swift in Sources */,
 			);

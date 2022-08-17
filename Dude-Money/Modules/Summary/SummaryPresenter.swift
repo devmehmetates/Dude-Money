@@ -8,13 +8,18 @@
 protocol SummaryPresenterInterface: AnyObject {
     func notifyViewLoaded()
     func fetchPeople()
+    func getUserProfileIcon() -> String
+    func getDebtDataByIndex(_ index: Int) -> (bill: Bill, friend: People)?
+    func getDebtsCount() -> Int
+    func getReceivablesDataByIndex(_ index: Int) -> (bill: Bill, friend: People)?
+    func getReceivablesCount() -> Int
 }
 
 final class SummaryPresenter {
     
     private weak var view: SummaryViewInterface?
     private weak var router: SummaryRouterInterface?
-    private weak var interactor: SummaryInteractorInterface?
+    private var interactor: SummaryInteractorInterface? // references not the same when weak
     private var people: People?
     
     init(view: SummaryViewInterface?, router: SummaryRouterInterface?, interactor: SummaryInteractorInterface?) {
@@ -27,13 +32,39 @@ final class SummaryPresenter {
 // MARK: - Interface Setup
 extension SummaryPresenter: SummaryPresenterInterface {
     
+    func getDebtDataByIndex(_ index: Int) -> (bill: Bill, friend: People)? {
+        guard people?.debts.isEmpty == false else { return nil }
+        guard let bill = people?.debts[index] else { return nil }
+        guard let friend = (people?.friends.first { $0.username == bill.whose }) else { return nil }
+        return (bill: bill, friend: friend)
+    }
+    
+    func getReceivablesDataByIndex(_ index: Int) -> (bill: Bill, friend: People)? {
+        guard people?.receivables.isEmpty == false else { return nil }
+        guard let bill = people?.receivables[index] else { return nil }
+        guard let friend = (people?.friends.first { $0.username == bill.whose }) else { return nil }
+        return (bill: bill, friend: friend)
+    }
+    
+    func getDebtsCount() -> Int {
+        (people?.debts.isEmpty ?? true) ? 1 : people?.debts.count ?? 0
+    }
+    
+    func getReceivablesCount() -> Int {
+        (people?.receivables.isEmpty ?? true) ? 1 : people?.receivables.count ?? 0
+    }
+    
     func fetchPeople() {
-        people = interactor?.readPeople()
+        self.people = interactor?.readPeople()
     }
     
     func notifyViewLoaded() {
         view?.setupView()
         fetchPeople()
         view?.setupToolbar()
+    }
+    
+    func getUserProfileIcon() -> String {
+        people?.icon ?? "example0"
     }
 }
