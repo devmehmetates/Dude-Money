@@ -16,6 +16,7 @@ protocol SummaryPresenterInterface: AnyObject {
     func getDebtIsEmpty() -> Bool
     func getReceivablesIsEmpty() -> Bool
     func getUserBalance() -> Double
+    var getSectionCount: Int { get }
 }
 
 final class SummaryPresenter {
@@ -34,6 +35,10 @@ final class SummaryPresenter {
 
 // MARK: - Interface Setup
 extension SummaryPresenter: SummaryPresenterInterface {
+    
+    var getSectionCount: Int {
+        3
+    }
     
     func getUserBalance() -> Double {
         people?.balance ?? 0

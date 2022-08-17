@@ -147,7 +147,7 @@ extension SummaryViewController {
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        3
+        presenter?.getSectionCount ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
