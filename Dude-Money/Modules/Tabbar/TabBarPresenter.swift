@@ -12,11 +12,9 @@ protocol TabBarPresenterInterface: AnyObject {
 final class TabBarPresenter {
     
     private weak var view: TabBarViewInterface?
-    private weak var router: TabBarRouterInterface?
     
     init(view: TabBarViewInterface?, router: TabBarRouterInterface?) {
         self.view = view
-        self.router = router
     }
 }
 
