@@ -32,12 +32,12 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate {
             configuration.trailingSwipeActionsConfigurationProvider = { indexPath in
                 let swipeAction: UIContextualAction?
                 if indexPath.section == 1 {
-                    swipeAction = UIContextualAction(style: .normal, title: "Ödendi işaretle") { action, sourceView, actionPerformed in
+                    swipeAction = UIContextualAction(style: .normal, title: ScreenTexts.receivablesSwipeActionText) { action, sourceView, actionPerformed in
                         actionPerformed(true)
                     }
                     swipeAction?.backgroundColor = .systemGreen
                 } else {
-                    swipeAction = UIContextualAction(style: .normal, title: "Öde") { action, sourceView, actionPerformed in
+                    swipeAction = UIContextualAction(style: .normal, title: ScreenTexts.debtSwipeActionText) { action, sourceView, actionPerformed in
                         actionPerformed(true)
                     }
                     swipeAction?.backgroundColor = .systemRed
