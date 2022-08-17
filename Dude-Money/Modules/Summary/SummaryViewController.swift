@@ -10,6 +10,7 @@ import UIKit
 protocol SummaryViewInterface: AnyObject {
     func setupView()
     func setupToolbar()
+    func createLayout() -> UICollectionViewCompositionalLayout
 }
 
 class SummaryViewController: UIViewController, UICollectionViewDelegate {
@@ -22,36 +23,6 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate {
         super.viewDidLoad()
         presenter?.notifyViewLoaded()
     }
-    
-    var layout = UICollectionViewCompositionalLayout { index, environment in
-        var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
-        
-        switch index {
-        case 1...2:
-            configuration.headerMode = .supplementary
-            configuration.trailingSwipeActionsConfigurationProvider = { indexPath in
-                let swipeAction: UIContextualAction?
-                if indexPath.section == 1 {
-                    swipeAction = UIContextualAction(style: .normal, title: ScreenTexts.receivablesSwipeActionText) { action, sourceView, actionPerformed in
-                        actionPerformed(true)
-                    }
-                    swipeAction?.backgroundColor = .systemGreen
-                } else {
-                    swipeAction = UIContextualAction(style: .normal, title: ScreenTexts.debtSwipeActionText) { action, sourceView, actionPerformed in
-                        actionPerformed(true)
-                    }
-                    swipeAction?.backgroundColor = .systemRed
-                }
-                
-                guard let swipeAction = swipeAction else { return .init(actions: []) }
-                return .init(actions: [swipeAction])
-            }
-            return .list(using: configuration, layoutEnvironment: environment)
-        default:
-            configuration.headerMode = .none
-            return .list(using: configuration, layoutEnvironment: environment)
-        }
-    }
 }
 
 // MARK: - Interface Setup
@@ -60,7 +31,26 @@ extension SummaryViewController: SummaryViewInterface {
     func setupView() {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        collectionView.setCollectionViewLayout(layout, animated: true)
+        collectionView.setCollectionViewLayout(createLayout(), animated: true)
+    }
+    
+    func createLayout() -> UICollectionViewCompositionalLayout {
+        let layout = UICollectionViewCompositionalLayout { index, environment in
+            var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+            
+            switch index {
+            case 1...2:
+                configuration.headerMode = .supplementary
+                configuration.trailingSwipeActionsConfigurationProvider = { indexPath in
+                    return .init(actions: self.createSwipeAction(forSection: indexPath.section))
+                }
+                return .list(using: configuration, layoutEnvironment: environment)
+            default:
+                configuration.headerMode = .none
+                return .list(using: configuration, layoutEnvironment: environment)
+            }
+        }
+        return layout
     }
     
     func setupToolbar() {
@@ -193,5 +183,32 @@ extension SummaryViewController {
         default:
           assert(false, "Invalid element type")
         }
+    }
+}
+
+// MARK: - Cell Swipe Actions
+extension SummaryViewController {
+    
+    func createSwipeAction(forSection section: Int) -> [UIContextualAction] {
+        let swipeAction: UIContextualAction?
+        if section == 1, !(self.presenter?.getReceivablesIsEmpty() ?? false) {
+            swipeAction = UIContextualAction(style: .normal, title: ScreenTexts.receivablesSwipeActionText) { action, sourceView, actionPerformed in
+                actionPerformed(true)
+            }
+            swipeAction?.backgroundColor = .systemGreen
+        } else if section == 2, !(self.presenter?.getDebtIsEmpty() ?? false){
+            swipeAction = UIContextualAction(style: .normal, title: ScreenTexts.debtSwipeActionText) { action, sourceView, actionPerformed in
+                actionPerformed(true)
+            }
+            swipeAction?.backgroundColor = .systemRed
+        } else {
+            swipeAction = nil
+        }
+        
+        guard let swipeAction = swipeAction else {
+            return []
+        }
+        
+        return [swipeAction]
     }
 }

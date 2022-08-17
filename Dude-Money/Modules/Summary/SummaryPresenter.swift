@@ -13,6 +13,8 @@ protocol SummaryPresenterInterface: AnyObject {
     func getDebtsCount() -> Int
     func getReceivablesDataByIndex(_ index: Int) -> (bill: Bill, friend: People)?
     func getReceivablesCount() -> Int
+    func getDebtIsEmpty() -> Bool
+    func getReceivablesIsEmpty() -> Bool
 }
 
 final class SummaryPresenter {
@@ -31,6 +33,14 @@ final class SummaryPresenter {
 
 // MARK: - Interface Setup
 extension SummaryPresenter: SummaryPresenterInterface {
+    func getDebtIsEmpty() -> Bool {
+        people?.debts.isEmpty ?? false
+    }
+    
+    func getReceivablesIsEmpty() -> Bool {
+        people?.receivables.isEmpty ?? false
+    }
+    
     
     func getDebtDataByIndex(_ index: Int) -> (bill: Bill, friend: People)? {
         guard people?.debts.isEmpty == false else { return nil }
