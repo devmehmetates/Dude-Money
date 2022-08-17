@@ -92,6 +92,7 @@ extension SummaryViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SummaryCollectionViewCell.cellId, for: indexPath)
                     as? SummaryCollectionViewCell else { return UICollectionViewCell() }
             cell.contentView.heightAnchor.constraint(equalToConstant: SummaryCollectionViewCell.cellHeight).isActive = true
+            cell.configureContent(amount: presenter?.getUserBalance() ?? 0)
             return cell
             
         }

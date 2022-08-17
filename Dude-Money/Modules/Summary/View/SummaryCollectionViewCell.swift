@@ -9,6 +9,14 @@ import UIKit
 
 class SummaryCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet private var amountLabel: UILabel!
+    
+    func configureContent(amount: Double) {
+        amountLabel.text = amount.format + "₺"
+    }
+    
     static let cellId: String = "summaryCell"
     static let cellHeight: CGFloat = 210
+    
+    
 }
