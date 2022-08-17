@@ -21,6 +21,7 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate {
     
     let summarySectionIndex: Int = 0
     let receivablesSectionIndex: Int = 1
+    let debtSectionIndex: Int = 2
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -195,12 +196,15 @@ extension SummaryViewController {
     
     func createSwipeAction(forSection section: Int) -> [UIContextualAction] {
         let swipeAction: UIContextualAction?
-        if section == 1, !(self.presenter?.getReceivablesIsEmpty() ?? false) {
+        guard let receivablesIsEmpty = presenter?.getReceivablesIsEmpty() else { return [] }
+        guard let debtIsEmpty = presenter?.getDebtIsEmpty() else { return [] }
+        
+        if section == receivablesSectionIndex, !receivablesIsEmpty {
             swipeAction = UIContextualAction(style: .normal, title: ScreenTexts.receivablesSwipeActionText) { action, sourceView, actionPerformed in
                 actionPerformed(true)
             }
             swipeAction?.backgroundColor = .systemGreen
-        } else if section == 2, !(self.presenter?.getDebtIsEmpty() ?? false){
+        } else if section == debtSectionIndex, !debtIsEmpty {
             swipeAction = UIContextualAction(style: .normal, title: ScreenTexts.debtSwipeActionText) { action, sourceView, actionPerformed in
                 actionPerformed(true)
             }
