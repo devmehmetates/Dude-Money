@@ -9,7 +9,7 @@ import UIKit
 
 protocol SummaryRouterInterface: AnyObject {
     func performSegue(with identifier: String)
-    func presentPopup(with message: String)
+    func popView()
 }
 
 final class SummaryRouter {
@@ -37,7 +37,7 @@ extension SummaryRouter: SummaryRouterInterface {
         self.navigationController?.present(MockViewController(), animated: true)
     }
     
-    func presentPopup(with message: String) {
+    func popView() {
         self.navigationController?.popViewController(animated: true)
     }
 }
