@@ -22,6 +22,10 @@
 		C0B99F5E28AA7E41007687F9 /* People.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B99F5D28AA7E41007687F9 /* People.swift */; };
 		C0B9EB4628ABC92300F3B681 /* ScreenTexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B9EB4528ABC92300F3B681 /* ScreenTexts.swift */; };
 		C0B9EB4828ABD19F00F3B681 /* Bill.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B9EB4728ABD19F00F3B681 /* Bill.swift */; };
+		C0F15E4628AF5A6600A8D576 /* AddBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F15E4528AF5A6600A8D576 /* AddBillViewController.swift */; };
+		C0F15E4828AF5A6F00A8D576 /* AddBillRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F15E4728AF5A6F00A8D576 /* AddBillRouter.swift */; };
+		C0F15E4A28AF5A8900A8D576 /* AddBillInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F15E4928AF5A8900A8D576 /* AddBillInteractor.swift */; };
+		C0F15E4C28AF5A9C00A8D576 /* AddBillPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F15E4B28AF5A9C00A8D576 /* AddBillPresenter.swift */; };
 		C0F642DF28A8E39200B75EC9 /* SummaryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F642DE28A8E39200B75EC9 /* SummaryPresenter.swift */; };
 		C0F642E128A8E39B00B75EC9 /* SummaryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F642E028A8E39B00B75EC9 /* SummaryInteractor.swift */; };
 		C0F642E328A8E3A400B75EC9 /* SummaryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F642E228A8E3A400B75EC9 /* SummaryRouter.swift */; };
@@ -48,6 +52,10 @@
 		C0B99F5D28AA7E41007687F9 /* People.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = People.swift; sourceTree = "<group>"; };
 		C0B9EB4528ABC92300F3B681 /* ScreenTexts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScreenTexts.swift; path = "Dude-Money/Utils/Extensions/ScreenTexts.swift"; sourceTree = SOURCE_ROOT; };
 		C0B9EB4728ABD19F00F3B681 /* Bill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bill.swift; sourceTree = "<group>"; };
+		C0F15E4528AF5A6600A8D576 /* AddBillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBillViewController.swift; sourceTree = "<group>"; };
+		C0F15E4728AF5A6F00A8D576 /* AddBillRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBillRouter.swift; sourceTree = "<group>"; };
+		C0F15E4928AF5A8900A8D576 /* AddBillInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBillInteractor.swift; sourceTree = "<group>"; };
+		C0F15E4B28AF5A9C00A8D576 /* AddBillPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBillPresenter.swift; sourceTree = "<group>"; };
 		C0F642DE28A8E39200B75EC9 /* SummaryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPresenter.swift; sourceTree = "<group>"; };
 		C0F642E028A8E39B00B75EC9 /* SummaryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryInteractor.swift; sourceTree = "<group>"; };
 		C0F642E228A8E3A400B75EC9 /* SummaryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryRouter.swift; sourceTree = "<group>"; };
@@ -90,6 +98,7 @@
 		C031E71028A65A5C002CA97A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				C0F15E4428AF5A4100A8D576 /* AddBill */,
 				C0F642D928A8E1C400B75EC9 /* Summary */,
 				C089233028A804F8005F6A2B /* Tabbar */,
 			);
@@ -190,6 +199,17 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		C0F15E4428AF5A4100A8D576 /* AddBill */ = {
+			isa = PBXGroup;
+			children = (
+				C0F15E4528AF5A6600A8D576 /* AddBillViewController.swift */,
+				C0F15E4728AF5A6F00A8D576 /* AddBillRouter.swift */,
+				C0F15E4928AF5A8900A8D576 /* AddBillInteractor.swift */,
+				C0F15E4B28AF5A9C00A8D576 /* AddBillPresenter.swift */,
+			);
+			path = AddBill;
+			sourceTree = "<group>";
+		};
 		C0F642D928A8E1C400B75EC9 /* Summary */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,15 +302,19 @@
 				C089233928A80AC5005F6A2B /* TabBarRouter.swift in Sources */,
 				C00E931C28ABB23F000CEAFC /* DoubleFormatter.swift in Sources */,
 				C01D06A928AABE58007F499E /* LocalSaveService.swift in Sources */,
+				C0F15E4828AF5A6F00A8D576 /* AddBillRouter.swift in Sources */,
 				C0B9EB4628ABC92300F3B681 /* ScreenTexts.swift in Sources */,
 				C089233528A80AB1005F6A2B /* TabBarPresenter.swift in Sources */,
+				C0F15E4A28AF5A8900A8D576 /* AddBillInteractor.swift in Sources */,
 				C0B99F5E28AA7E41007687F9 /* People.swift in Sources */,
+				C0F15E4628AF5A6600A8D576 /* AddBillViewController.swift in Sources */,
 				C0FE41C728ACBD2800A1E36F /* HeaderCollectionReusableView.swift in Sources */,
 				C050432B28AC3A6600744385 /* SummaryCollectionViewCell.swift in Sources */,
 				C0FE41C928ACC97D00A1E36F /* BillCollectionViewCell.swift in Sources */,
 				C089233228A80526005F6A2B /* TabBarViewController.swift in Sources */,
 				C0ACB93E28A2D8CA00968F26 /* AppDelegate.swift in Sources */,
 				C0ACB94028A2D8CA00968F26 /* SceneDelegate.swift in Sources */,
+				C0F15E4C28AF5A9C00A8D576 /* AddBillPresenter.swift in Sources */,
 				C0FE41CD28ACE33400A1E36F /* SummaryViewController.swift in Sources */,
 				C0F642DF28A8E39200B75EC9 /* SummaryPresenter.swift in Sources */,
 				C0F642E128A8E39B00B75EC9 /* SummaryInteractor.swift in Sources */,
