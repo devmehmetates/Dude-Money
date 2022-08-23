@@ -10,6 +10,7 @@ import UIKit
 protocol SummaryRouterInterface: AnyObject {
     func performSegue(with identifier: String)
     func popView()
+    func presentAddBill()
 }
 
 final class SummaryRouter {
@@ -32,6 +33,11 @@ final class SummaryRouter {
 
 // MARK: - Interface Setup
 extension SummaryRouter: SummaryRouterInterface {
+    
+    func presentAddBill() {
+        let rootNavController: UINavigationController = navigationController ?? UINavigationController()
+        navigationController?.present(AddBillRouter.createModule(using: rootNavController), animated: true)
+    }
     
     func performSegue(with identifier: String) {
         self.navigationController?.present(MockViewController(), animated: true)

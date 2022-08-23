@@ -17,7 +17,7 @@ final class AddBillRouter {
     
     static func createModule(using navigationController: UINavigationController) -> AddBillViewController {
         let router = AddBillRouter()
-        guard let view = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "addBill") as? AddBillViewController else { return AddBillViewController() }
+        let view = AddBillViewController(nibName: "AddBillViewController", bundle: nil)
         let interactor = AddBillInteractor()
         let presenter = AddBillPresenter(view: view, router: router, interactor: interactor)
         
@@ -31,6 +31,6 @@ final class AddBillRouter {
 extension AddBillRouter: AddBillRouterInterface {
     
     func popView() {
-        navigationController?.popViewController(animated: true)
+        navigationController?.dismiss(animated: true)
     }
 }

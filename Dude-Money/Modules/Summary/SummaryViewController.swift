@@ -84,6 +84,7 @@ extension SummaryViewController: SummaryViewInterface {
 
     @objc
     func addAction() {
+        presenter?.presentAddBill()
     }
 }
 

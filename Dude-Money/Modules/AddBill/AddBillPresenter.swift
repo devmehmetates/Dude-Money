@@ -10,12 +10,13 @@ import Foundation
 protocol AddBillPresenterInterface: AnyObject {
     func notifyViewLoaded()
     func notifyViewWillAppear()
+    func popView()
 }
 
 final class AddBillPresenter {
     
     private weak var view: AddBillViewInterface?
-    private weak var router: AddBillRouterInterface?
+    private var router: AddBillRouterInterface? // same issue
     private weak var interactor: AddBillInteractorInterface?
     
     init(view: AddBillViewInterface?, router: AddBillRouterInterface?, interactor: AddBillInteractorInterface?) {
@@ -26,6 +27,10 @@ final class AddBillPresenter {
 }
 
 extension AddBillPresenter: AddBillPresenterInterface {
+    func popView() {
+        router?.popView()
+    }
+    
     func notifyViewLoaded() {
         
     }

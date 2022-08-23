@@ -17,12 +17,13 @@ protocol SummaryPresenterInterface: AnyObject {
     func getReceivablesIsEmpty() -> Bool
     func getUserBalance() -> Double
     var getSectionCount: Int { get }
+    func presentAddBill()
 }
 
 final class SummaryPresenter {
     
     private weak var view: SummaryViewInterface?
-    private weak var router: SummaryRouterInterface?
+    private var router: SummaryRouterInterface? // references not the same when weak Same issue
     private var interactor: SummaryInteractorInterface? // references not the same when weak
     private var people: People?
     
@@ -35,6 +36,10 @@ final class SummaryPresenter {
 
 // MARK: - Interface Setup
 extension SummaryPresenter: SummaryPresenterInterface {
+    
+    func presentAddBill() {
+        router?.presentAddBill()
+    }
     
     var getSectionCount: Int {
         3

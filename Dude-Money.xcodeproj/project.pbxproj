@@ -29,6 +29,7 @@
 		C0F642DF28A8E39200B75EC9 /* SummaryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F642DE28A8E39200B75EC9 /* SummaryPresenter.swift */; };
 		C0F642E128A8E39B00B75EC9 /* SummaryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F642E028A8E39B00B75EC9 /* SummaryInteractor.swift */; };
 		C0F642E328A8E3A400B75EC9 /* SummaryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F642E228A8E3A400B75EC9 /* SummaryRouter.swift */; };
+		C0F8B59228B4CB23002EA1C0 /* AddBillViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0F8B59028B4CB23002EA1C0 /* AddBillViewController.xib */; };
 		C0FE41C528ACBA9E00A1E36F /* ResponsiveSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FE41C428ACBA9E00A1E36F /* ResponsiveSizes.swift */; };
 		C0FE41C728ACBD2800A1E36F /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FE41C628ACBD2800A1E36F /* HeaderCollectionReusableView.swift */; };
 		C0FE41C928ACC97D00A1E36F /* BillCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FE41C828ACC97D00A1E36F /* BillCollectionViewCell.swift */; };
@@ -59,6 +60,7 @@
 		C0F642DE28A8E39200B75EC9 /* SummaryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPresenter.swift; sourceTree = "<group>"; };
 		C0F642E028A8E39B00B75EC9 /* SummaryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryInteractor.swift; sourceTree = "<group>"; };
 		C0F642E228A8E3A400B75EC9 /* SummaryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryRouter.swift; sourceTree = "<group>"; };
+		C0F8B59028B4CB23002EA1C0 /* AddBillViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddBillViewController.xib; sourceTree = "<group>"; };
 		C0FE41C428ACBA9E00A1E36F /* ResponsiveSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponsiveSizes.swift; sourceTree = "<group>"; };
 		C0FE41C628ACBD2800A1E36F /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		C0FE41C828ACC97D00A1E36F /* BillCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				C0F15E4728AF5A6F00A8D576 /* AddBillRouter.swift */,
 				C0F15E4928AF5A8900A8D576 /* AddBillInteractor.swift */,
 				C0F15E4B28AF5A9C00A8D576 /* AddBillPresenter.swift */,
+				C0F8B58828B4C77B002EA1C0 /* Views */,
 			);
 			path = AddBill;
 			sourceTree = "<group>";
@@ -220,6 +223,14 @@
 				C0B99F5928AA476A007687F9 /* View */,
 			);
 			path = Summary;
+			sourceTree = "<group>";
+		};
+		C0F8B58828B4C77B002EA1C0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C0F8B59028B4CB23002EA1C0 /* AddBillViewController.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0ACB94A28A2D8CC00968F26 /* LaunchScreen.storyboard in Resources */,
+				C0F8B59228B4CB23002EA1C0 /* AddBillViewController.xib in Resources */,
 				C0ACB94728A2D8CC00968F26 /* Assets.xcassets in Resources */,
 				C0ACB94528A2D8CA00968F26 /* Main.storyboard in Resources */,
 			);
