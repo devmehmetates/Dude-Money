@@ -13,7 +13,7 @@ protocol SummaryViewInterface: AnyObject {
     func createLayout() -> UICollectionViewCompositionalLayout
 }
 
-class SummaryViewController: UIViewController, UICollectionViewDelegate {
+final class SummaryViewController: UIViewController, UICollectionViewDelegate {
     
     @IBOutlet private weak var collectionView: UICollectionView!
     private var listConfig = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
