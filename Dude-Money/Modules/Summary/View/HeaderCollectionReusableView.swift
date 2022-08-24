@@ -15,6 +15,5 @@ final class HeaderCollectionReusableView: UICollectionReusableView {
         self.headerLabel.text = title
     }
     
-    static let cellId: String = "headerCell"
     static let cellHeight: CGFloat = 40
 }

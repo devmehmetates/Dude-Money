@@ -15,6 +15,5 @@ final class SummaryCollectionViewCell: UICollectionViewCell {
         amountLabel.text = amount.format + "₺"
     }
     
-    static let cellId: String = "summaryCell"
     static let cellHeight: CGFloat = 210
 }

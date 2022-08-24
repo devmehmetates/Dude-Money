@@ -32,6 +32,5 @@ final class BillCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    static let cellId = "billCell"
     static let cellHeight: CGFloat = 70
 }
