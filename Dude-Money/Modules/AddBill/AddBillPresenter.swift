@@ -16,7 +16,7 @@ protocol AddBillPresenterInterface: AnyObject {
 final class AddBillPresenter {
     
     private weak var view: AddBillViewInterface?
-    private var router: AddBillRouterInterface? // same issue
+    private var router: AddBillRouterInterface?
     private weak var interactor: AddBillInteractorInterface?
     
     init(view: AddBillViewInterface?, router: AddBillRouterInterface?, interactor: AddBillInteractorInterface?) {

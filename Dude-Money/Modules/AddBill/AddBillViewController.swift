@@ -20,7 +20,6 @@ class AddBillViewController: UIViewController {
         super.viewDidLoad()
         friendPullDownButton.showsMenuAsPrimaryAction = true
         friendPullDownButton.changesSelectionAsPrimaryAction = true
-
         
         friendPullDownButton.menu = UIMenu(children: [
             UIAction(title: "Deneme", state: .on, handler: { action in

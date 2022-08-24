@@ -23,8 +23,8 @@ protocol SummaryPresenterInterface: AnyObject {
 final class SummaryPresenter {
     
     private weak var view: SummaryViewInterface?
-    private var router: SummaryRouterInterface? // references not the same when weak Same issue
-    private var interactor: SummaryInteractorInterface? // references not the same when weak
+    private var router: SummaryRouterInterface?
+    private var interactor: SummaryInteractorInterface?
     private var people: People?
     
     init(view: SummaryViewInterface?, router: SummaryRouterInterface?, interactor: SummaryInteractorInterface?) {
@@ -41,38 +41,14 @@ extension SummaryPresenter: SummaryPresenterInterface {
         people?.icon ?? "example0"
     }
     
-    func getUserBalance() -> Double {
-        people?.balance ?? 0
-    var getReceivablesCount: Int {
-        (people?.receivables.isEmpty ?? true) ? 1 : people?.receivables.count ?? 0
+    func notifyViewLoaded() {
+        view?.setupView()
+        fetchPeople()
+        view?.setupToolbar()
     }
     
-    var getReceivablesIsEmpty: Bool {
-        people?.receivables.isEmpty ?? false
-    }
-    
-    var getDebtsCount: Int {
-        (people?.debts.isEmpty ?? true) ? 1 : people?.debts.count ?? 0
-    }
-    
-    func getDebtIsEmpty() -> Bool {
-    var getDebtIsEmpty: Bool {
-        people?.debts.isEmpty ?? false
-    }
-    
-    func getReceivablesIsEmpty() -> Bool {
-        people?.receivables.isEmpty ?? false
-    var getUserBalance: Double {
-        people?.balance ?? 0
-    }
-    
-    
-    func presentAddBill() {
-        router?.presentAddBill()
-    }
-    
-    var getSectionCount: Int {
-        3
+    func fetchPeople() {
+        people = interactor?.readPeople
     }
     
     func getDebtDataByIndex(_ index: Int) -> (bill: Bill, friend: People)? {
@@ -91,13 +67,31 @@ extension SummaryPresenter: SummaryPresenterInterface {
         return (bill: bill, friend: friend)
     }
     
-    func fetchPeople() {
-        people = interactor?.readPeople
+    var getReceivablesCount: Int {
+        (people?.receivables.isEmpty ?? true) ? 1 : people?.receivables.count ?? 0
     }
     
-    func notifyViewLoaded() {
-        view?.setupView()
-        fetchPeople()
-        view?.setupToolbar()
+    var getReceivablesIsEmpty: Bool {
+        people?.receivables.isEmpty ?? false
+    }
+    
+    var getDebtsCount: Int {
+        (people?.debts.isEmpty ?? true) ? 1 : people?.debts.count ?? 0
+    }
+    
+    var getDebtIsEmpty: Bool {
+        people?.debts.isEmpty ?? false
+    }
+    
+    var getUserBalance: Double {
+        people?.balance ?? 0
+    }
+    
+    var getSectionCount: Int {
+        3
+    }
+    
+    func presentAddBill() {
+        router?.presentAddBill()
     }
 }
