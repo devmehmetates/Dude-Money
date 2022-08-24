@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LocalSaveService {
+final class LocalSaveService {
     
     static func saveUser(_ people: People) {
         let userDataKey = "userData"
@@ -33,6 +33,7 @@ class LocalSaveService {
                 }
             } catch{
                 print("read error")
+                // TODO: When register logic setted remove it
                 return People.exampleModel
             }
         }
