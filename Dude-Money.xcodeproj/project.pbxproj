@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C00914F228B60EC1005FDB10 /* UIStoryboardInstantiate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00914F128B60EC1005FDB10 /* UIStoryboardInstantiate.swift */; };
 		C00E931C28ABB23F000CEAFC /* DoubleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00E931B28ABB23F000CEAFC /* DoubleFormatter.swift */; };
 		C01D06A928AABE58007F499E /* LocalSaveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01D06A828AABE58007F499E /* LocalSaveService.swift */; };
 		C031E72D28A69B3F002CA97A /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C031E72C28A69B3F002CA97A /* IQKeyboardManagerSwift */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C00914F128B60EC1005FDB10 /* UIStoryboardInstantiate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboardInstantiate.swift; sourceTree = "<group>"; };
 		C00E931B28ABB23F000CEAFC /* DoubleFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleFormatter.swift; sourceTree = "<group>"; };
 		C01D06A828AABE58007F499E /* LocalSaveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocalSaveService.swift; path = "Dude-Money/Models/LocalSaveService.swift"; sourceTree = SOURCE_ROOT; };
 		C050432A28AC3A6600744385 /* SummaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 			children = (
 				C00E931B28ABB23F000CEAFC /* DoubleFormatter.swift */,
 				C0FE41C428ACBA9E00A1E36F /* ResponsiveSizes.swift */,
+				C00914F128B60EC1005FDB10 /* UIStoryboardInstantiate.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				C050432B28AC3A6600744385 /* SummaryCollectionViewCell.swift in Sources */,
 				C0FE41C928ACC97D00A1E36F /* BillCollectionViewCell.swift in Sources */,
 				C089233228A80526005F6A2B /* TabBarViewController.swift in Sources */,
+				C00914F228B60EC1005FDB10 /* UIStoryboardInstantiate.swift in Sources */,
 				C0ACB93E28A2D8CA00968F26 /* AppDelegate.swift in Sources */,
 				C0ACB94028A2D8CA00968F26 /* SceneDelegate.swift in Sources */,
 				C0FE41CD28ACE33400A1E36F /* SummaryViewController.swift in Sources */,
