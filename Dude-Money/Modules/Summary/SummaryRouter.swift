@@ -18,7 +18,7 @@ final class SummaryRouter {
     
     static func createModule(using navigationController: UINavigationController) -> SummaryViewController {
         let router = SummaryRouter()
-        let view = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(ofType: SummaryViewController.self, withIdentifier: "summaryVC")
+        let view: SummaryViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(ofType: SummaryViewController.self)
         let interactor = SummaryInteractor()
         let presenter = SummaryPresenter(view: view, router: router, interactor: interactor)
         
