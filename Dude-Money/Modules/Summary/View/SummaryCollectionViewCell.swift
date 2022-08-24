@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SummaryCollectionViewCell: UICollectionViewCell {
+final class SummaryCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet private weak var amountLabel: UILabel!
     
