@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LocalSaveService {
+final class LocalSaveService {
     
     static func saveUser(_ people: People) {
         let userDataKey = "userData"
