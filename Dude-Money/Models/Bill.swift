@@ -8,5 +8,4 @@
 struct Bill: Codable {
     var whose: String
     var ammount: Double
-    
 }

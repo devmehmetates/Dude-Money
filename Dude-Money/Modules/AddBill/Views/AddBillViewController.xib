@@ -12,7 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddBillViewController" customModule="Dude_Money" customModuleProvider="target">
             <connections>
+                <outlet property="addButton" destination="ceU-RV-R5N" id="Suu-bc-11d"/>
                 <outlet property="friendPullDownButton" destination="Dk4-5F-jyK" id="agl-gH-h5y"/>
+                <outlet property="priceTextField" destination="FCc-cz-VYm" id="1CH-XE-dnK"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -79,6 +81,9 @@
                                 <segment title="Alacak"/>
                             </segments>
                             <color key="tintColor" name="AccentColor"/>
+                            <connections>
+                                <action selector="priceTypeValueChanged:" destination="-1" eventType="valueChanged" id="gSS-kI-xRs"/>
+                            </connections>
                         </segmentedControl>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="500" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FCc-cz-VYm">
                             <rect key="frame" x="15" y="100.5" width="336" height="18.5"/>
@@ -102,6 +107,9 @@
                     </constraints>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="filled" title="Ekle"/>
+                    <connections>
+                        <action selector="addButtonTapped:" destination="-1" eventType="touchUpInside" id="J4S-fF-uEa"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kayıt Ekle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="psk-Ao-JaN">
                     <rect key="frame" x="174" y="76" width="66" height="17"/>

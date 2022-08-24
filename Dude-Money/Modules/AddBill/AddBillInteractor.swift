@@ -7,10 +7,16 @@
 
 import Foundation
 
-protocol AddBillInteractorInterface: AnyObject { }
+protocol AddBillInteractorInterface: AnyObject {
+    var readPeople: People? { get }
+}
 
 final class AddBillInteractor { }
 
 extension AddBillInteractor: AddBillInteractorInterface {
-    
+    var readPeople: People? {
+        get {
+            LocalSaveService.readUser()
+        }
+    }
 }
