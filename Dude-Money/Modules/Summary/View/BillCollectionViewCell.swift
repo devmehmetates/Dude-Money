@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BillCollectionViewCell: UICollectionViewCell {
+final class BillCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet private weak var profileImageView: UIImageView!
     @IBOutlet private weak var nameLabel: UILabel!
