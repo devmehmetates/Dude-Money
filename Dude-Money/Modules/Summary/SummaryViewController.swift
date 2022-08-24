@@ -71,7 +71,7 @@ extension SummaryViewController: SummaryViewInterface {
     }
 
     private func configureLeftNavigationBarButton() {
-        let profileIcon = UIImageView(image: UIImage(named: presenter?.getUserProfileIcon() ?? ""))
+        let profileIcon = UIImageView(image: UIImage(named: presenter?.getUserProfileIcon ?? ""))
         profileIcon.image = profileIcon.image?.withRenderingMode(.alwaysOriginal)
         profileIcon.backgroundColor = .systemRed
         profileIcon.layer.cornerRadius = 20
@@ -96,7 +96,7 @@ extension SummaryViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SummaryCollectionViewCell.cellId, for: indexPath)
                     as? SummaryCollectionViewCell else { return UICollectionViewCell() }
             cell.contentView.heightAnchor.constraint(equalToConstant: SummaryCollectionViewCell.cellHeight).isActive = true
-            cell.configureContent(amount: presenter?.getUserBalance() ?? 0)
+            cell.configureContent(amount: presenter?.getUserBalance ?? 0)
             return cell
             
         }
@@ -139,9 +139,9 @@ extension SummaryViewController {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 1:
-            return presenter?.getReceivablesCount() ?? 0
+            return presenter?.getReceivablesCount ?? 0
         case 2:
-            return presenter?.getDebtsCount() ?? 0
+            return presenter?.getDebtsCount ?? 0
         default:
             return 1
         }
@@ -196,8 +196,8 @@ extension SummaryViewController {
     
     func createSwipeAction(forSection section: Int) -> [UIContextualAction] {
         let swipeAction: UIContextualAction?
-        guard let receivablesIsEmpty = presenter?.getReceivablesIsEmpty() else { return [] }
-        guard let debtIsEmpty = presenter?.getDebtIsEmpty() else { return [] }
+        guard let receivablesIsEmpty = presenter?.getReceivablesIsEmpty else { return [] }
+        guard let debtIsEmpty = presenter?.getDebtIsEmpty else { return [] }
         
         if section == receivablesSectionIndex, !receivablesIsEmpty {
             swipeAction = UIContextualAction(style: .normal, title: ScreenTexts.receivablesSwipeActionText) { action, sourceView, actionPerformed in
