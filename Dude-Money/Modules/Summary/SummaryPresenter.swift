@@ -66,16 +66,18 @@ extension SummaryPresenter: SummaryPresenterInterface {
     }
     
     func getDebtDataByIndex(_ index: Int) -> (bill: Bill, friend: People)? {
-        guard people?.debts.isEmpty == false else { return nil }
-        guard let bill = people?.debts[index] else { return nil }
-        guard let friend = (people?.friends.first { $0.username == bill.whose }) else { return nil }
+        guard people?.debts.isEmpty == false,
+              let bill = people?.debts[index],
+              let friend = (people?.friends.first { $0.username == bill.whose })
+        else { return nil }
         return (bill: bill, friend: friend)
     }
     
     func getReceivablesDataByIndex(_ index: Int) -> (bill: Bill, friend: People)? {
-        guard people?.receivables.isEmpty == false else { return nil }
-        guard let bill = people?.receivables[index] else { return nil }
-        guard let friend = (people?.friends.first { $0.username == bill.whose }) else { return nil }
+        guard people?.receivables.isEmpty == false,
+              let bill = people?.receivables[index],
+              let friend = (people?.friends.first { $0.username == bill.whose })
+        else { return nil }
         return (bill: bill, friend: friend)
     }
     
