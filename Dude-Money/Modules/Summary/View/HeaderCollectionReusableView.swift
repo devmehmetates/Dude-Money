@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HeaderCollectionReusableView: UICollectionReusableView {
+final class HeaderCollectionReusableView: UICollectionReusableView {
     
     @IBOutlet private weak var headerLabel: UILabel!
     
@@ -15,6 +15,5 @@ class HeaderCollectionReusableView: UICollectionReusableView {
         self.headerLabel.text = title
     }
     
-    static let cellId: String = "headerCell"
     static let cellHeight: CGFloat = 40
 }

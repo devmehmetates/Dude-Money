@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SummaryCollectionViewCell: UICollectionViewCell {
+final class SummaryCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet private weak var amountLabel: UILabel!
     
@@ -15,6 +15,5 @@ class SummaryCollectionViewCell: UICollectionViewCell {
         amountLabel.text = amount.format + "₺"
     }
     
-    static let cellId: String = "summaryCell"
     static let cellHeight: CGFloat = 210
 }

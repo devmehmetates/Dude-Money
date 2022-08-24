@@ -13,7 +13,7 @@ protocol SummaryViewInterface: AnyObject {
     func createLayout() -> UICollectionViewCompositionalLayout
 }
 
-class SummaryViewController: UIViewController, UICollectionViewDelegate {
+final class SummaryViewController: UIViewController, UICollectionViewDelegate {
     
     @IBOutlet private weak var collectionView: UICollectionView!
     private var listConfig = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
@@ -26,6 +26,9 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.notifyViewLoaded()
+        collectionView.registerCell(cell: BillCollectionViewCell.self)
+        collectionView.registerCell(cell: SummaryCollectionViewCell.self)
+        collectionView.registerReusableView(cell: HeaderCollectionReusableView.self)
     }
 }
 
@@ -71,7 +74,7 @@ extension SummaryViewController: SummaryViewInterface {
     }
 
     private func configureLeftNavigationBarButton() {
-        let profileIcon = UIImageView(image: UIImage(named: presenter?.getUserProfileIcon() ?? ""))
+        let profileIcon = UIImageView(image: UIImage(named: presenter?.getUserProfileIcon ?? ""))
         profileIcon.image = profileIcon.image?.withRenderingMode(.alwaysOriginal)
         profileIcon.backgroundColor = .systemRed
         profileIcon.layer.cornerRadius = 20
@@ -92,20 +95,18 @@ extension SummaryViewController: SummaryViewInterface {
 extension SummaryViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell: BillCollectionViewCell = collectionView.dequeue(for: indexPath) else { return UICollectionViewCell() }
+        
         // MARK: SummaryCell
         if indexPath.section == summarySectionIndex {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SummaryCollectionViewCell.cellId, for: indexPath)
-                    as? SummaryCollectionViewCell else { return UICollectionViewCell() }
+            guard let cell: SummaryCollectionViewCell = collectionView.dequeue(for: indexPath) else { return UICollectionViewCell() }
             cell.contentView.heightAnchor.constraint(equalToConstant: SummaryCollectionViewCell.cellHeight).isActive = true
-            cell.configureContent(amount: presenter?.getUserBalance() ?? 0)
+            cell.configureContent(amount: presenter?.getUserBalance ?? 0)
             return cell
             
         }
         // MARK: ReceiavablesCell
         else if indexPath.section == receivablesSectionIndex {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BillCollectionViewCell.cellId, for: indexPath)
-                    as? BillCollectionViewCell else { return UICollectionViewCell() }
-            
             cell.contentView.heightAnchor.constraint(equalToConstant: BillCollectionViewCell.cellHeight).isActive = true
             
             if let cellData = presenter?.getReceivablesDataByIndex(indexPath.row) {
@@ -118,9 +119,6 @@ extension SummaryViewController: UICollectionViewDataSource {
         }
         // MARK: DebtsCell
         else {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BillCollectionViewCell.cellId, for: indexPath)
-                    as? BillCollectionViewCell else { return UICollectionViewCell() }
-            
             cell.contentView.heightAnchor.constraint(equalToConstant: BillCollectionViewCell.cellHeight).isActive = true
             
             if let cellData = presenter?.getDebtDataByIndex(indexPath.row) {
@@ -140,9 +138,9 @@ extension SummaryViewController {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 1:
-            return presenter?.getReceivablesCount() ?? 0
+            return presenter?.getReceivablesCount ?? 0
         case 2:
-            return presenter?.getDebtsCount() ?? 0
+            return presenter?.getDebtsCount ?? 0
         default:
             return 1
         }
@@ -175,17 +173,18 @@ extension SummaryViewController {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderCollectionReusableView.cellId, for: indexPath)
-            guard let reusableHeaderView = headerView as? HeaderCollectionReusableView else { return headerView }
-            
-            if indexPath.section == 1 {
-                reusableHeaderView.setHeaderLabel(ScreenTexts.receivablesSectionTitle)
-            } else if indexPath.section == 2 {
-                reusableHeaderView.setHeaderLabel(ScreenTexts.debtSectionTitle)
+            guard let headerView: HeaderCollectionReusableView = collectionView.dequeueReusableView(for: indexPath, kind: kind) else {
+                return UICollectionReusableView()
             }
             
-            reusableHeaderView.heightAnchor.constraint(equalToConstant: HeaderCollectionReusableView.cellHeight).isActive = true
-            return reusableHeaderView
+            if indexPath.section == 1 {
+                headerView.setHeaderLabel(ScreenTexts.receivablesSectionTitle)
+            } else if indexPath.section == 2 {
+                headerView.setHeaderLabel(ScreenTexts.debtSectionTitle)
+            }
+            
+            headerView.heightAnchor.constraint(equalToConstant: HeaderCollectionReusableView.cellHeight).isActive = true
+            return headerView
         default:
           assert(false, "Invalid element type")
         }
@@ -197,8 +196,7 @@ extension SummaryViewController {
     
     func createSwipeAction(forSection section: Int) -> [UIContextualAction] {
         let swipeAction: UIContextualAction?
-        guard let receivablesIsEmpty = presenter?.getReceivablesIsEmpty() else { return [] }
-        guard let debtIsEmpty = presenter?.getDebtIsEmpty() else { return [] }
+        guard let receivablesIsEmpty = presenter?.getReceivablesIsEmpty, let debtIsEmpty = presenter?.getDebtIsEmpty else { return [] }
         
         if section == receivablesSectionIndex, !receivablesIsEmpty {
             swipeAction = UIContextualAction(style: .normal, title: ScreenTexts.receivablesSwipeActionText) { action, sourceView, actionPerformed in

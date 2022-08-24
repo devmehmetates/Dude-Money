@@ -9,5 +9,4 @@ struct Bill: Codable {
     var whose: String
     var ammount: Double
     
-    static let exampleModel: Bill = Bill(whose: "friend", ammount: 100)
 }
