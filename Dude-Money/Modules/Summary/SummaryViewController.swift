@@ -196,8 +196,7 @@ extension SummaryViewController {
     
     func createSwipeAction(forSection section: Int) -> [UIContextualAction] {
         let swipeAction: UIContextualAction?
-        guard let receivablesIsEmpty = presenter?.getReceivablesIsEmpty else { return [] }
-        guard let debtIsEmpty = presenter?.getDebtIsEmpty else { return [] }
+        guard let receivablesIsEmpty = presenter?.getReceivablesIsEmpty, let debtIsEmpty = presenter?.getDebtIsEmpty else { return [] }
         
         if section == receivablesSectionIndex, !receivablesIsEmpty {
             swipeAction = UIContextualAction(style: .normal, title: ScreenTexts.receivablesSwipeActionText) { action, sourceView, actionPerformed in

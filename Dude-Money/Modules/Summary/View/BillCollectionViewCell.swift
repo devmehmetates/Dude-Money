@@ -23,9 +23,7 @@ final class BillCollectionViewCell: UICollectionViewCell {
             self.nameLabel.text = infoCell.message ?? ""
             self.amountLabel.text = ""
         } else {
-            guard let friend = friend else { return}
-            guard let bill = bill else { return }
-
+            guard let friend = friend, let bill = bill else { return }
             self.profileImageView.image = UIImage(named: friend.icon) ?? UIImage(systemName: "person.circle")
             self.nameLabel.text = friend.name + " " + friend.surname
             if bill.ammount != 0 {
