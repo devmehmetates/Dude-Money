@@ -16,7 +16,7 @@ final class BillCollectionViewCell: UICollectionViewCell {
     func configureContents(
         friend: People? = nil,
         bill: Bill? = nil,
-        infoCell: (icon: String?, message: String?)? = (icon: nil, message: nil) ) {
+        infoCell: (icon: String?, message: String?)? = nil) {
             
         if let infoCell = infoCell {
             self.profileImageView.image = UIImage(systemName: infoCell.icon ?? "")?.withTintColor(.black, renderingMode: .alwaysOriginal)
