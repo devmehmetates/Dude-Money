@@ -40,10 +40,13 @@ extension AddBillPresenter: AddBillPresenterInterface {
         let bill = Bill(whose: whose, ammount: type == .Debt ? -amount : amount)
         if type == .Debt {
             people?.debts.append(bill)
+            popView()
             return
         }
         
         people?.receivables.append(bill)
+        popView()
+        return
     }
     
     var getFriends: [People]? {

@@ -32,34 +32,11 @@ final class AddBillViewController: UIViewController {
         super.viewWillAppear(animated)
         presenter?.notifyViewWillAppear()
     }
-    
-    @IBAction private func closeButtonTapped(_ sender: UIButton) {
-        presenter?.popView()
-    }
-    
-    @IBAction private func priceTypeValueChanged(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == PriceType.Receivable.rawValue {
-            priceTextField.textColor = .systemGreen
-            priceTextField.tintColor = .systemGreen
-            addButton.tintColor = .systemGreen
-            friendPullDownButton.tintColor = .systemGreen
-            priceType = .Receivable
-        } else {
-            priceTextField.textColor = .systemRed
-            priceTextField.tintColor = .systemRed
-            addButton.tintColor = .systemRed
-            friendPullDownButton.tintColor = .systemRed
-            priceType = .Debt
-        }
-    }
-    
-    @IBAction private func addButtonTapped(_ sender: Any) {
-        presenter?.addBill(whose: selectedPeople?.username, amount: Double(priceTextField.text ?? ""), type: priceType)
-    }
 }
 
-
+// MARK: - Interface Setup
 extension AddBillViewController: AddBillViewInterface {
+    
     func configureSelectedPeople() {
         selectedPeople = presenter?.getFriends?.first
     }
@@ -89,6 +66,33 @@ extension AddBillViewController {
         
         friendPullDownButton.menu = UIMenu(children: createFriendUIActions(presenter?.getFriends))
         friendPullDownButton.isEnabled = presenter?.pullDownButtonIsEnabled ?? false
+    }
+}
+
+// MARK: - IBActions
+extension AddBillViewController {
+    @IBAction private func closeButtonTapped(_ sender: UIButton) {
+        presenter?.popView()
+    }
+    
+    @IBAction private func priceTypeValueChanged(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == PriceType.Receivable.rawValue {
+            priceTextField.textColor = .systemGreen
+            priceTextField.tintColor = .systemGreen
+            addButton.tintColor = .systemGreen
+            friendPullDownButton.tintColor = .systemGreen
+            priceType = .Receivable
+        } else {
+            priceTextField.textColor = .systemRed
+            priceTextField.tintColor = .systemRed
+            addButton.tintColor = .systemRed
+            friendPullDownButton.tintColor = .systemRed
+            priceType = .Debt
+        }
+    }
+    
+    @IBAction private func addButtonTapped(_ sender: Any) {
+        presenter?.addBill(whose: selectedPeople?.username, amount: Double(priceTextField.text ?? ""), type: priceType)
     }
 }
 
