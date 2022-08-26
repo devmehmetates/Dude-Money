@@ -11,8 +11,9 @@ protocol AddBillPresenterInterface: AnyObject {
     func notifyViewLoaded()
     func notifyViewWillAppear()
     func popView()
-    var getFriends: [People]? { get }
     func addBill(whose: String?, amount: Double?, type: PriceType)
+    var getFriends: [People]? { get }
+   
 }
 
 final class AddBillPresenter {

@@ -8,16 +8,17 @@
 protocol SummaryPresenterInterface: AnyObject {
     func notifyViewLoaded()
     func fetchPeople()
-    var getUserProfileIcon: String { get }
     func getDebtDataByIndex(_ index: Int) -> (bill: Bill, friend: People)?
     func getReceivablesDataByIndex(_ index: Int) -> (bill: Bill, friend: People)?
-    var getReceivablesCount: Int { get }
-    var getReceivablesIsEmpty: Bool { get }
-    var getDebtsCount: Int { get }
-    var getDebtIsEmpty: Bool { get }
-    var getUserBalance: Double { get }
-    var getSectionCount: Int { get }
     func presentAddBill()
+    var getSectionCount: Int { get }
+    var getUserProfileIcon: String? { get }
+    var getUserBalance: Double? { get }
+    var getReceivablesCount: Int? { get }
+    var getReceivablesIsEmpty: Bool? { get }
+    var getDebtsCount: Int? { get }
+    var getDebtIsEmpty: Bool? { get }
+    
 }
 
 final class SummaryPresenter {
@@ -36,24 +37,41 @@ final class SummaryPresenter {
 
 // MARK: - Interface Setup
 extension SummaryPresenter: SummaryPresenterInterface {
-    
-    var getUserProfileIcon: String {
-        people?.icon ?? "example0"
+    func presentAddBill() {
+        router?.presentAddBill()
     }
     
-    func notifyViewLoaded() {
-        view?.setupView()
-        fetchPeople()
-        view?.setupToolbar()
+    var getUserProfileIcon: String? {
+        people?.icon
     }
     
-    func fetchPeople() {
-        people = interactor?.readPeople
+    var getReceivablesCount: Int? {
+        (people?.receivables.isEmpty ?? true) ? 1 : people?.receivables.count
+    }
+    
+    var getReceivablesIsEmpty: Bool? {
+        people?.receivables.isEmpty
+    }
+    
+    var getDebtsCount: Int? {
+        (people?.debts.isEmpty ?? true) ? 1 : people?.debts.count
+    }
+    
+    var getDebtIsEmpty: Bool? {
+        people?.debts.isEmpty
+    }
+    
+    var getUserBalance: Double? {
+        people?.balance
+    }
+    
+    var getSectionCount: Int {
+        3
     }
     
     func getDebtDataByIndex(_ index: Int) -> (bill: Bill, friend: People)? {
         guard people?.debts.isEmpty == false,
-              let bill = people?.debts[index],
+              let bill = people?.debts[safe: index],
               let friend = (people?.friends.first { $0.username == bill.whose })
         else { return nil }
         return (bill: bill, friend: friend)
@@ -61,37 +79,19 @@ extension SummaryPresenter: SummaryPresenterInterface {
     
     func getReceivablesDataByIndex(_ index: Int) -> (bill: Bill, friend: People)? {
         guard people?.receivables.isEmpty == false,
-              let bill = people?.receivables[index],
+              let bill = people?.receivables[safe: index],
               let friend = (people?.friends.first { $0.username == bill.whose })
         else { return nil }
         return (bill: bill, friend: friend)
     }
     
-    var getReceivablesCount: Int {
-        (people?.receivables.isEmpty ?? true) ? 1 : people?.receivables.count ?? 0
+    func fetchPeople() {
+        people = interactor?.people
     }
     
-    var getReceivablesIsEmpty: Bool {
-        people?.receivables.isEmpty ?? false
-    }
-    
-    var getDebtsCount: Int {
-        (people?.debts.isEmpty ?? true) ? 1 : people?.debts.count ?? 0
-    }
-    
-    var getDebtIsEmpty: Bool {
-        people?.debts.isEmpty ?? false
-    }
-    
-    var getUserBalance: Double {
-        people?.balance ?? 0
-    }
-    
-    var getSectionCount: Int {
-        3
-    }
-    
-    func presentAddBill() {
-        router?.presentAddBill()
+    func notifyViewLoaded() {
+        view?.setupView()
+        fetchPeople()
+        view?.setupToolbar()
     }
 }
