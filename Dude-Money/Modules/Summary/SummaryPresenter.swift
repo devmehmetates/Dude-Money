@@ -13,10 +13,10 @@ protocol SummaryPresenterInterface: AnyObject {
     var getSectionCount: Int { get }
     var getUserProfileIcon: String? { get }
     var getUserBalance: Double? { get }
-    var getReceivablesCount: Int { get }
-    var getReceivablesIsEmpty: Bool { get }
-    var getDebtsCount: Int { get }
-    var getDebtIsEmpty: Bool { get }
+    var getReceivablesCount: Int? { get }
+    var getReceivablesIsEmpty: Bool? { get }
+    var getDebtsCount: Int? { get }
+    var getDebtIsEmpty: Bool? { get }
 }
 
 final class SummaryPresenter {
@@ -40,20 +40,20 @@ extension SummaryPresenter: SummaryPresenterInterface {
         people?.icon
     }
     
-    var getReceivablesCount: Int {
-        (people?.receivables.isEmpty ?? true) ? 1 : people?.receivables.count ?? 0
+    var getReceivablesCount: Int? {
+        (people?.receivables.isEmpty ?? true) ? 1 : people?.receivables.count
     }
     
-    var getReceivablesIsEmpty: Bool {
-        people?.receivables.isEmpty ?? false
+    var getReceivablesIsEmpty: Bool? {
+        people?.receivables.isEmpty
     }
     
-    var getDebtsCount: Int {
-        (people?.debts.isEmpty ?? true) ? 1 : people?.debts.count ?? 0
+    var getDebtsCount: Int? {
+        (people?.debts.isEmpty ?? true) ? 1 : people?.debts.count
     }
     
-    var getDebtIsEmpty: Bool {
-        people?.debts.isEmpty ?? false
+    var getDebtIsEmpty: Bool? {
+        people?.debts.isEmpty
     }
     
     var getUserBalance: Double? {
