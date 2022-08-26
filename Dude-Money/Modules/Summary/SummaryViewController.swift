@@ -19,10 +19,6 @@ final class SummaryViewController: UIViewController, UICollectionViewDelegate {
     private var listConfig = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
     var presenter: SummaryPresenterInterface?
     
-    let summarySectionIndex: Int = 0
-    let receivablesSectionIndex: Int = 1
-    let debtSectionIndex: Int = 2
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.notifyViewLoaded()
@@ -30,6 +26,14 @@ final class SummaryViewController: UIViewController, UICollectionViewDelegate {
         collectionView.registerCell(cell: SummaryCollectionViewCell.self)
         collectionView.registerReusableView(cell: HeaderCollectionReusableView.self)
     }
+}
+
+// MARK: - Index Constants
+extension SummaryViewController {
+    
+    static let summarySectionIndex: Int = 0
+    static let receivablesSectionIndex: Int = 1
+    static let debtSectionIndex: Int = 2
 }
 
 // MARK: - Interface Setup
@@ -97,7 +101,7 @@ extension SummaryViewController: UICollectionViewDataSource {
         guard let cell: BillCollectionViewCell = collectionView.dequeue(for: indexPath) else { return UICollectionViewCell() }
         
         // MARK: SummaryCell
-        if indexPath.section == summarySectionIndex {
+        if indexPath.section == SummaryViewController.summarySectionIndex {
             guard let cell: SummaryCollectionViewCell = collectionView.dequeue(for: indexPath) else { return UICollectionViewCell() }
             cell.contentView.heightAnchor.constraint(equalToConstant: SummaryCollectionViewCell.cellHeight).isActive = true
             cell.configureContent(amount: presenter?.getUserBalance ?? 0)
@@ -105,7 +109,7 @@ extension SummaryViewController: UICollectionViewDataSource {
             
         }
         // MARK: ReceiavablesCell
-        else if indexPath.section == receivablesSectionIndex {
+        else if indexPath.section == SummaryViewController.receivablesSectionIndex {
             cell.contentView.heightAnchor.constraint(equalToConstant: BillCollectionViewCell.cellHeight).isActive = true
             
             if let cellData = presenter?.getReceivablesDataByIndex(indexPath.row) {
@@ -197,12 +201,12 @@ extension SummaryViewController {
         let swipeAction: UIContextualAction?
         guard let receivablesIsEmpty = presenter?.getReceivablesIsEmpty, let debtIsEmpty = presenter?.getDebtIsEmpty else { return [] }
         
-        if section == receivablesSectionIndex, !receivablesIsEmpty {
+        if section == SummaryViewController.receivablesSectionIndex, !receivablesIsEmpty {
             swipeAction = UIContextualAction(style: .normal, title: ScreenTexts.receivablesSwipeActionText) { action, sourceView, actionPerformed in
                 actionPerformed(true)
             }
             swipeAction?.backgroundColor = .systemGreen
-        } else if section == debtSectionIndex, !debtIsEmpty {
+        } else if section == SummaryViewController.debtSectionIndex, !debtIsEmpty {
             swipeAction = UIContextualAction(style: .normal, title: ScreenTexts.debtSwipeActionText) { action, sourceView, actionPerformed in
                 actionPerformed(true)
             }
