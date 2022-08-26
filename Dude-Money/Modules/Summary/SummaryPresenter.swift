@@ -8,15 +8,15 @@
 protocol SummaryPresenterInterface: AnyObject {
     func notifyViewLoaded()
     func fetchPeople()
-    var getUserProfileIcon: String { get }
     func getDebtDataByIndex(_ index: Int) -> (bill: Bill, friend: People)?
     func getReceivablesDataByIndex(_ index: Int) -> (bill: Bill, friend: People)?
+    var getSectionCount: Int { get }
+    var getUserProfileIcon: String { get }
+    var getUserBalance: Double { get }
     var getReceivablesCount: Int { get }
     var getReceivablesIsEmpty: Bool { get }
     var getDebtsCount: Int { get }
     var getDebtIsEmpty: Bool { get }
-    var getUserBalance: Double { get }
-    var getSectionCount: Int { get }
 }
 
 final class SummaryPresenter {
