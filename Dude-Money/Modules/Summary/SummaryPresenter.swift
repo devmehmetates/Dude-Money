@@ -11,8 +11,8 @@ protocol SummaryPresenterInterface: AnyObject {
     func getDebtDataByIndex(_ index: Int) -> (bill: Bill, friend: People)?
     func getReceivablesDataByIndex(_ index: Int) -> (bill: Bill, friend: People)?
     var getSectionCount: Int { get }
-    var getUserProfileIcon: String { get }
-    var getUserBalance: Double { get }
+    var getUserProfileIcon: String? { get }
+    var getUserBalance: Double? { get }
     var getReceivablesCount: Int { get }
     var getReceivablesIsEmpty: Bool { get }
     var getDebtsCount: Int { get }
@@ -36,8 +36,8 @@ final class SummaryPresenter {
 // MARK: - Interface Setup
 extension SummaryPresenter: SummaryPresenterInterface {
     
-    var getUserProfileIcon: String {
-        people?.icon ?? "example0"
+    var getUserProfileIcon: String? {
+        people?.icon
     }
     
     var getReceivablesCount: Int {
@@ -56,10 +56,9 @@ extension SummaryPresenter: SummaryPresenterInterface {
         people?.debts.isEmpty ?? false
     }
     
-    var getUserBalance: Double {
-        people?.balance ?? 0
+    var getUserBalance: Double? {
+        people?.balance
     }
-    
     
     var getSectionCount: Int {
         3
