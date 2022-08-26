@@ -8,14 +8,14 @@
 import Foundation
 
 protocol SummaryInteractorInterface: AnyObject {
-    var readPeople: People? { get }
+    var people: People? { get }
 }
 
 final class SummaryInteractor { }
 
 // MARK: - Interface Setup
 extension SummaryInteractor: SummaryInteractorInterface {
-    var readPeople: People? {
+    var people: People? {
         get {
             LocalSaveService.readUser()
         }
