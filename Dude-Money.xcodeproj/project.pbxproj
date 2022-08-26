@@ -12,6 +12,7 @@
 		C01D06A928AABE58007F499E /* LocalSaveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01D06A828AABE58007F499E /* LocalSaveService.swift */; };
 		C031E72D28A69B3F002CA97A /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C031E72C28A69B3F002CA97A /* IQKeyboardManagerSwift */; };
 		C050432B28AC3A6600744385 /* SummaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050432A28AC3A6600744385 /* SummaryCollectionViewCell.swift */; };
+		C06F88A028B8E60C00EB26E9 /* SafeIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06F889F28B8E60C00EB26E9 /* SafeIndex.swift */; };
 		C089233228A80526005F6A2B /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089233128A80526005F6A2B /* TabBarViewController.swift */; };
 		C089233528A80AB1005F6A2B /* TabBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089233428A80AB1005F6A2B /* TabBarPresenter.swift */; };
 		C089233928A80AC5005F6A2B /* TabBarRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089233828A80AC5005F6A2B /* TabBarRouter.swift */; };
@@ -38,6 +39,7 @@
 		C00E931B28ABB23F000CEAFC /* DoubleFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleFormatter.swift; sourceTree = "<group>"; };
 		C01D06A828AABE58007F499E /* LocalSaveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocalSaveService.swift; path = "Dude-Money/Models/LocalSaveService.swift"; sourceTree = SOURCE_ROOT; };
 		C050432A28AC3A6600744385 /* SummaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCollectionViewCell.swift; sourceTree = "<group>"; };
+		C06F889F28B8E60C00EB26E9 /* SafeIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeIndex.swift; sourceTree = "<group>"; };
 		C089233128A80526005F6A2B /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		C089233428A80AB1005F6A2B /* TabBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPresenter.swift; sourceTree = "<group>"; };
 		C089233828A80AC5005F6A2B /* TabBarRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarRouter.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				C0FE41C428ACBA9E00A1E36F /* ResponsiveSizes.swift */,
 				C00914F128B60EC1005FDB10 /* UIStoryboardInstantiate.swift */,
 				C0B4DCC828B6744700220174 /* CollectionCellsRegister.swift */,
+				C06F889F28B8E60C00EB26E9 /* SafeIndex.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				C0B9EB4628ABC92300F3B681 /* ScreenTexts.swift in Sources */,
 				C089233528A80AB1005F6A2B /* TabBarPresenter.swift in Sources */,
 				C0B99F5E28AA7E41007687F9 /* People.swift in Sources */,
+				C06F88A028B8E60C00EB26E9 /* SafeIndex.swift in Sources */,
 				C0FE41C728ACBD2800A1E36F /* HeaderCollectionReusableView.swift in Sources */,
 				C050432B28AC3A6600744385 /* SummaryCollectionViewCell.swift in Sources */,
 				C0FE41C928ACC97D00A1E36F /* BillCollectionViewCell.swift in Sources */,

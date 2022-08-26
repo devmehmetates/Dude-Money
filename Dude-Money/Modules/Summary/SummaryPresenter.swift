@@ -66,7 +66,7 @@ extension SummaryPresenter: SummaryPresenterInterface {
     
     func getDebtDataByIndex(_ index: Int) -> (bill: Bill, friend: People)? {
         guard people?.debts.isEmpty == false,
-              let bill = people?.debts[index],
+              let bill = people?.debts[safe: index],
               let friend = (people?.friends.first { $0.username == bill.whose })
         else { return nil }
         return (bill: bill, friend: friend)
@@ -74,7 +74,7 @@ extension SummaryPresenter: SummaryPresenterInterface {
     
     func getReceivablesDataByIndex(_ index: Int) -> (bill: Bill, friend: People)? {
         guard people?.receivables.isEmpty == false,
-              let bill = people?.receivables[index],
+              let bill = people?.receivables[safe: index],
               let friend = (people?.friends.first { $0.username == bill.whose })
         else { return nil }
         return (bill: bill, friend: friend)
