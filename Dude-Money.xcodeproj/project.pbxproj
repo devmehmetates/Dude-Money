@@ -28,11 +28,22 @@
 		C0F642DF28A8E39200B75EC9 /* SummaryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F642DE28A8E39200B75EC9 /* SummaryPresenter.swift */; };
 		C0F642E128A8E39B00B75EC9 /* SummaryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F642E028A8E39B00B75EC9 /* SummaryInteractor.swift */; };
 		C0F642E328A8E3A400B75EC9 /* SummaryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F642E228A8E3A400B75EC9 /* SummaryRouter.swift */; };
+		C0F768B228BC0C46000A2F89 /* Dude_MoneyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F768B128BC0C46000A2F89 /* Dude_MoneyTests.swift */; };
 		C0FE41C528ACBA9E00A1E36F /* ResponsiveSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FE41C428ACBA9E00A1E36F /* ResponsiveSizes.swift */; };
 		C0FE41C728ACBD2800A1E36F /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FE41C628ACBD2800A1E36F /* HeaderCollectionReusableView.swift */; };
 		C0FE41C928ACC97D00A1E36F /* BillCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FE41C828ACC97D00A1E36F /* BillCollectionViewCell.swift */; };
 		C0FE41CD28ACE33400A1E36F /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FE41CC28ACE33400A1E36F /* SummaryViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C0F768B328BC0C46000A2F89 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0ACB93228A2D8CA00968F26 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C0ACB93928A2D8CA00968F26;
+			remoteInfo = "Dude-Money";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		C00914F128B60EC1005FDB10 /* UIStoryboardInstantiate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboardInstantiate.swift; sourceTree = "<group>"; };
@@ -57,6 +68,8 @@
 		C0F642DE28A8E39200B75EC9 /* SummaryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPresenter.swift; sourceTree = "<group>"; };
 		C0F642E028A8E39B00B75EC9 /* SummaryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryInteractor.swift; sourceTree = "<group>"; };
 		C0F642E228A8E3A400B75EC9 /* SummaryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryRouter.swift; sourceTree = "<group>"; };
+		C0F768AF28BC0C46000A2F89 /* Dude-MoneyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Dude-MoneyTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0F768B128BC0C46000A2F89 /* Dude_MoneyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dude_MoneyTests.swift; sourceTree = "<group>"; };
 		C0FE41C428ACBA9E00A1E36F /* ResponsiveSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponsiveSizes.swift; sourceTree = "<group>"; };
 		C0FE41C628ACBD2800A1E36F /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		C0FE41C828ACC97D00A1E36F /* BillCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -69,6 +82,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C031E72D28A69B3F002CA97A /* IQKeyboardManagerSwift in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C0F768AC28BC0C46000A2F89 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				C0ACB93C28A2D8CA00968F26 /* Dude-Money */,
+				C0F768B028BC0C46000A2F89 /* Dude-MoneyTests */,
 				C0ACB93B28A2D8CA00968F26 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -160,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				C0ACB93A28A2D8CA00968F26 /* Dude-Money.app */,
+				C0F768AF28BC0C46000A2F89 /* Dude-MoneyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -211,6 +233,14 @@
 			path = Summary;
 			sourceTree = "<group>";
 		};
+		C0F768B028BC0C46000A2F89 /* Dude-MoneyTests */ = {
+			isa = PBXGroup;
+			children = (
+				C0F768B128BC0C46000A2F89 /* Dude_MoneyTests.swift */,
+			);
+			path = "Dude-MoneyTests";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -234,6 +264,24 @@
 			productReference = C0ACB93A28A2D8CA00968F26 /* Dude-Money.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C0F768AE28BC0C46000A2F89 /* Dude-MoneyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C0F768B728BC0C46000A2F89 /* Build configuration list for PBXNativeTarget "Dude-MoneyTests" */;
+			buildPhases = (
+				C0F768AB28BC0C46000A2F89 /* Sources */,
+				C0F768AC28BC0C46000A2F89 /* Frameworks */,
+				C0F768AD28BC0C46000A2F89 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C0F768B428BC0C46000A2F89 /* PBXTargetDependency */,
+			);
+			name = "Dude-MoneyTests";
+			productName = "Dude-MoneyTests";
+			productReference = C0F768AF28BC0C46000A2F89 /* Dude-MoneyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -246,6 +294,10 @@
 				TargetAttributes = {
 					C0ACB93928A2D8CA00968F26 = {
 						CreatedOnToolsVersion = 13.4.1;
+					};
+					C0F768AE28BC0C46000A2F89 = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = C0ACB93928A2D8CA00968F26;
 					};
 				};
 			};
@@ -266,6 +318,7 @@
 			projectRoot = "";
 			targets = (
 				C0ACB93928A2D8CA00968F26 /* Dude-Money */,
+				C0F768AE28BC0C46000A2F89 /* Dude-MoneyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -278,6 +331,13 @@
 				C0ACB94A28A2D8CC00968F26 /* LaunchScreen.storyboard in Resources */,
 				C0ACB94728A2D8CC00968F26 /* Assets.xcassets in Resources */,
 				C0ACB94528A2D8CA00968F26 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C0F768AD28BC0C46000A2F89 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,7 +372,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C0F768AB28BC0C46000A2F89 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0F768B228BC0C46000A2F89 /* Dude_MoneyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C0F768B428BC0C46000A2F89 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C0ACB93928A2D8CA00968F26 /* Dude-Money */;
+			targetProxy = C0F768B328BC0C46000A2F89 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C0ACB94328A2D8CA00968F26 /* Main.storyboard */ = {
@@ -504,6 +580,42 @@
 			};
 			name = Release;
 		};
+		C0F768B528BC0C46000A2F89 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6PALB6K8YY;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.devmehmetates.Dude-MoneyTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dude-Money.app/Dude-Money";
+			};
+			name = Debug;
+		};
+		C0F768B628BC0C46000A2F89 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6PALB6K8YY;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.devmehmetates.Dude-MoneyTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dude-Money.app/Dude-Money";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -521,6 +633,15 @@
 			buildConfigurations = (
 				C0ACB94F28A2D8CC00968F26 /* Debug */,
 				C0ACB95028A2D8CC00968F26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C0F768B728BC0C46000A2F89 /* Build configuration list for PBXNativeTarget "Dude-MoneyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C0F768B528BC0C46000A2F89 /* Debug */,
+				C0F768B628BC0C46000A2F89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
