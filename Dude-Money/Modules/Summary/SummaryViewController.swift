@@ -48,6 +48,7 @@ extension SummaryViewController: SummaryViewInterface {
     func createLayout() -> UICollectionViewCompositionalLayout {
         let layout = UICollectionViewCompositionalLayout { index, environment in
             var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+            configuration.backgroundColor = .secondarySystemBackground
             
             switch index {
             case 1...2:
