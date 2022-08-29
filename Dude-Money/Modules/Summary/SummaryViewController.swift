@@ -66,7 +66,7 @@ extension SummaryViewController: SummaryViewInterface {
     }
     
     func setupToolbar() {
-        self.title = "Borçların"
+        self.title = ScreenTexts.summaryScreenTitle
         configureRightNavigationBarButton()
         configureLeftNavigationBarButton()
     }
@@ -141,9 +141,9 @@ extension SummaryViewController {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
-        case 1:
+        case SummaryViewController.receivablesSectionIndex:
             return presenter?.getReceivablesCount ?? 0
-        case 2:
+        case SummaryViewController.debtSectionIndex:
             return presenter?.getDebtsCount ?? 0
         default:
             return 1
@@ -156,14 +156,14 @@ extension SummaryViewController {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        if indexPath.section == 0 {
+        if indexPath.section == SummaryViewController.summarySectionIndex {
             return CGSize(width: 90.0.responsiveW, height: SummaryCollectionViewCell.cellHeight)
         }
         return CGSize(width: 90.0.responsiveW, height: BillCollectionViewCell.cellHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        if section == 0 {
+        if section == SummaryViewController.summarySectionIndex {
             return .zero
         }
 
@@ -181,9 +181,9 @@ extension SummaryViewController {
                 return UICollectionReusableView()
             }
             
-            if indexPath.section == 1 {
+            if indexPath.section == SummaryViewController.receivablesSectionIndex {
                 headerView.setHeaderLabel(ScreenTexts.receivablesSectionTitle)
-            } else if indexPath.section == 2 {
+            } else if indexPath.section == SummaryViewController.debtSectionIndex {
                 headerView.setHeaderLabel(ScreenTexts.debtSectionTitle)
             }
             
