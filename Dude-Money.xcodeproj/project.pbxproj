@@ -11,6 +11,8 @@
 		C00E931C28ABB23F000CEAFC /* DoubleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00E931B28ABB23F000CEAFC /* DoubleFormatter.swift */; };
 		C01D06A928AABE58007F499E /* LocalSaveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01D06A828AABE58007F499E /* LocalSaveService.swift */; };
 		C031E72D28A69B3F002CA97A /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C031E72C28A69B3F002CA97A /* IQKeyboardManagerSwift */; };
+		C047DCAC28BE7ECC002BE948 /* MockSummaryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C047DCAB28BE7ECC002BE948 /* MockSummaryInteractor.swift */; };
+		C047DCB428BE84DC002BE948 /* MockSummaryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C047DCB328BE84DC002BE948 /* MockSummaryPresenter.swift */; };
 		C050432B28AC3A6600744385 /* SummaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050432A28AC3A6600744385 /* SummaryCollectionViewCell.swift */; };
 		C06F88A028B8E60C00EB26E9 /* SafeIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06F889F28B8E60C00EB26E9 /* SafeIndex.swift */; };
 		C089233228A80526005F6A2B /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089233128A80526005F6A2B /* TabBarViewController.swift */; };
@@ -21,6 +23,7 @@
 		C0ACB94528A2D8CA00968F26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0ACB94328A2D8CA00968F26 /* Main.storyboard */; };
 		C0ACB94728A2D8CC00968F26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0ACB94628A2D8CC00968F26 /* Assets.xcassets */; };
 		C0ACB94A28A2D8CC00968F26 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0ACB94828A2D8CC00968F26 /* LaunchScreen.storyboard */; };
+		C0B39D0D28BE2B1E001E56D0 /* MockSummaryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B39D0C28BE2B1E001E56D0 /* MockSummaryRouter.swift */; };
 		C0B4DCC928B6744700220174 /* CollectionCellsRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B4DCC828B6744700220174 /* CollectionCellsRegister.swift */; };
 		C0B99F5E28AA7E41007687F9 /* People.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B99F5D28AA7E41007687F9 /* People.swift */; };
 		C0B9EB4628ABC92300F3B681 /* ScreenTexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B9EB4528ABC92300F3B681 /* ScreenTexts.swift */; };
@@ -49,6 +52,8 @@
 		C00914F128B60EC1005FDB10 /* UIStoryboardInstantiate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboardInstantiate.swift; sourceTree = "<group>"; };
 		C00E931B28ABB23F000CEAFC /* DoubleFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleFormatter.swift; sourceTree = "<group>"; };
 		C01D06A828AABE58007F499E /* LocalSaveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocalSaveService.swift; path = "Dude-Money/Models/LocalSaveService.swift"; sourceTree = SOURCE_ROOT; };
+		C047DCAB28BE7ECC002BE948 /* MockSummaryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSummaryInteractor.swift; sourceTree = "<group>"; };
+		C047DCB328BE84DC002BE948 /* MockSummaryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSummaryPresenter.swift; sourceTree = "<group>"; };
 		C050432A28AC3A6600744385 /* SummaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCollectionViewCell.swift; sourceTree = "<group>"; };
 		C06F889F28B8E60C00EB26E9 /* SafeIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeIndex.swift; sourceTree = "<group>"; };
 		C089233128A80526005F6A2B /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +66,7 @@
 		C0ACB94628A2D8CC00968F26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C0ACB94928A2D8CC00968F26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C0ACB94B28A2D8CC00968F26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C0B39D0C28BE2B1E001E56D0 /* MockSummaryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSummaryRouter.swift; sourceTree = "<group>"; };
 		C0B4DCC828B6744700220174 /* CollectionCellsRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCellsRegister.swift; sourceTree = "<group>"; };
 		C0B99F5D28AA7E41007687F9 /* People.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = People.swift; sourceTree = "<group>"; };
 		C0B9EB4528ABC92300F3B681 /* ScreenTexts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScreenTexts.swift; path = "Dude-Money/Utils/Extensions/ScreenTexts.swift"; sourceTree = SOURCE_ROOT; };
@@ -202,6 +208,16 @@
 			path = "Dude-Money";
 			sourceTree = "<group>";
 		};
+		C0B39D0B28BE2B00001E56D0 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				C0B39D0C28BE2B1E001E56D0 /* MockSummaryRouter.swift */,
+				C047DCAB28BE7ECC002BE948 /* MockSummaryInteractor.swift */,
+				C047DCB328BE84DC002BE948 /* MockSummaryPresenter.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		C0B99F5928AA476A007687F9 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,6 +240,7 @@
 		C0F642D928A8E1C400B75EC9 /* Summary */ = {
 			isa = PBXGroup;
 			children = (
+				C0B39D0B28BE2B00001E56D0 /* Mocks */,
 				C0FE41CC28ACE33400A1E36F /* SummaryViewController.swift */,
 				C0F642DE28A8E39200B75EC9 /* SummaryPresenter.swift */,
 				C0F642E028A8E39B00B75EC9 /* SummaryInteractor.swift */,
@@ -355,10 +372,13 @@
 				C0B9EB4628ABC92300F3B681 /* ScreenTexts.swift in Sources */,
 				C089233528A80AB1005F6A2B /* TabBarPresenter.swift in Sources */,
 				C0B99F5E28AA7E41007687F9 /* People.swift in Sources */,
+				C0B39D0D28BE2B1E001E56D0 /* MockSummaryRouter.swift in Sources */,
 				C06F88A028B8E60C00EB26E9 /* SafeIndex.swift in Sources */,
 				C0FE41C728ACBD2800A1E36F /* HeaderCollectionReusableView.swift in Sources */,
 				C050432B28AC3A6600744385 /* SummaryCollectionViewCell.swift in Sources */,
 				C0FE41C928ACC97D00A1E36F /* BillCollectionViewCell.swift in Sources */,
+				C047DCAC28BE7ECC002BE948 /* MockSummaryInteractor.swift in Sources */,
+				C047DCB428BE84DC002BE948 /* MockSummaryPresenter.swift in Sources */,
 				C089233228A80526005F6A2B /* TabBarViewController.swift in Sources */,
 				C00914F228B60EC1005FDB10 /* UIStoryboardInstantiate.swift in Sources */,
 				C0ACB93E28A2D8CA00968F26 /* AppDelegate.swift in Sources */,

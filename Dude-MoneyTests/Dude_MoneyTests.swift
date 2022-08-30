@@ -9,28 +9,39 @@ import XCTest
 @testable import Dude_Money
 
 class Dude_MoneyTests: XCTestCase {
-    private var summaryPresenter: SummaryPresenterInterface!
+    private var summaryRouter: MockSummaryRouter!
+    private var summaryInteractor: MockSummaryInteractor!
+    private var summaryPresenter: MockSummaryPresenter!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        summaryPresenter = SummaryRouter.createModule(using: UINavigationController()).presenter
-        summaryPresenter.fetchPeople()
+        summaryRouter = MockSummaryRouter()
+        summaryInteractor = MockSummaryInteractor()
+        summaryPresenter = MockSummaryPresenter()
     }
 
     override func tearDownWithError() throws {
         try super.tearDownWithError()
+        summaryRouter = nil
+        summaryInteractor = nil
         summaryPresenter = nil
     }
 
-    func testPresenterSectionCount() throws {
-        XCTAssertTrue(summaryPresenter.getSectionCount == 3)
+    func testRouterPopView() {
+        summaryRouter.popView()
+        XCTAssertTrue(summaryRouter.invokedPopView)
+        XCTAssertTrue(summaryRouter.invokedPopViewCount == 1)
     }
     
-    func testPresenterDebtIsEmpty() throws {
-        XCTAssertTrue(summaryPresenter.getDebtIsEmpty != nil)
+    func testInteractorGetPeople() {
+        let _ = summaryInteractor.people
+        XCTAssertTrue(summaryInteractor.invokedPeopleGetter)
+        XCTAssertTrue(summaryInteractor.invokedPeopleGetterCount == 1)
     }
     
-    func testPresenterReceivablesIsEmpty() throws {
-        XCTAssertTrue(summaryPresenter.getReceivablesIsEmpty != nil)
+    func testPresenterSectionCount() {
+        let _ = summaryPresenter.getSectionCount
+        XCTAssertTrue(summaryPresenter.invokedGetSectionCountGetter)
+        XCTAssertTrue(summaryPresenter.invokedGetSectionCountGetterCount == 1)
     }
 }
