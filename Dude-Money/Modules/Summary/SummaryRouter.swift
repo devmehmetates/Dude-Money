@@ -8,11 +8,10 @@
 import UIKit
 
 protocol SummaryRouterInterface: AnyObject {
-    func performSegue(with identifier: String)
     func popView()
 }
 
-final class SummaryRouter {
+final class SummaryRouter: SummaryRouterInterface {
     
     private weak var navigationController: UINavigationController?
     
@@ -30,11 +29,7 @@ final class SummaryRouter {
 }
 
 // MARK: - Interface Setup
-extension SummaryRouter: SummaryRouterInterface {
-    
-    func performSegue(with identifier: String) {
-        self.navigationController?.present(MockViewController(), animated: true)
-    }
+extension SummaryRouter {
     
     func popView() {
         self.navigationController?.popViewController(animated: true)
