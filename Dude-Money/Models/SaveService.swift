@@ -1,5 +1,5 @@
 //
-//  LocalSaveService.swift
+//  SaveService.swift
 //  Dude-Money
 //
 //  Created by Mehmet Ateş on 15.08.2022.
@@ -7,10 +7,17 @@
 
 import Foundation
 
-final class LocalSaveService {
+protocol SaveServiceInterface: AnyObject {
+    func saveUser(_ people: People)
+    func readUser() -> People?
+}
+
+final class SaveService: SaveServiceInterface {
     
-    static func saveUser(_ people: People) {
-        let userDataKey = "userData"
+    static let shared: SaveService = SaveService()
+    let userDataKey: String = "userData"
+    
+    func saveUser(_ people: People) {
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             let fileURL = dir.appendingPathComponent(userDataKey)
             
@@ -22,8 +29,7 @@ final class LocalSaveService {
         }
     }
     
-    static func readUser() -> People? {
-        let userDataKey = "userData"
+    func readUser() -> People? {
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             let fileURL = dir.appendingPathComponent(userDataKey)
             do{

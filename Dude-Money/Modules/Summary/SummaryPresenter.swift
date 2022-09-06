@@ -23,10 +23,10 @@ final class SummaryPresenter {
     
     private weak var view: SummaryViewInterface?
     private weak var router: SummaryRouterInterface?
-    private var interactor: SummaryInteractorInterface? // references not the same when weak
+    private var interactor: SaveServiceInterface?
     private var people: People?
     
-    init(view: SummaryViewInterface?, router: SummaryRouterInterface?, interactor: SummaryInteractorInterface?) {
+    init(view: SummaryViewInterface?, router: SummaryRouterInterface?, interactor: SaveServiceInterface?) {
         self.view = view
         self.router = router
         self.interactor = interactor
@@ -81,7 +81,7 @@ extension SummaryPresenter: SummaryPresenterInterface {
     }
     
     func fetchPeople() {
-        people = interactor?.people
+        people = interactor?.readUser()
     }
     
     func notifyViewLoaded() {

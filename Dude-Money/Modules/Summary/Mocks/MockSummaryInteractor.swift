@@ -7,15 +7,27 @@
 
 import Foundation
 
-final class MockSummaryInteractor: SummaryInteractorInterface {
+final class MockSummaryInteractor: SaveServiceInterface {
 
-    var invokedPeopleGetter = false
-    var invokedPeopleGetterCount = 0
-    var stubbedPeople: People!
+    var invokedSaveUser = false
+    var invokedSaveUserCount = 0
+    var invokedSaveUserParameters: (people: People, Void)?
+    var invokedSaveUserParametersList = [(people: People, Void)]()
 
-    var people: People? {
-        invokedPeopleGetter = true
-        invokedPeopleGetterCount += 1
-        return stubbedPeople
+    func saveUser(_ people: People) {
+        invokedSaveUser = true
+        invokedSaveUserCount += 1
+        invokedSaveUserParameters = (people, ())
+        invokedSaveUserParametersList.append((people, ()))
+    }
+
+    var invokedReadUser = false
+    var invokedReadUserCount = 0
+    var stubbedReadUserResult: People!
+
+    func readUser() -> People? {
+        invokedReadUser = true
+        invokedReadUserCount += 1
+        return stubbedReadUserResult
     }
 }

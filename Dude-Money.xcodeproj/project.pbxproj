@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		C00914F228B60EC1005FDB10 /* UIStoryboardInstantiate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00914F128B60EC1005FDB10 /* UIStoryboardInstantiate.swift */; };
 		C00E931C28ABB23F000CEAFC /* DoubleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00E931B28ABB23F000CEAFC /* DoubleFormatter.swift */; };
-		C01D06A928AABE58007F499E /* LocalSaveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01D06A828AABE58007F499E /* LocalSaveService.swift */; };
+		C01D06A928AABE58007F499E /* SaveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01D06A828AABE58007F499E /* SaveService.swift */; };
+		C030723428C7CE6000DA9916 /* MockSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C030723328C7CE6000DA9916 /* MockSummaryView.swift */; };
 		C031E72D28A69B3F002CA97A /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C031E72C28A69B3F002CA97A /* IQKeyboardManagerSwift */; };
 		C047DCAC28BE7ECC002BE948 /* MockSummaryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C047DCAB28BE7ECC002BE948 /* MockSummaryInteractor.swift */; };
-		C047DCB428BE84DC002BE948 /* MockSummaryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C047DCB328BE84DC002BE948 /* MockSummaryPresenter.swift */; };
 		C050432B28AC3A6600744385 /* SummaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050432A28AC3A6600744385 /* SummaryCollectionViewCell.swift */; };
 		C06F88A028B8E60C00EB26E9 /* SafeIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06F889F28B8E60C00EB26E9 /* SafeIndex.swift */; };
 		C089233228A80526005F6A2B /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089233128A80526005F6A2B /* TabBarViewController.swift */; };
@@ -29,9 +29,8 @@
 		C0B9EB4628ABC92300F3B681 /* ScreenTexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B9EB4528ABC92300F3B681 /* ScreenTexts.swift */; };
 		C0B9EB4828ABD19F00F3B681 /* Bill.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B9EB4728ABD19F00F3B681 /* Bill.swift */; };
 		C0F642DF28A8E39200B75EC9 /* SummaryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F642DE28A8E39200B75EC9 /* SummaryPresenter.swift */; };
-		C0F642E128A8E39B00B75EC9 /* SummaryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F642E028A8E39B00B75EC9 /* SummaryInteractor.swift */; };
 		C0F642E328A8E3A400B75EC9 /* SummaryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F642E228A8E3A400B75EC9 /* SummaryRouter.swift */; };
-		C0F768B228BC0C46000A2F89 /* Dude_MoneyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F768B128BC0C46000A2F89 /* Dude_MoneyTests.swift */; };
+		C0F768B228BC0C46000A2F89 /* SummaryPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F768B128BC0C46000A2F89 /* SummaryPresenterTests.swift */; };
 		C0FE41C528ACBA9E00A1E36F /* ResponsiveSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FE41C428ACBA9E00A1E36F /* ResponsiveSizes.swift */; };
 		C0FE41C728ACBD2800A1E36F /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FE41C628ACBD2800A1E36F /* HeaderCollectionReusableView.swift */; };
 		C0FE41C928ACC97D00A1E36F /* BillCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FE41C828ACC97D00A1E36F /* BillCollectionViewCell.swift */; };
@@ -51,9 +50,9 @@
 /* Begin PBXFileReference section */
 		C00914F128B60EC1005FDB10 /* UIStoryboardInstantiate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboardInstantiate.swift; sourceTree = "<group>"; };
 		C00E931B28ABB23F000CEAFC /* DoubleFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleFormatter.swift; sourceTree = "<group>"; };
-		C01D06A828AABE58007F499E /* LocalSaveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocalSaveService.swift; path = "Dude-Money/Models/LocalSaveService.swift"; sourceTree = SOURCE_ROOT; };
+		C01D06A828AABE58007F499E /* SaveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SaveService.swift; path = "Dude-Money/Models/SaveService.swift"; sourceTree = SOURCE_ROOT; };
+		C030723328C7CE6000DA9916 /* MockSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSummaryView.swift; sourceTree = "<group>"; };
 		C047DCAB28BE7ECC002BE948 /* MockSummaryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSummaryInteractor.swift; sourceTree = "<group>"; };
-		C047DCB328BE84DC002BE948 /* MockSummaryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSummaryPresenter.swift; sourceTree = "<group>"; };
 		C050432A28AC3A6600744385 /* SummaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCollectionViewCell.swift; sourceTree = "<group>"; };
 		C06F889F28B8E60C00EB26E9 /* SafeIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeIndex.swift; sourceTree = "<group>"; };
 		C089233128A80526005F6A2B /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -72,10 +71,9 @@
 		C0B9EB4528ABC92300F3B681 /* ScreenTexts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScreenTexts.swift; path = "Dude-Money/Utils/Extensions/ScreenTexts.swift"; sourceTree = SOURCE_ROOT; };
 		C0B9EB4728ABD19F00F3B681 /* Bill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bill.swift; sourceTree = "<group>"; };
 		C0F642DE28A8E39200B75EC9 /* SummaryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPresenter.swift; sourceTree = "<group>"; };
-		C0F642E028A8E39B00B75EC9 /* SummaryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryInteractor.swift; sourceTree = "<group>"; };
 		C0F642E228A8E3A400B75EC9 /* SummaryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryRouter.swift; sourceTree = "<group>"; };
 		C0F768AF28BC0C46000A2F89 /* Dude-MoneyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Dude-MoneyTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C0F768B128BC0C46000A2F89 /* Dude_MoneyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dude_MoneyTests.swift; sourceTree = "<group>"; };
+		C0F768B128BC0C46000A2F89 /* SummaryPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPresenterTests.swift; sourceTree = "<group>"; };
 		C0FE41C428ACBA9E00A1E36F /* ResponsiveSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponsiveSizes.swift; sourceTree = "<group>"; };
 		C0FE41C628ACBD2800A1E36F /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		C0FE41C828ACC97D00A1E36F /* BillCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -151,7 +149,7 @@
 		C031E71328A65ACF002CA97A /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				C01D06A828AABE58007F499E /* LocalSaveService.swift */,
+				C01D06A828AABE58007F499E /* SaveService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -213,7 +211,7 @@
 			children = (
 				C0B39D0C28BE2B1E001E56D0 /* MockSummaryRouter.swift */,
 				C047DCAB28BE7ECC002BE948 /* MockSummaryInteractor.swift */,
-				C047DCB328BE84DC002BE948 /* MockSummaryPresenter.swift */,
+				C030723328C7CE6000DA9916 /* MockSummaryView.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -243,7 +241,6 @@
 				C0B39D0B28BE2B00001E56D0 /* Mocks */,
 				C0FE41CC28ACE33400A1E36F /* SummaryViewController.swift */,
 				C0F642DE28A8E39200B75EC9 /* SummaryPresenter.swift */,
-				C0F642E028A8E39B00B75EC9 /* SummaryInteractor.swift */,
 				C0F642E228A8E3A400B75EC9 /* SummaryRouter.swift */,
 				C0B99F5928AA476A007687F9 /* View */,
 			);
@@ -253,7 +250,7 @@
 		C0F768B028BC0C46000A2F89 /* Dude-MoneyTests */ = {
 			isa = PBXGroup;
 			children = (
-				C0F768B128BC0C46000A2F89 /* Dude_MoneyTests.swift */,
+				C0F768B128BC0C46000A2F89 /* SummaryPresenterTests.swift */,
 			);
 			path = "Dude-MoneyTests";
 			sourceTree = "<group>";
@@ -368,7 +365,7 @@
 				C0B4DCC928B6744700220174 /* CollectionCellsRegister.swift in Sources */,
 				C089233928A80AC5005F6A2B /* TabBarRouter.swift in Sources */,
 				C00E931C28ABB23F000CEAFC /* DoubleFormatter.swift in Sources */,
-				C01D06A928AABE58007F499E /* LocalSaveService.swift in Sources */,
+				C01D06A928AABE58007F499E /* SaveService.swift in Sources */,
 				C0B9EB4628ABC92300F3B681 /* ScreenTexts.swift in Sources */,
 				C089233528A80AB1005F6A2B /* TabBarPresenter.swift in Sources */,
 				C0B99F5E28AA7E41007687F9 /* People.swift in Sources */,
@@ -376,16 +373,15 @@
 				C06F88A028B8E60C00EB26E9 /* SafeIndex.swift in Sources */,
 				C0FE41C728ACBD2800A1E36F /* HeaderCollectionReusableView.swift in Sources */,
 				C050432B28AC3A6600744385 /* SummaryCollectionViewCell.swift in Sources */,
+				C030723428C7CE6000DA9916 /* MockSummaryView.swift in Sources */,
 				C0FE41C928ACC97D00A1E36F /* BillCollectionViewCell.swift in Sources */,
 				C047DCAC28BE7ECC002BE948 /* MockSummaryInteractor.swift in Sources */,
-				C047DCB428BE84DC002BE948 /* MockSummaryPresenter.swift in Sources */,
 				C089233228A80526005F6A2B /* TabBarViewController.swift in Sources */,
 				C00914F228B60EC1005FDB10 /* UIStoryboardInstantiate.swift in Sources */,
 				C0ACB93E28A2D8CA00968F26 /* AppDelegate.swift in Sources */,
 				C0ACB94028A2D8CA00968F26 /* SceneDelegate.swift in Sources */,
 				C0FE41CD28ACE33400A1E36F /* SummaryViewController.swift in Sources */,
 				C0F642DF28A8E39200B75EC9 /* SummaryPresenter.swift in Sources */,
-				C0F642E128A8E39B00B75EC9 /* SummaryInteractor.swift in Sources */,
 				C0FE41C528ACBA9E00A1E36F /* ResponsiveSizes.swift in Sources */,
 				C0F642E328A8E3A400B75EC9 /* SummaryRouter.swift in Sources */,
 				C0B9EB4828ABD19F00F3B681 /* Bill.swift in Sources */,
@@ -396,7 +392,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0F768B228BC0C46000A2F89 /* Dude_MoneyTests.swift in Sources */,
+				C0F768B228BC0C46000A2F89 /* SummaryPresenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
