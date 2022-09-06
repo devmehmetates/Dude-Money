@@ -9,12 +9,12 @@ import XCTest
 @testable import Dude_Money
 
 class SummaryPresenterTests: XCTestCase {
+    
     private var summaryRouter: MockSummaryRouter!
     private var summaryInteractor: MockSummaryInteractor!
     private var summaryView: MockSummaryView!
     private var summaryPresenter: SummaryPresenterInterface!
     
-
     override func setUpWithError() throws {
         try super.setUpWithError()
         summaryRouter = MockSummaryRouter()
@@ -104,5 +104,4 @@ class SummaryPresenterTests: XCTestCase {
         XCTAssertTrue(summaryView.invokedSetupToolbar)
         XCTAssertTrue(summaryView.invokedSetupView)
     }
-    
 }
