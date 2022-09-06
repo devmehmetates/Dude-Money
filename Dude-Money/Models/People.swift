@@ -5,7 +5,6 @@
 //  Created by Mehmet Ateş on 15.08.2022.
 //
 
-
 struct People: Codable {
     var username: String
     var name: String
