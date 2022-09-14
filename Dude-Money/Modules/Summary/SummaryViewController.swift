@@ -36,6 +36,21 @@ extension SummaryViewController {
     static let debtSectionIndex: Int = 2
 }
 
+// MARK: - Size Constants
+extension SummaryViewController {
+    
+    // MARK: Profile Icon
+    static let profileIconSize: CGFloat = 40
+    static let profileIconCornerRadius: CGFloat = 20
+    
+    // MARK: Main Cells
+    static let cellWidth: CGFloat = 90.0.responsiveW
+    
+    // MARK: Header View
+    static let headerWidth: CGFloat = 100.0.responsiveW
+    static let headerHeight: CGFloat = 50
+}
+
 // MARK: - Interface Setup
 extension SummaryViewController: SummaryViewInterface {
     
@@ -82,10 +97,10 @@ extension SummaryViewController: SummaryViewInterface {
         let profileIcon = UIImageView(image: UIImage(named: presenter.getUserProfileIcon))
         profileIcon.image = profileIcon.image?.withRenderingMode(.alwaysOriginal)
         profileIcon.backgroundColor = .systemRed
-        profileIcon.layer.cornerRadius = 20
+        profileIcon.layer.cornerRadius = SummaryViewController.profileIconCornerRadius
         NSLayoutConstraint.activate([
-            profileIcon.widthAnchor.constraint(equalToConstant: 40),
-            profileIcon.heightAnchor.constraint(equalToConstant: 40)
+            profileIcon.widthAnchor.constraint(equalToConstant: SummaryViewController.profileIconSize),
+            profileIcon.heightAnchor.constraint(equalToConstant: SummaryViewController.profileIconSize)
         ])
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileIcon)
     }
@@ -157,9 +172,9 @@ extension SummaryViewController {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         if indexPath.section == SummaryViewController.summarySectionIndex {
-            return CGSize(width: 90.0.responsiveW, height: SummaryCollectionViewCell.cellHeight)
+            return CGSize(width: SummaryViewController.cellWidth, height: SummaryCollectionViewCell.cellHeight)
         }
-        return CGSize(width: 90.0.responsiveW, height: BillCollectionViewCell.cellHeight)
+        return CGSize(width: SummaryViewController.cellWidth, height: BillCollectionViewCell.cellHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -167,7 +182,7 @@ extension SummaryViewController {
             return .zero
         }
 
-        return CGSize(width: 100.0.responsiveW, height: 50)
+        return CGSize(width: SummaryViewController.headerWidth, height: SummaryViewController.headerHeight)
     }
 }
 
