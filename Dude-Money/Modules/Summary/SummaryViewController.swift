@@ -10,7 +10,6 @@ import UIKit
 protocol SummaryViewInterface: AnyObject {
     func setupView()
     func setupToolbar()
-    func createLayout() -> UICollectionViewCompositionalLayout
 }
 
 final class SummaryViewController: UIViewController, UICollectionViewDelegate {
@@ -60,7 +59,7 @@ extension SummaryViewController: SummaryViewInterface {
         collectionView.setCollectionViewLayout(createLayout(), animated: true)
     }
     
-    func createLayout() -> UICollectionViewCompositionalLayout {
+    private func createLayout() -> UICollectionViewCompositionalLayout {
         let layout = UICollectionViewCompositionalLayout { index, environment in
             var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
             configuration.backgroundColor = .secondarySystemBackground
