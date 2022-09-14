@@ -50,7 +50,6 @@ class SummaryPresenterTests: XCTestCase {
         summaryInteractor.stubbedReadUserResult = People.exampleModel
         summaryPresenter.fetchPeople()
         XCTAssertNotNil(summaryPresenter.getReceivablesIsEmpty)
-        XCTAssertFalse(summaryPresenter.getReceivablesIsEmpty!)
     }
     
     func testGetDebtsCount() {
@@ -65,7 +64,6 @@ class SummaryPresenterTests: XCTestCase {
         summaryInteractor.stubbedReadUserResult = People.exampleModel
         summaryPresenter.fetchPeople()
         XCTAssertNotNil(summaryPresenter.getDebtIsEmpty)
-        XCTAssertFalse(summaryPresenter.getDebtIsEmpty!)
     }
     
     func testGetUserBalance() {
@@ -85,6 +83,8 @@ class SummaryPresenterTests: XCTestCase {
         summaryInteractor.stubbedReadUserResult = People.exampleModel
         summaryPresenter.fetchPeople()
         XCTAssertNotNil(summaryPresenter.getDebtDataByIndex(0))
+        XCTAssertNotNil(summaryPresenter.getDebtDataByIndex(0)?.bill)
+        XCTAssertNotNil(summaryPresenter.getDebtDataByIndex(0)?.friend)
     }
     
     func testGetReceivablesDataByIndex() {
@@ -100,6 +100,8 @@ class SummaryPresenterTests: XCTestCase {
     }
     
     func testNotifyViewDidLoad() {
+        XCTAssertFalse(summaryView.invokedSetupToolbar)
+        XCTAssertFalse(summaryView.invokedSetupView)
         summaryPresenter.notifyViewLoaded()
         XCTAssertTrue(summaryView.invokedSetupToolbar)
         XCTAssertTrue(summaryView.invokedSetupView)
