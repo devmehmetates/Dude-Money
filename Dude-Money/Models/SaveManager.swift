@@ -7,14 +7,14 @@
 
 import Foundation
 
-protocol SaveServiceInterface: AnyObject {
+protocol SaveManagerInterface: AnyObject {
     func saveUser(_ people: People)
     func readUser() -> People?
 }
 
-final class SaveService: SaveServiceInterface {
+final class SaveManager: SaveManagerInterface {
     
-    static let shared: SaveService = SaveService()
+    static let shared: SaveManager = SaveManager()
     let userDataKey: String = "userData"
     
     func saveUser(_ people: People) {

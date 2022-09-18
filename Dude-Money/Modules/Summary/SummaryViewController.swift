@@ -16,14 +16,11 @@ final class SummaryViewController: UIViewController, UICollectionViewDelegate {
     
     @IBOutlet private weak var collectionView: UICollectionView!
     private var listConfig = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
-    var presenter: SummaryPresenterInterface = SummaryPresenter(view: nil, router: nil, interactor: nil)
+    var presenter: SummaryPresenterInterface!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.notifyViewLoaded()
-        collectionView.registerCell(cell: BillCollectionViewCell.self)
-        collectionView.registerCell(cell: SummaryCollectionViewCell.self)
-        collectionView.registerReusableView(cell: HeaderCollectionReusableView.self)
     }
 }
 
@@ -54,9 +51,12 @@ extension SummaryViewController {
 extension SummaryViewController: SummaryViewInterface {
     
     func setupView() {
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
         collectionView.setCollectionViewLayout(createLayout(), animated: true)
+        collectionView.registerCell(cell: BillCollectionViewCell.self)
+        collectionView.registerCell(cell: SummaryCollectionViewCell.self)
+        collectionView.registerReusableView(cell: HeaderCollectionReusableView.self)
     }
     
     private func createLayout() -> UICollectionViewCompositionalLayout {
@@ -80,14 +80,14 @@ extension SummaryViewController: SummaryViewInterface {
     }
     
     func setupToolbar() {
-        self.title = ScreenTexts.summaryScreenTitle
+        title = ScreenTexts.summaryScreenTitle
         configureRightNavigationBarButton()
         configureLeftNavigationBarButton()
     }
 
     private func configureRightNavigationBarButton() {
         let addButton = UIBarButtonItem(systemItem: .add)
-        self.navigationItem.rightBarButtonItem = addButton
+        navigationItem.rightBarButtonItem = addButton
         addButton.target = self
         addButton.action = #selector(addAction)
     }
@@ -101,7 +101,7 @@ extension SummaryViewController: SummaryViewInterface {
             profileIcon.widthAnchor.constraint(equalToConstant: SummaryViewController.profileIconSize),
             profileIcon.heightAnchor.constraint(equalToConstant: SummaryViewController.profileIconSize)
         ])
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileIcon)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileIcon)
     }
 
     @objc
@@ -116,15 +116,14 @@ extension SummaryViewController: UICollectionViewDataSource {
         guard let cell: BillCollectionViewCell = collectionView.dequeue(for: indexPath) else { return UICollectionViewCell() }
         
         // MARK: SummaryCell
-        if indexPath.section == SummaryViewController.summarySectionIndex {
+        switch indexPath.section {
+        case SummaryViewController.summarySectionIndex:
             guard let cell: SummaryCollectionViewCell = collectionView.dequeue(for: indexPath) else { return UICollectionViewCell() }
             cell.contentView.heightAnchor.constraint(equalToConstant: SummaryCollectionViewCell.cellHeight).isActive = true
             cell.configureContent(amount: presenter.getUserBalance)
             return cell
-            
-        }
         // MARK: ReceiavablesCell
-        else if indexPath.section == SummaryViewController.receivablesSectionIndex {
+        case SummaryViewController.receivablesSectionIndex:
             cell.contentView.heightAnchor.constraint(equalToConstant: BillCollectionViewCell.cellHeight).isActive = true
             
             if let cellData = presenter.getReceivablesDataByIndex(indexPath.row) {
@@ -134,9 +133,8 @@ extension SummaryViewController: UICollectionViewDataSource {
             }
             cell.backgroundColor = .systemGreen.withAlphaComponent(0.2)
             return cell
-        }
         // MARK: DebtsCell
-        else {
+        default:
             cell.contentView.heightAnchor.constraint(equalToConstant: BillCollectionViewCell.cellHeight).isActive = true
             
             if let cellData = presenter.getDebtDataByIndex(indexPath.row) {
@@ -169,7 +167,6 @@ extension SummaryViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         if indexPath.section == SummaryViewController.summarySectionIndex {
             return CGSize(width: SummaryViewController.cellWidth, height: SummaryCollectionViewCell.cellHeight)
         }

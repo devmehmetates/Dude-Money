@@ -23,13 +23,13 @@ final class SummaryPresenter {
     
     private weak var view: SummaryViewInterface?
     private weak var router: SummaryRouterInterface?
-    private var interactor: SaveServiceInterface?
+    private var manager: SaveManagerInterface?
     private var people: People?
     
-    init(view: SummaryViewInterface?, router: SummaryRouterInterface?, interactor: SaveServiceInterface?) {
+    init(view: SummaryViewInterface?, router: SummaryRouterInterface?, manager: SaveManagerInterface?) {
         self.view = view
         self.router = router
-        self.interactor = interactor
+        self.manager = manager
     }
 }
 
@@ -82,7 +82,7 @@ extension SummaryPresenter: SummaryPresenterInterface {
     }
     
     func fetchPeople() {
-        people = interactor?.readUser()
+        people = manager?.readUser()
     }
     
     func notifyViewLoaded() {

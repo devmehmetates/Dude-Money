@@ -1,5 +1,5 @@
 //
-//  MockSummaryInteractor.swift
+//  MockSummaryManager.swift
 //  Dude-Money
 //
 //  Created by Mehmet Ateş on 30.08.2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class MockSummaryInteractor: SaveServiceInterface {
+final class MockSummaryManager: SaveManagerInterface {
 
     var invokedSaveUser = false
     var invokedSaveUserCount = 0

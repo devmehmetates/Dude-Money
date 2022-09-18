@@ -11,66 +11,65 @@ import XCTest
 class SummaryPresenterTests: XCTestCase {
     
     private var summaryRouter: MockSummaryRouter!
-    private var summaryInteractor: MockSummaryInteractor!
+    private var summaryManager: MockSummaryManager!
     private var summaryView: MockSummaryView!
     private var summaryPresenter: SummaryPresenterInterface!
     
     override func setUpWithError() throws {
         try super.setUpWithError()
         summaryRouter = MockSummaryRouter()
-        summaryInteractor = MockSummaryInteractor()
+        summaryManager = MockSummaryManager()
         summaryView = MockSummaryView()
-        summaryPresenter = SummaryPresenter(view: summaryView, router: summaryRouter, interactor: summaryInteractor)
+        summaryPresenter = SummaryPresenter(view: summaryView, router: summaryRouter, manager: summaryManager)
     }
 
     override func tearDownWithError() throws {
         try super.tearDownWithError()
         summaryRouter = nil
-        summaryInteractor = nil
+        summaryManager = nil
         summaryView = nil
         summaryPresenter = nil
     }
     
     func testGetUserProfileIcon() {
-        XCTAssertNil(summaryPresenter.getUserProfileIcon)
-        summaryInteractor.stubbedReadUserResult = People.exampleModel
+        XCTAssertEqual(summaryPresenter.getUserProfileIcon, "")
+        summaryManager.stubbedReadUserResult = People.exampleModel
         summaryPresenter.fetchPeople()
-        XCTAssertNotNil(summaryPresenter.getUserProfileIcon)
+        XCTAssertEqual(summaryPresenter.getUserProfileIcon, "example4")
     }
     
     func testGetReceivablesCount() {
         XCTAssertEqual(summaryPresenter.getReceivablesCount, 1)
-        summaryInteractor.stubbedReadUserResult = People.exampleModel
+        summaryManager.stubbedReadUserResult = People.exampleModel
         summaryPresenter.fetchPeople()
         XCTAssertEqual(summaryPresenter.getReceivablesCount, 3)
     }
     
     func testGetReceivablesIsEmpty() {
-        XCTAssertNil(summaryPresenter.getReceivablesIsEmpty)
-        summaryInteractor.stubbedReadUserResult = People.exampleModel
+        XCTAssertEqual(summaryPresenter.getReceivablesIsEmpty, false) // default 1 cell
+        summaryManager.stubbedReadUserResult = People.exampleModel
         summaryPresenter.fetchPeople()
-        XCTAssertNotNil(summaryPresenter.getReceivablesIsEmpty)
+        XCTAssertEqual(summaryPresenter.getReceivablesIsEmpty, false) // 3 cell
     }
     
     func testGetDebtsCount() {
         XCTAssertEqual(summaryPresenter.getDebtsCount, 1)
-        summaryInteractor.stubbedReadUserResult = People.exampleModel
+        summaryManager.stubbedReadUserResult = People.exampleModel
         summaryPresenter.fetchPeople()
         XCTAssertEqual(summaryPresenter.getDebtsCount, 3)
     }
     
     func testGetDebtsIsEmpty() {
-        XCTAssertNil(summaryPresenter.getDebtIsEmpty)
-        summaryInteractor.stubbedReadUserResult = People.exampleModel
+        XCTAssertEqual(summaryPresenter.getDebtIsEmpty, false) // default 1 cell
+        summaryManager.stubbedReadUserResult = People.exampleModel
         summaryPresenter.fetchPeople()
-        XCTAssertNotNil(summaryPresenter.getDebtIsEmpty)
+        XCTAssertEqual(summaryPresenter.getDebtIsEmpty, false) // 3 cell
     }
     
     func testGetUserBalance() {
-        XCTAssertNil(summaryPresenter.getUserBalance)
-        summaryInteractor.stubbedReadUserResult = People.exampleModel
+        XCTAssertEqual(summaryPresenter.getUserBalance, 0.0)
+        summaryManager.stubbedReadUserResult = People.exampleModel
         summaryPresenter.fetchPeople()
-        XCTAssertNotNil(summaryPresenter.getUserBalance)
         XCTAssertEqual(summaryPresenter.getUserBalance, 100.0)
     }
     
@@ -80,7 +79,7 @@ class SummaryPresenterTests: XCTestCase {
     
     func testGetDebtDataByIndex() {
         XCTAssertNil(summaryPresenter.getDebtDataByIndex(0))
-        summaryInteractor.stubbedReadUserResult = People.exampleModel
+        summaryManager.stubbedReadUserResult = People.exampleModel
         summaryPresenter.fetchPeople()
         XCTAssertNotNil(summaryPresenter.getDebtDataByIndex(0))
         XCTAssertNotNil(summaryPresenter.getDebtDataByIndex(0)?.bill)
@@ -89,14 +88,14 @@ class SummaryPresenterTests: XCTestCase {
     
     func testGetReceivablesDataByIndex() {
         XCTAssertNil(summaryPresenter.getReceivablesDataByIndex(0))
-        summaryInteractor.stubbedReadUserResult = People.exampleModel
+        summaryManager.stubbedReadUserResult = People.exampleModel
         summaryPresenter.fetchPeople()
         XCTAssertNotNil(summaryPresenter.getReceivablesDataByIndex(0))
     }
     
     func testFetchPeople() {
         summaryPresenter.fetchPeople()
-        XCTAssertTrue(summaryInteractor.invokedReadUser)
+        XCTAssertTrue(summaryManager.invokedReadUser)
     }
     
     func testNotifyViewDidLoad() {
