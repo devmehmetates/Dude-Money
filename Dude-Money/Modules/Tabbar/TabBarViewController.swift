@@ -22,6 +22,15 @@ class TabBarViewController: UITabBarController {
         return navigationController
     }()
     
+    private lazy var summaryVC: UIViewController = {
+        let navigationController = UINavigationController()
+        let summaryVC = SummaryRouter.createModule(using: navigationController)
+        navigationController.viewControllers = [summaryVC]
+        navigationController.tabBarItem.title = "Özet"
+        navigationController.tabBarItem.image = UIImage(systemName: "chart.xyaxis.line")!
+        return navigationController
+    }()
+    
     var presenter: TabBarPresenterInterface? {
         didSet {
             presenter?.notifyViewLoaded()
@@ -38,6 +47,7 @@ extension TabBarViewController: TabBarViewInterface {
     
     func setupView() {
         viewControllers = [
+            summaryVC,
             mockVC,
         ]
     }
