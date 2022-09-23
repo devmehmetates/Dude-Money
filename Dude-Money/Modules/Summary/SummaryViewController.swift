@@ -10,21 +10,17 @@ import UIKit
 protocol SummaryViewInterface: AnyObject {
     func setupView()
     func setupToolbar()
-    func createLayout() -> UICollectionViewCompositionalLayout
 }
 
 final class SummaryViewController: UIViewController, UICollectionViewDelegate {
     
     @IBOutlet private weak var collectionView: UICollectionView!
     private var listConfig = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
-    var presenter: SummaryPresenterInterface?
+    var presenter: SummaryPresenterInterface!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter?.notifyViewLoaded()
-        collectionView.registerCell(cell: BillCollectionViewCell.self)
-        collectionView.registerCell(cell: SummaryCollectionViewCell.self)
-        collectionView.registerReusableView(cell: HeaderCollectionReusableView.self)
+        presenter.notifyViewLoaded()
     }
 }
 
@@ -36,18 +32,37 @@ extension SummaryViewController {
     static let debtSectionIndex: Int = 2
 }
 
+// MARK: - Size Constants
+extension SummaryViewController {
+    
+    // MARK: Profile Icon
+    static let profileIconSize: CGFloat = 40
+    static let profileIconCornerRadius: CGFloat = 20
+    
+    // MARK: Main Cells
+    static let cellWidth: CGFloat = 90.0.responsiveW
+    
+    // MARK: Header View
+    static let headerWidth: CGFloat = 100.0.responsiveW
+    static let headerHeight: CGFloat = 50
+}
+
 // MARK: - Interface Setup
 extension SummaryViewController: SummaryViewInterface {
     
     func setupView() {
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
         collectionView.setCollectionViewLayout(createLayout(), animated: true)
+        collectionView.registerCell(cell: BillCollectionViewCell.self)
+        collectionView.registerCell(cell: SummaryCollectionViewCell.self)
+        collectionView.registerReusableView(cell: HeaderCollectionReusableView.self)
     }
     
-    func createLayout() -> UICollectionViewCompositionalLayout {
+    private func createLayout() -> UICollectionViewCompositionalLayout {
         let layout = UICollectionViewCompositionalLayout { index, environment in
             var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+            configuration.backgroundColor = .secondarySystemBackground
             
             switch index {
             case 1...2:
@@ -65,28 +80,28 @@ extension SummaryViewController: SummaryViewInterface {
     }
     
     func setupToolbar() {
-        self.title = "Borçların"
+        title = ScreenTexts.summaryScreenTitle
         configureRightNavigationBarButton()
         configureLeftNavigationBarButton()
     }
 
     private func configureRightNavigationBarButton() {
         let addButton = UIBarButtonItem(systemItem: .add)
-        self.navigationItem.rightBarButtonItem = addButton
+        navigationItem.rightBarButtonItem = addButton
         addButton.target = self
         addButton.action = #selector(addAction)
     }
 
     private func configureLeftNavigationBarButton() {
-        let profileIcon = UIImageView(image: UIImage(named: presenter?.getUserProfileIcon ?? ""))
+        let profileIcon = UIImageView(image: UIImage(named: presenter.getUserProfileIcon))
         profileIcon.image = profileIcon.image?.withRenderingMode(.alwaysOriginal)
         profileIcon.backgroundColor = .systemRed
-        profileIcon.layer.cornerRadius = 20
+        profileIcon.layer.cornerRadius = SummaryViewController.profileIconCornerRadius
         NSLayoutConstraint.activate([
-            profileIcon.widthAnchor.constraint(equalToConstant: 40),
-            profileIcon.heightAnchor.constraint(equalToConstant: 40)
+            profileIcon.widthAnchor.constraint(equalToConstant: SummaryViewController.profileIconSize),
+            profileIcon.heightAnchor.constraint(equalToConstant: SummaryViewController.profileIconSize)
         ])
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileIcon)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileIcon)
     }
 
     @objc
@@ -102,30 +117,28 @@ extension SummaryViewController: UICollectionViewDataSource {
         guard let cell: BillCollectionViewCell = collectionView.dequeue(for: indexPath) else { return UICollectionViewCell() }
         
         // MARK: SummaryCell
-        if indexPath.section == SummaryViewController.summarySectionIndex {
+        switch indexPath.section {
+        case SummaryViewController.summarySectionIndex:
             guard let cell: SummaryCollectionViewCell = collectionView.dequeue(for: indexPath) else { return UICollectionViewCell() }
             cell.contentView.heightAnchor.constraint(equalToConstant: SummaryCollectionViewCell.cellHeight).isActive = true
-            cell.configureContent(amount: presenter?.getUserBalance ?? 0)
+            cell.configureContent(amount: presenter.getUserBalance)
             return cell
-            
-        }
         // MARK: ReceiavablesCell
-        else if indexPath.section == SummaryViewController.receivablesSectionIndex {
+        case SummaryViewController.receivablesSectionIndex:
             cell.contentView.heightAnchor.constraint(equalToConstant: BillCollectionViewCell.cellHeight).isActive = true
             
-            if let cellData = presenter?.getReceivablesDataByIndex(indexPath.row) {
+            if let cellData = presenter.getReceivablesDataByIndex(indexPath.row) {
                 cell.configureContents(friend: cellData.friend, bill: cellData.bill)
             } else {
                 cell.configureContents(infoCell: (icon: "hand.thumbsdown", message: ScreenTexts.emptyReceivablesText))
             }
             cell.backgroundColor = .systemGreen.withAlphaComponent(0.2)
             return cell
-        }
         // MARK: DebtsCell
-        else {
+        default:
             cell.contentView.heightAnchor.constraint(equalToConstant: BillCollectionViewCell.cellHeight).isActive = true
             
-            if let cellData = presenter?.getDebtDataByIndex(indexPath.row) {
+            if let cellData = presenter.getDebtDataByIndex(indexPath.row) {
                 cell.configureContents(friend: cellData.friend, bill: cellData.bill)
             } else {
                 cell.configureContents(infoCell: (icon: "hands.sparkles", message: ScreenTexts.emptyDebtText))
@@ -141,33 +154,32 @@ extension SummaryViewController {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
-        case 1:
-            return presenter?.getReceivablesCount ?? 0
-        case 2:
-            return presenter?.getDebtsCount ?? 0
+        case SummaryViewController.receivablesSectionIndex:
+            return presenter.getReceivablesCount
+        case SummaryViewController.debtSectionIndex:
+            return presenter.getDebtsCount
         default:
             return 1
         }
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        presenter?.getSectionCount ?? 0
+        presenter.getSectionCount
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        if indexPath.section == 0 {
-            return CGSize(width: 90.0.responsiveW, height: SummaryCollectionViewCell.cellHeight)
+        if indexPath.section == SummaryViewController.summarySectionIndex {
+            return CGSize(width: SummaryViewController.cellWidth, height: SummaryCollectionViewCell.cellHeight)
         }
-        return CGSize(width: 90.0.responsiveW, height: BillCollectionViewCell.cellHeight)
+        return CGSize(width: SummaryViewController.cellWidth, height: BillCollectionViewCell.cellHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        if section == 0 {
+        if section == SummaryViewController.summarySectionIndex {
             return .zero
         }
 
-        return CGSize(width: 100.0.responsiveW, height: 50)
+        return CGSize(width: SummaryViewController.headerWidth, height: SummaryViewController.headerHeight)
     }
 }
 
@@ -181,9 +193,9 @@ extension SummaryViewController {
                 return UICollectionReusableView()
             }
             
-            if indexPath.section == 1 {
+            if indexPath.section == SummaryViewController.receivablesSectionIndex {
                 headerView.setHeaderLabel(ScreenTexts.receivablesSectionTitle)
-            } else if indexPath.section == 2 {
+            } else if indexPath.section == SummaryViewController.debtSectionIndex {
                 headerView.setHeaderLabel(ScreenTexts.debtSectionTitle)
             }
             
@@ -200,14 +212,13 @@ extension SummaryViewController {
     
     func createSwipeAction(forSection section: Int) -> [UIContextualAction] {
         let swipeAction: UIContextualAction?
-        guard let receivablesIsEmpty = presenter?.getReceivablesIsEmpty, let debtIsEmpty = presenter?.getDebtIsEmpty else { return [] }
         
-        if section == SummaryViewController.receivablesSectionIndex, !receivablesIsEmpty {
+        if section == SummaryViewController.receivablesSectionIndex, !presenter.getReceivablesIsEmpty {
             swipeAction = UIContextualAction(style: .normal, title: ScreenTexts.receivablesSwipeActionText) { action, sourceView, actionPerformed in
                 actionPerformed(true)
             }
             swipeAction?.backgroundColor = .systemGreen
-        } else if section == SummaryViewController.debtSectionIndex, !debtIsEmpty {
+        } else if section == SummaryViewController.debtSectionIndex, !presenter.getDebtIsEmpty {
             swipeAction = UIContextualAction(style: .normal, title: ScreenTexts.debtSwipeActionText) { action, sourceView, actionPerformed in
                 actionPerformed(true)
             }

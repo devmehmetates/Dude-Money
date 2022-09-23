@@ -12,26 +12,25 @@ protocol SummaryPresenterInterface: AnyObject {
     func getReceivablesDataByIndex(_ index: Int) -> (bill: Bill, friend: People)?
     func presentAddBill()
     var getSectionCount: Int { get }
-    var getUserProfileIcon: String? { get }
-    var getUserBalance: Double? { get }
-    var getReceivablesCount: Int? { get }
-    var getReceivablesIsEmpty: Bool? { get }
-    var getDebtsCount: Int? { get }
-    var getDebtIsEmpty: Bool? { get }
-    
+    var getUserProfileIcon: String { get }
+    var getUserBalance: Double { get }
+    var getReceivablesCount: Int { get }
+    var getReceivablesIsEmpty: Bool { get }
+    var getDebtsCount: Int { get }
+    var getDebtIsEmpty: Bool { get }
 }
 
 final class SummaryPresenter {
     
     private weak var view: SummaryViewInterface?
     private var router: SummaryRouterInterface?
-    private var interactor: SummaryInteractorInterface?
+    private var manager: SaveManagerInterface?
     private var people: People?
     
-    init(view: SummaryViewInterface?, router: SummaryRouterInterface?, interactor: SummaryInteractorInterface?) {
+    init(view: SummaryViewInterface?, router: SummaryRouterInterface?, manager: SaveManagerInterface?) {
         self.view = view
         self.router = router
-        self.interactor = interactor
+        self.manager = manager
     }
 }
 
@@ -41,28 +40,29 @@ extension SummaryPresenter: SummaryPresenterInterface {
         router?.presentAddBill()
     }
     
-    var getUserProfileIcon: String? {
-        people?.icon
+    var getUserProfileIcon: String {
+        people?.icon ?? ""
     }
     
-    var getReceivablesCount: Int? {
-        (people?.receivables.isEmpty ?? true) ? 1 : people?.receivables.count
+    var getReceivablesCount: Int {
+        (people?.receivables.isEmpty ?? true) ? 1 : people?.receivables.count ?? 0
     }
     
-    var getReceivablesIsEmpty: Bool? {
-        people?.receivables.isEmpty
+    var getReceivablesIsEmpty: Bool {
+        people?.receivables.isEmpty ?? false
     }
     
-    var getDebtsCount: Int? {
-        (people?.debts.isEmpty ?? true) ? 1 : people?.debts.count
+    var getDebtsCount: Int {
+        (people?.debts.isEmpty ?? true) ? 1 : people?.debts.count ?? 0
     }
     
-    var getDebtIsEmpty: Bool? {
-        people?.debts.isEmpty
+    var getDebtIsEmpty: Bool {
+        people?.debts.isEmpty ?? false
+        
     }
     
-    var getUserBalance: Double? {
-        people?.balance
+    var getUserBalance: Double {
+        people?.balance ?? 0
     }
     
     var getSectionCount: Int {
@@ -86,7 +86,7 @@ extension SummaryPresenter: SummaryPresenterInterface {
     }
     
     func fetchPeople() {
-        people = interactor?.people
+        people = manager?.readUser()
     }
     
     func notifyViewLoaded() {

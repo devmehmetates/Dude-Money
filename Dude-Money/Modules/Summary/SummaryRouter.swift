@@ -8,7 +8,6 @@
 import UIKit
 
 protocol SummaryRouterInterface: AnyObject {
-    func performSegue(with identifier: String)
     func popView()
     func presentAddBill()
 }
@@ -20,8 +19,8 @@ final class SummaryRouter {
     static func createModule(using navigationController: UINavigationController) -> SummaryViewController {
         let router = SummaryRouter()
         let view: SummaryViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(ofType: SummaryViewController.self)
-        let interactor = SummaryInteractor()
-        let presenter = SummaryPresenter(view: view, router: router, interactor: interactor)
+        let manager = SaveManager()
+        let presenter = SummaryPresenter(view: view, router: router, manager: manager)
         
         view.presenter = presenter
         router.navigationController = navigationController
@@ -35,11 +34,9 @@ extension SummaryRouter: SummaryRouterInterface {
     
     func presentAddBill() {
         let rootNavController: UINavigationController = navigationController ?? UINavigationController()
-        navigationController?.present(AddBillRouter.createModule(using: rootNavController), animated: true)
-    }
-    
-    func performSegue(with identifier: String) {
-        self.navigationController?.present(MockViewController(), animated: true)
+        let addBillController: UIViewController = AddBillRouter.createModule(using: rootNavController)
+        addBillController.modalPresentationStyle = .fullScreen
+        navigationController?.present(addBillController, animated: true)
     }
     
     func popView() {

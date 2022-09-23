@@ -18,12 +18,10 @@ extension AddBillInteractor: AddBillInteractorInterface {
 
     func savePeople(_ people: People?) {
         guard let people = people else { return }
-        LocalSaveService.saveUser(people)
+        SaveManager.shared.saveUser(people)
     }
     
     var readPeople: People? {
-        get {
-            LocalSaveService.readUser()
-        }
+        SaveManager.shared.readUser()
     }
 }
