@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -24,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G0Z-uS-kBG">
-                    <rect key="frame" x="353" y="68" width="45" height="31"/>
+                    <rect key="frame" x="348" y="72" width="50" height="34"/>
                     <color key="tintColor" name="AccentColor"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" image="xmark.circle" catalog="system"/>
@@ -33,17 +34,17 @@
                     </connections>
                 </button>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="nLT-1P-OhX">
-                    <rect key="frame" x="24" y="123" width="362" height="132.5"/>
+                    <rect key="frame" x="16" y="122" width="382" height="136.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bir arkadaşını seç 😊" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FqH-mf-Yan">
-                            <rect key="frame" x="15" y="15" width="332" height="22.5"/>
+                            <rect key="frame" x="15" y="15" width="352" height="26.5"/>
                             <color key="tintColor" systemColor="secondaryLabelColor"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                             <color key="textColor" systemColor="secondaryLabelColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dk4-5F-jyK">
-                            <rect key="frame" x="15" y="57.5" width="332" height="60"/>
+                            <rect key="frame" x="15" y="61.5" width="352" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="PKg-rR-6P0"/>
                             </constraints>
@@ -65,17 +66,17 @@
                     </userDefinedRuntimeAttributes>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5NK-ke-NnE">
-                    <rect key="frame" x="24" y="279.5" width="366" height="134"/>
+                    <rect key="frame" x="16" y="274.5" width="382" height="141"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miktar nedir 💸" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVQ-ef-RI1">
-                            <rect key="frame" x="15" y="15" width="336" height="14.5"/>
+                            <rect key="frame" x="15" y="15" width="352" height="18"/>
                             <color key="tintColor" systemColor="secondaryLabelColor"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                             <color key="textColor" systemColor="secondaryLabelColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hDr-tc-DEd">
-                            <rect key="frame" x="15" y="49.5" width="336" height="32"/>
+                            <rect key="frame" x="15" y="53" width="352" height="32"/>
                             <segments>
                                 <segment title="Borç"/>
                                 <segment title="Alacak"/>
@@ -86,7 +87,7 @@
                             </connections>
                         </segmentedControl>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="500" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FCc-cz-VYm">
-                            <rect key="frame" x="15" y="100.5" width="336" height="18.5"/>
+                            <rect key="frame" x="15" y="104" width="352" height="22"/>
                             <color key="textColor" systemColor="systemRedColor"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                             <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
@@ -101,18 +102,18 @@
                     </userDefinedRuntimeAttributes>
                 </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ceU-RV-R5N">
-                    <rect key="frame" x="24" y="437.5" width="366" height="60"/>
+                    <rect key="frame" x="16" y="431.5" width="382" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="OVn-B8-O9a"/>
                     </constraints>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="filled" title="Ekle"/>
+                    <buttonConfiguration key="configuration" style="tinted" title="Ekle"/>
                     <connections>
                         <action selector="addButtonTapped:" destination="-1" eventType="touchUpInside" id="J4S-fF-uEa"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kayıt Ekle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="psk-Ao-JaN">
-                    <rect key="frame" x="174" y="76" width="66" height="17"/>
+                    <rect key="frame" x="168.5" y="80" width="77.5" height="20.5"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -123,23 +124,23 @@
             <constraints>
                 <constraint firstItem="G0Z-uS-kBG" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="1Tn-Md-cHX"/>
                 <constraint firstItem="psk-Ao-JaN" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="4D2-FY-hId"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5NK-ke-NnE" secondAttribute="trailing" constant="24" id="5Eb-N9-kuM"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5NK-ke-NnE" secondAttribute="trailing" constant="16" id="5Eb-N9-kuM"/>
                 <constraint firstItem="psk-Ao-JaN" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="32" id="8FW-M5-nSO"/>
-                <constraint firstItem="ceU-RV-R5N" firstAttribute="top" secondItem="5NK-ke-NnE" secondAttribute="bottom" constant="24" id="OtV-iV-vH4"/>
-                <constraint firstItem="ceU-RV-R5N" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="QFj-QH-fFG"/>
-                <constraint firstItem="5NK-ke-NnE" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="e5k-e8-QCy"/>
-                <constraint firstItem="nLT-1P-OhX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="fPj-Rj-a4x"/>
+                <constraint firstItem="ceU-RV-R5N" firstAttribute="top" secondItem="5NK-ke-NnE" secondAttribute="bottom" constant="16" id="OtV-iV-vH4"/>
+                <constraint firstItem="ceU-RV-R5N" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="QFj-QH-fFG"/>
+                <constraint firstItem="5NK-ke-NnE" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="e5k-e8-QCy"/>
+                <constraint firstItem="nLT-1P-OhX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="fPj-Rj-a4x"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="G0Z-uS-kBG" secondAttribute="trailing" constant="16" id="fwW-M3-z8k"/>
-                <constraint firstItem="5NK-ke-NnE" firstAttribute="top" secondItem="nLT-1P-OhX" secondAttribute="bottom" constant="24" id="hzl-CX-DGV"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="nLT-1P-OhX" secondAttribute="trailing" constant="28" id="jE4-8T-gZ1"/>
-                <constraint firstItem="nLT-1P-OhX" firstAttribute="top" secondItem="G0Z-uS-kBG" secondAttribute="bottom" constant="24" id="ofE-Vu-MGn"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ceU-RV-R5N" secondAttribute="trailing" constant="24" id="spE-6P-B59"/>
+                <constraint firstItem="5NK-ke-NnE" firstAttribute="top" secondItem="nLT-1P-OhX" secondAttribute="bottom" constant="16" id="hzl-CX-DGV"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="nLT-1P-OhX" secondAttribute="trailing" constant="16" id="jE4-8T-gZ1"/>
+                <constraint firstItem="nLT-1P-OhX" firstAttribute="top" secondItem="G0Z-uS-kBG" secondAttribute="bottom" constant="16" id="ofE-Vu-MGn"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ceU-RV-R5N" secondAttribute="trailing" constant="16" id="spE-6P-B59"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="97.767857142857139"/>
         </view>
     </objects>
     <resources>
-        <image name="xmark.circle" catalog="system" width="128" height="121"/>
+        <image name="xmark.circle" catalog="system" width="128" height="123"/>
         <namedColor name="AccentColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
