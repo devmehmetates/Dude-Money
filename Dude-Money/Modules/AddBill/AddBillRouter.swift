@@ -12,7 +12,6 @@ protocol AddBillRouterInterface: AnyObject {
 }
 
 final class AddBillRouter {
-    
     private weak var navigationController: UINavigationController?
     
     static func createModule(using navigationController: UINavigationController) -> AddBillViewController {
@@ -29,7 +28,6 @@ final class AddBillRouter {
 }
 
 extension AddBillRouter: AddBillRouterInterface {
-    
     func popView() {
         navigationController?.dismiss(animated: true)
     }

@@ -11,13 +11,12 @@ protocol AddBillPresenterInterface: AnyObject {
     func notifyViewLoaded()
     func notifyViewWillAppear()
     func popView()
-    func addBill(whose: String?, amount: Double?, type: PriceType)
+    func addBill(whose: String?, amount: String?, type: PriceType)
     var getFriends: [People]? { get }
-   
+    var pullDownButtonIsEnabled: Bool { get }
 }
 
 final class AddBillPresenter {
-    
     private weak var view: AddBillViewInterface?
     private var router: AddBillRouterInterface?
     private var interactor: AddBillInteractorInterface?
@@ -35,8 +34,9 @@ final class AddBillPresenter {
 }
 
 extension AddBillPresenter: AddBillPresenterInterface {
-    func addBill(whose: String?, amount: Double?, type: PriceType) {
-        guard let whose = whose, let amount = amount else { return }
+    
+    func addBill(whose: String?, amount: String?, type: PriceType) {
+        guard let whose = whose, let amount = Double(amount ?? "") else { return }
 
         let bill = Bill(whose: whose, ammount: type == .Debt ? -amount : amount)
         if type == .Debt {
@@ -51,7 +51,6 @@ extension AddBillPresenter: AddBillPresenterInterface {
     }
     
     var getFriends: [People]? {
-        
         let friends = people?.friends ?? []
         return friends.isEmpty ? nil : friends
     }

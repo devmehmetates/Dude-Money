@@ -8,8 +8,8 @@
 import Foundation
 
 protocol AddBillInteractorInterface: AnyObject {
-    var readPeople: People? { get }
     func savePeople(_ people: People?)
+    var readPeople: People? { get }
 }
 
 final class AddBillInteractor { }

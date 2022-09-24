@@ -14,23 +14,22 @@ protocol AddBillViewInterface: AnyObject {
 }
 
 final class AddBillViewController: UIViewController {
-
     @IBOutlet weak private var friendPullDownButton: UIButton!
     @IBOutlet weak private var priceTextField: UITextField!
     @IBOutlet weak private var addButton: UIButton!
+    
     private var priceType: PriceType = .Debt
     private var selectedPeople: People?
-    
-    var presenter: AddBillPresenter?
+    var presenter: AddBillPresenterInterface!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter?.notifyViewLoaded()
+        presenter.notifyViewLoaded()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presenter?.notifyViewWillAppear()
+        presenter.notifyViewWillAppear()
     }
 }
 
@@ -38,7 +37,7 @@ final class AddBillViewController: UIViewController {
 extension AddBillViewController: AddBillViewInterface {
     
     func configureSelectedPeople() {
-        selectedPeople = presenter?.getFriends?.first
+        selectedPeople = presenter.getFriends?.first
     }
     
     func createFriendUIActions(_ friends: [People]?) -> [UIMenuElement] {
@@ -59,20 +58,19 @@ extension AddBillViewController: AddBillViewInterface {
 
 // MARK: - Configure Content
 extension AddBillViewController {
-    
     func configureFriendPullDownButton() {
         friendPullDownButton.showsMenuAsPrimaryAction = true
         friendPullDownButton.changesSelectionAsPrimaryAction = true
         
-        friendPullDownButton.menu = UIMenu(children: createFriendUIActions(presenter?.getFriends))
-        friendPullDownButton.isEnabled = presenter?.pullDownButtonIsEnabled ?? false
+        friendPullDownButton.menu = UIMenu(children: createFriendUIActions(presenter.getFriends))
+        friendPullDownButton.isEnabled = presenter.pullDownButtonIsEnabled
     }
 }
 
 // MARK: - IBActions
 extension AddBillViewController {
     @IBAction private func closeButtonTapped(_ sender: UIButton) {
-        presenter?.popView()
+        presenter.popView()
     }
     
     @IBAction private func priceTypeValueChanged(_ sender: UISegmentedControl) {
@@ -92,7 +90,7 @@ extension AddBillViewController {
     }
     
     @IBAction private func addButtonTapped(_ sender: Any) {
-        presenter?.addBill(whose: selectedPeople?.username, amount: Double(priceTextField.text ?? ""), type: priceType)
+        presenter.addBill(whose: selectedPeople?.username, amount: priceTextField.text, type: priceType)
     }
 }
 
