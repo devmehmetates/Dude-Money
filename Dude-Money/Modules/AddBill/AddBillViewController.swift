@@ -80,12 +80,14 @@ extension AddBillViewController {
             addButton.tintColor = .systemGreen
             friendPullDownButton.tintColor = .systemGreen
             priceType = .Receivable
+            sender.selectedSegmentTintColor = .systemGreen
         } else {
             priceTextField.textColor = .systemRed
             priceTextField.tintColor = .systemRed
             addButton.tintColor = .systemRed
             friendPullDownButton.tintColor = .systemRed
             priceType = .Debt
+            sender.selectedSegmentTintColor = .systemRed
         }
     }
     
