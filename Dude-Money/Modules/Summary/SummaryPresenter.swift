@@ -7,6 +7,7 @@
 
 protocol SummaryPresenterInterface: AnyObject {
     func notifyViewLoaded()
+    func notifyViewWillAppear()
     func fetchPeople()
     func getDebtDataByIndex(_ index: Int) -> (bill: Bill, friend: People)?
     func getReceivablesDataByIndex(_ index: Int) -> (bill: Bill, friend: People)?
@@ -36,6 +37,11 @@ final class SummaryPresenter {
 
 // MARK: - Interface Setup
 extension SummaryPresenter: SummaryPresenterInterface {
+    func notifyViewWillAppear() {
+        fetchPeople()
+        view?.reloadData()
+    }
+    
     func presentAddBill() {
         router?.presentAddBill()
     }

@@ -10,6 +10,7 @@ import UIKit
 protocol SummaryViewInterface: AnyObject {
     func setupView()
     func setupToolbar()
+    func reloadData()
 }
 
 final class SummaryViewController: UIViewController, UICollectionViewDelegate {
@@ -21,6 +22,11 @@ final class SummaryViewController: UIViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.notifyViewLoaded()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.notifyViewWillAppear()
     }
 }
 
@@ -49,6 +55,10 @@ extension SummaryViewController {
 
 // MARK: - Interface Setup
 extension SummaryViewController: SummaryViewInterface {
+    
+    func reloadData() {
+        collectionView.reloadData()
+    }
     
     func setupView() {
         collectionView.delegate = self

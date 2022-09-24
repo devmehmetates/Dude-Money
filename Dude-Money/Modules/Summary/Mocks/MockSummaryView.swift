@@ -25,13 +25,11 @@ final class MockSummaryView: SummaryViewInterface {
         invokedSetupToolbarCount += 1
     }
 
-    var invokedCreateLayout = false
-    var invokedCreateLayoutCount = 0
-    var stubbedCreateLayoutResult: UICollectionViewCompositionalLayout!
+    var invokedReloadData = false
+    var invokedReloadDataCount = 0
 
-    func createLayout() -> UICollectionViewCompositionalLayout {
-        invokedCreateLayout = true
-        invokedCreateLayoutCount += 1
-        return stubbedCreateLayoutResult
+    func reloadData() {
+        invokedReloadData = true
+        invokedReloadDataCount += 1
     }
 }
