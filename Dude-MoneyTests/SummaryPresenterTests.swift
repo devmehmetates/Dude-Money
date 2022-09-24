@@ -31,6 +31,12 @@ class SummaryPresenterTests: XCTestCase {
         summaryPresenter = nil
     }
     
+    func testNotifyViewWillAppear() {
+        XCTAssertFalse(summaryView.invokedReloadData)
+        summaryPresenter.notifyViewWillAppear()
+        XCTAssertTrue(summaryView.invokedReloadData)
+    }
+    
     func testGetUserProfileIcon() {
         XCTAssertEqual(summaryPresenter.getUserProfileIcon, "")
         summaryManager.stubbedReadUserResult = People.exampleModel
