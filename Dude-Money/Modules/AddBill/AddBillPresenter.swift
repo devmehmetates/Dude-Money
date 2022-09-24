@@ -56,7 +56,7 @@ extension AddBillPresenter: AddBillPresenterInterface {
     }
     
     var pullDownButtonIsEnabled: Bool {
-        !(people?.friends.isEmpty ?? false)
+        !(people?.friends.isEmpty ?? true)
     }
     
     func popView() {

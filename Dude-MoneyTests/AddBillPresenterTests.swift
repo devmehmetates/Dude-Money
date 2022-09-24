@@ -39,5 +39,41 @@ class AddBillPresenterTests: XCTestCase {
         XCTAssertTrue(addBillInteractor.invokedSavePeople)
         XCTAssertTrue(addBillRouter.invokedPopView)
     }
+    
+    func testGetFriends() {
+        XCTAssertNil(addBillPresenter.getFriends)
+        addBillInteractor.stubbedReadPeople = People.exampleModel
+        addBillPresenter.notifyViewLoaded()
+        XCTAssertEqual(addBillPresenter.getFriends?.count, 1)
+    }
+    
+    func testPullDownButtonIsEnabled() {
+        XCTAssertFalse(addBillPresenter.pullDownButtonIsEnabled)
+        addBillInteractor.stubbedReadPeople = People.exampleModel
+        addBillPresenter.notifyViewLoaded()
+        XCTAssertTrue(addBillPresenter.pullDownButtonIsEnabled)
+    }
+    
+    func testPopView() {
+        XCTAssertFalse(addBillRouter.invokedPopView)
+        addBillPresenter.popView()
+        XCTAssertTrue(addBillRouter.invokedPopView)
+    }
+    
+    func testNotifyViewLoaded() {
+        XCTAssertFalse(addBillInteractor.invokedReadPeopleGetter)
+        addBillPresenter.notifyViewLoaded()
+        XCTAssertTrue(addBillInteractor.invokedReadPeopleGetter)
+    }
+    
+    func testNotifyViewWillAppear() {
+        XCTAssertFalse(addBillView.invokedConfigureFriendPullDownButton)
+        XCTAssertFalse(addBillView.invokedConfigureSelectedPeople)
+        addBillPresenter.notifyViewWillAppear()
+        XCTAssertTrue(addBillView.invokedConfigureFriendPullDownButton)
+        XCTAssertTrue(addBillView.invokedConfigureSelectedPeople)
+    }
+    
 }
 
+ 
