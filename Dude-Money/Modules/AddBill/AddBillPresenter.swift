@@ -11,7 +11,9 @@ protocol AddBillPresenterInterface: AnyObject {
     func notifyViewLoaded()
     func notifyViewWillAppear()
     func popView()
-    func addBill(whose: String?, amount: String?, type: PriceType)
+    func addBill(amount: String?)
+    func priceTpyeValueChanged(_ selectedIndex: Int)
+    func selectFriend(_ people: People)
     var getFriends: [People]? { get }
     var pullDownButtonIsEnabled: Bool { get }
 }
@@ -25,6 +27,8 @@ final class AddBillPresenter {
             interactor?.savePeople(people)
         }
     }
+    private var priceType: PriceType = .Debt
+    private var selectedPeople: People?
     
     init(view: AddBillViewInterface?, router: AddBillRouterInterface?, interactor: AddBillInteractorInterface?) {
         self.view = view
@@ -35,11 +39,26 @@ final class AddBillPresenter {
 
 extension AddBillPresenter: AddBillPresenterInterface {
     
-    func addBill(whose: String?, amount: String?, type: PriceType) {
-        guard let whose = whose, let amount = Double(amount ?? "") else { return }
+    func selectFriend(_ people: People) {
+        selectedPeople = people
+    }
+    
+    func priceTpyeValueChanged(_ selectedIndex: Int) {
+        if selectedIndex == PriceType.Receivable.rawValue {
+            view?.configurePriceTpyeSegmentedControlByReceivable()
+            priceType = .Receivable
+            return
+        }
+        
+        view?.configurePriceTpyeSegmentedControlByDebt()
+        priceType = .Debt
+    }
+    
+    func addBill(amount: String?) {
+        guard let whose = selectedPeople?.username, let amount = Double(amount ?? "") else { return }
 
-        let bill = Bill(whose: whose, ammount: type == .Debt ? -amount : amount)
-        if type == .Debt {
+        let bill = Bill(whose: whose, ammount: priceType == .Debt ? -amount : amount)
+        if priceType == .Debt {
             people?.debts.append(bill)
             popView()
             return
@@ -69,6 +88,6 @@ extension AddBillPresenter: AddBillPresenterInterface {
     
     func notifyViewWillAppear() {
         view?.configureFriendPullDownButton()
-        view?.configureSelectedPeople()
+        selectedPeople = people?.friends.first
     }
 }

@@ -31,12 +31,20 @@ final class MockAddBillView: AddBillViewInterface {
         invokedConfigureFriendPullDownButtonCount += 1
     }
 
-    var invokedConfigureSelectedPeople = false
-    var invokedConfigureSelectedPeopleCount = 0
+    var invokedConfigurePriceTpyeSegmentedControlByDebt = false
+    var invokedConfigurePriceTpyeSegmentedControlByDebtCount = 0
 
-    func configureSelectedPeople() {
-        invokedConfigureSelectedPeople = true
-        invokedConfigureSelectedPeopleCount += 1
+    func configurePriceTpyeSegmentedControlByDebt() {
+        invokedConfigurePriceTpyeSegmentedControlByDebt = true
+        invokedConfigurePriceTpyeSegmentedControlByDebtCount += 1
+    }
+
+    var invokedConfigurePriceTpyeSegmentedControlByReceivable = false
+    var invokedConfigurePriceTpyeSegmentedControlByReceivableCount = 0
+
+    func configurePriceTpyeSegmentedControlByReceivable() {
+        invokedConfigurePriceTpyeSegmentedControlByReceivable = true
+        invokedConfigurePriceTpyeSegmentedControlByReceivableCount += 1
     }
 }
 

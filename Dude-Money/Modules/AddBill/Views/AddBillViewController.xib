@@ -82,7 +82,6 @@
                                 <segment title="Alacak"/>
                             </segments>
                             <color key="tintColor" name="AccentColor"/>
-                            <color key="selectedSegmentTintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="priceTypeValueChanged:" destination="-1" eventType="valueChanged" id="gSS-kI-xRs"/>
                             </connections>

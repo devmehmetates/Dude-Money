@@ -10,7 +10,8 @@ import UIKit
 protocol AddBillViewInterface: AnyObject {
     func createFriendUIActions(_ friends: [People]?) -> [UIMenuElement]
     func configureFriendPullDownButton()
-    func configureSelectedPeople()
+    func configurePriceTpyeSegmentedControlByDebt()
+    func configurePriceTpyeSegmentedControlByReceivable()
 }
 
 final class AddBillViewController: UIViewController {
@@ -18,8 +19,6 @@ final class AddBillViewController: UIViewController {
     @IBOutlet weak private var priceTextField: UITextField!
     @IBOutlet weak private var addButton: UIButton!
     
-    private var priceType: PriceType = .Debt
-    private var selectedPeople: People?
     var presenter: AddBillPresenterInterface!
     
     override func viewDidLoad() {
@@ -36,10 +35,6 @@ final class AddBillViewController: UIViewController {
 // MARK: - Interface Setup
 extension AddBillViewController: AddBillViewInterface {
     
-    func configureSelectedPeople() {
-        selectedPeople = presenter.getFriends?.first
-    }
-    
     func createFriendUIActions(_ friends: [People]?) -> [UIMenuElement] {
         var friendActions: [UIMenuElement] = []
         guard let friends = friends else {
@@ -47,12 +42,26 @@ extension AddBillViewController: AddBillViewInterface {
         }
 
         for friend in friends {
-            let action = UIAction(title: friend.fullName + " (\(friend.username))", state: .on, handler: { _ in
-                self.selectedPeople = friend
+            let action = UIAction(title: friend.fullName + " (\(friend.username))", state: .on, handler: { [weak self] _ in
+                self?.presenter.selectFriend(friend)
             })
             friendActions.append(action)
         }
         return friendActions
+    }
+    
+    func configurePriceTpyeSegmentedControlByDebt() {
+        priceTextField.textColor = .systemRed
+        priceTextField.tintColor = .systemRed
+        addButton.tintColor = .systemRed
+        friendPullDownButton.tintColor = .systemRed
+    }
+    
+    func configurePriceTpyeSegmentedControlByReceivable() {
+        priceTextField.textColor = .systemGreen
+        priceTextField.tintColor = .systemGreen
+        addButton.tintColor = .systemGreen
+        friendPullDownButton.tintColor = .systemGreen
     }
 }
 
@@ -74,25 +83,11 @@ extension AddBillViewController {
     }
     
     @IBAction private func priceTypeValueChanged(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == PriceType.Receivable.rawValue {
-            priceTextField.textColor = .systemGreen
-            priceTextField.tintColor = .systemGreen
-            addButton.tintColor = .systemGreen
-            friendPullDownButton.tintColor = .systemGreen
-            priceType = .Receivable
-            sender.selectedSegmentTintColor = .systemGreen
-        } else {
-            priceTextField.textColor = .systemRed
-            priceTextField.tintColor = .systemRed
-            addButton.tintColor = .systemRed
-            friendPullDownButton.tintColor = .systemRed
-            priceType = .Debt
-            sender.selectedSegmentTintColor = .systemRed
-        }
+        presenter.priceTpyeValueChanged(sender.selectedSegmentIndex)
     }
     
     @IBAction private func addButtonTapped(_ sender: Any) {
-        presenter.addBill(whose: selectedPeople?.username, amount: priceTextField.text, type: priceType)
+        presenter.addBill(amount: priceTextField.text)
     }
 }
 

@@ -31,10 +31,21 @@ class AddBillPresenterTests: XCTestCase {
         addBillPresenter = nil
     }
     
+    func testPriceTpyeValueChanged() {
+        XCTAssertFalse(addBillView.invokedConfigurePriceTpyeSegmentedControlByDebt)
+        addBillPresenter.priceTpyeValueChanged(PriceType.Debt.rawValue)
+        XCTAssertTrue(addBillView.invokedConfigurePriceTpyeSegmentedControlByDebt)
+        
+        XCTAssertFalse(addBillView.invokedConfigurePriceTpyeSegmentedControlByReceivable)
+        addBillPresenter.priceTpyeValueChanged(PriceType.Receivable.rawValue)
+        XCTAssertTrue(addBillView.invokedConfigurePriceTpyeSegmentedControlByReceivable)
+    }
+    
     func testAddBill() {
+        addBillPresenter.selectFriend(People.exampleModel)
         XCTAssertFalse(addBillInteractor.invokedSavePeople)
         XCTAssertFalse(addBillRouter.invokedPopView)
-        addBillPresenter.addBill(whose: "friend", amount: "100", type: .Debt)
+        addBillPresenter.addBill(amount: "100")
         XCTAssertTrue(addBillInteractor.invokedSavePeople)
         XCTAssertTrue(addBillRouter.invokedPopView)
     }
@@ -67,9 +78,7 @@ class AddBillPresenterTests: XCTestCase {
     
     func testNotifyViewWillAppear() {
         XCTAssertFalse(addBillView.invokedConfigureFriendPullDownButton)
-        XCTAssertFalse(addBillView.invokedConfigureSelectedPeople)
         addBillPresenter.notifyViewWillAppear()
         XCTAssertTrue(addBillView.invokedConfigureFriendPullDownButton)
-        XCTAssertTrue(addBillView.invokedConfigureSelectedPeople)
     }
 }
