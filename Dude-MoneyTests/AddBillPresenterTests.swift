@@ -34,22 +34,21 @@ class AddBillPresenterTests: XCTestCase {
     func testAddBill() {
         XCTAssertFalse(addBillInteractor.invokedSavePeople)
         XCTAssertFalse(addBillRouter.invokedPopView)
-        addBillPresenter.notifyViewLoaded()
         addBillPresenter.addBill(whose: "friend", amount: "100", type: .Debt)
         XCTAssertTrue(addBillInteractor.invokedSavePeople)
         XCTAssertTrue(addBillRouter.invokedPopView)
     }
     
     func testGetFriends() {
-        XCTAssertNil(addBillPresenter.getFriends)
         addBillInteractor.stubbedReadPeople = People.exampleModel
+        XCTAssertNil(addBillPresenter.getFriends)
         addBillPresenter.notifyViewLoaded()
         XCTAssertEqual(addBillPresenter.getFriends?.count, 1)
     }
     
     func testPullDownButtonIsEnabled() {
-        XCTAssertFalse(addBillPresenter.pullDownButtonIsEnabled)
         addBillInteractor.stubbedReadPeople = People.exampleModel
+        XCTAssertFalse(addBillPresenter.pullDownButtonIsEnabled)
         addBillPresenter.notifyViewLoaded()
         XCTAssertTrue(addBillPresenter.pullDownButtonIsEnabled)
     }
@@ -73,7 +72,4 @@ class AddBillPresenterTests: XCTestCase {
         XCTAssertTrue(addBillView.invokedConfigureFriendPullDownButton)
         XCTAssertTrue(addBillView.invokedConfigureSelectedPeople)
     }
-    
 }
-
- 
