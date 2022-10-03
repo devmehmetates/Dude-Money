@@ -47,13 +47,13 @@ class AddBillPresenterTests: XCTestCase {
         XCTAssertTrue(addBillView.invokedConfigurePriceTpyeSegmentedControlByDebt)
     }
     
-    func testAddBill() {
+    func testAddButtonTapped() {
         addBillPresenter.selectFriend(People.exampleModel)
         addBillManager.stubbedReadUserResult = People.exampleModel
         XCTAssertFalse(addBillManager.invokedSaveUser)
         XCTAssertFalse(addBillManager.invokedReadUser)
         XCTAssertFalse(addBillRouter.invokedPopView)
-        addBillPresenter.addBill(amount: "100")
+        addBillPresenter.addButtonTapped(amount: "100")
         XCTAssertTrue(addBillManager.invokedReadUser)
         XCTAssertTrue(addBillManager.invokedSaveUser)
         XCTAssertTrue(addBillRouter.invokedPopView)
@@ -68,7 +68,7 @@ class AddBillPresenterTests: XCTestCase {
     
     func testPopView() {
         XCTAssertFalse(addBillRouter.invokedPopView)
-        addBillPresenter.popView()
+        addBillPresenter.closeButtonTapped()
         XCTAssertTrue(addBillRouter.invokedPopView)
     }
     

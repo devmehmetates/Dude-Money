@@ -57,10 +57,7 @@ extension AddBillViewController: AddBillViewInterface {
         addButton.tintColor = .systemGreen
         friendPullDownButton.tintColor = .systemGreen
     }
-}
-
-// MARK: - Configure Content
-extension AddBillViewController {
+    
     func configureFriendPullDownButton(_ friends: [People]?) {
         friendPullDownButton.showsMenuAsPrimaryAction = true
         friendPullDownButton.changesSelectionAsPrimaryAction = true
@@ -72,16 +69,16 @@ extension AddBillViewController {
 
 // MARK: - IBActions
 extension AddBillViewController {
-    @IBAction private func closeButtonTapped(_ sender: UIButton) {
-        presenter.popView()
+    @IBAction private func closeButtonTapped() {
+        presenter.closeButtonTapped()
     }
     
     @IBAction private func priceTypeValueChanged(_ sender: UISegmentedControl) {
         presenter.priceTpyeValueChanged(sender.selectedSegmentIndex)
     }
     
-    @IBAction private func addButtonTapped(_ sender: Any) {
-        presenter.addBill(amount: priceTextField.text)
+    @IBAction private func addButtonTapped() {
+        presenter.addButtonTapped(amount: priceTextField.text)
     }
 }
 

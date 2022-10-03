@@ -9,8 +9,8 @@ import Foundation
 
 protocol AddBillPresenterInterface: AnyObject {
     func notifyViewLoaded()
-    func popView()
-    func addBill(amount: String?)
+    func closeButtonTapped()
+    func addButtonTapped(amount: String?)
     func priceTpyeValueChanged(_ selectedIndex: Int)
     func selectFriend(_ people: People)
     func pullDownButtonIsEnabled() -> Bool
@@ -55,7 +55,7 @@ extension AddBillPresenter: AddBillPresenterInterface {
         priceType = .Debt
     }
     
-    func addBill(amount: String?) {
+    func addButtonTapped(amount: String?) {
         guard let whose = selectedPeople?.username, let amount = Double(amount ?? "") else { return }
         guard var people = readPeople() else { return }
 
@@ -63,21 +63,20 @@ extension AddBillPresenter: AddBillPresenterInterface {
         if priceType == .Debt {
             people.debts.append(bill)
             savePeople(people)
-            popView()
+            closeButtonTapped()
             return
         }
         
         people.receivables.append(bill)
         savePeople(people)
-        popView()
-        return
+        closeButtonTapped()
     }
     
     func pullDownButtonIsEnabled() -> Bool {
         !(manager?.readUser()?.friends.isEmpty ?? true)
     }
     
-    func popView() {
+    func closeButtonTapped() {
         router?.popView()
     }
     
