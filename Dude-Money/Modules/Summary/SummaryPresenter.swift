@@ -7,9 +7,11 @@
 
 protocol SummaryPresenterInterface: AnyObject {
     func notifyViewLoaded()
+    func notifyViewWillAppear()
     func fetchPeople()
     func getDebtDataByIndex(_ index: Int) -> (bill: Bill, friend: People)?
     func getReceivablesDataByIndex(_ index: Int) -> (bill: Bill, friend: People)?
+    func presentAddBill()
     var getSectionCount: Int { get }
     var getUserProfileIcon: String { get }
     var getUserBalance: Double { get }
@@ -22,7 +24,7 @@ protocol SummaryPresenterInterface: AnyObject {
 final class SummaryPresenter {
     
     private weak var view: SummaryViewInterface?
-    private weak var router: SummaryRouterInterface?
+    private var router: SummaryRouterInterface?
     private var manager: SaveManagerInterface?
     private var people: People?
     
@@ -35,6 +37,14 @@ final class SummaryPresenter {
 
 // MARK: - Interface Setup
 extension SummaryPresenter: SummaryPresenterInterface {
+    func notifyViewWillAppear() {
+        fetchPeople()
+        view?.reloadData()
+    }
+    
+    func presentAddBill() {
+        router?.presentAddBill()
+    }
     
     var getUserProfileIcon: String {
         people?.icon ?? ""

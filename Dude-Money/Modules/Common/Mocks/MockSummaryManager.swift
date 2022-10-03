@@ -2,10 +2,8 @@
 //  MockSummaryManager.swift
 //  Dude-Money
 //
-//  Created by Mehmet Ateş on 30.08.2022.
+//  Created by Mehmet Ateş on 3.10.2022.
 //
-
-import Foundation
 
 final class MockSummaryManager: SaveManagerInterface {
 
@@ -31,3 +29,4 @@ final class MockSummaryManager: SaveManagerInterface {
         return stubbedReadUserResult
     }
 }
+

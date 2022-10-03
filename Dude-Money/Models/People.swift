@@ -14,6 +14,9 @@ struct People: Codable {
     var friends: [People]
     var debts: [Bill]
     var receivables: [Bill]
+    var fullName: String {
+        "\(name) \(surname)"
+    }
     
     static let exampleModel = People(
         username: "example",

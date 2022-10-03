@@ -9,9 +9,10 @@ import UIKit
 
 protocol SummaryRouterInterface: AnyObject {
     func popView()
+    func presentAddBill()
 }
 
-final class SummaryRouter: SummaryRouterInterface {
+final class SummaryRouter {
     
     private weak var navigationController: UINavigationController?
     
@@ -29,7 +30,14 @@ final class SummaryRouter: SummaryRouterInterface {
 }
 
 // MARK: - Interface Setup
-extension SummaryRouter {
+extension SummaryRouter: SummaryRouterInterface {
+    
+    func presentAddBill() {
+        let rootNavController: UINavigationController = navigationController ?? UINavigationController()
+        let addBillController: UIViewController = AddBillRouter.createModule(using: rootNavController)
+        addBillController.modalPresentationStyle = .fullScreen
+        navigationController?.present(addBillController, animated: true)
+    }
     
     func popView() {
         self.navigationController?.popViewController(animated: true)

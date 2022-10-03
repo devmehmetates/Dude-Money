@@ -16,4 +16,12 @@ final class MockSummaryRouter: SummaryRouterInterface {
         invokedPopView = true
         invokedPopViewCount += 1
     }
+
+    var invokedPresentAddBill = false
+    var invokedPresentAddBillCount = 0
+
+    func presentAddBill() {
+        invokedPresentAddBill = true
+        invokedPresentAddBillCount += 1
+    }
 }

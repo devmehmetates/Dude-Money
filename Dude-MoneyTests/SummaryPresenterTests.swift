@@ -31,6 +31,12 @@ class SummaryPresenterTests: XCTestCase {
         summaryPresenter = nil
     }
     
+    func testNotifyViewWillAppear() {
+        XCTAssertFalse(summaryView.invokedReloadData)
+        summaryPresenter.notifyViewWillAppear()
+        XCTAssertTrue(summaryView.invokedReloadData)
+    }
+    
     func testGetUserProfileIcon() {
         XCTAssertEqual(summaryPresenter.getUserProfileIcon, "")
         summaryManager.stubbedReadUserResult = People.exampleModel
@@ -81,16 +87,16 @@ class SummaryPresenterTests: XCTestCase {
         XCTAssertNil(summaryPresenter.getDebtDataByIndex(0))
         summaryManager.stubbedReadUserResult = People.exampleModel
         summaryPresenter.fetchPeople()
-        XCTAssertNotNil(summaryPresenter.getDebtDataByIndex(0))
-        XCTAssertNotNil(summaryPresenter.getDebtDataByIndex(0)?.bill)
-        XCTAssertNotNil(summaryPresenter.getDebtDataByIndex(0)?.friend)
+        XCTAssertEqual(summaryPresenter.getDebtDataByIndex(0)?.bill.ammount, 100)
+        XCTAssertEqual(summaryPresenter.getDebtDataByIndex(0)?.friend.username, "friend")
     }
     
     func testGetReceivablesDataByIndex() {
         XCTAssertNil(summaryPresenter.getReceivablesDataByIndex(0))
         summaryManager.stubbedReadUserResult = People.exampleModel
         summaryPresenter.fetchPeople()
-        XCTAssertNotNil(summaryPresenter.getReceivablesDataByIndex(0))
+        XCTAssertEqual(summaryPresenter.getReceivablesDataByIndex(0)?.bill.ammount, 100)
+        XCTAssertEqual(summaryPresenter.getReceivablesDataByIndex(0)?.friend.username, "friend")
     }
     
     func testFetchPeople() {
