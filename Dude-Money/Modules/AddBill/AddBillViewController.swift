@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AddBillViewInterface: AnyObject {
-    func configureFriendPullDownButton(_ friends: [People]?)
+    func configureFriendPullDownButton(_ friends: [People])
     func configurePriceTpyeSegmentedControlByDebt()
     func configurePriceTpyeSegmentedControlByReceivable()
 }
@@ -25,9 +25,10 @@ final class AddBillViewController: UIViewController {
         presenter.notifyViewLoaded()
     }
     
-    private func createFriendUIActions(_ friends: [People]?) -> [UIMenuElement] {
+    private func createFriendUIActions(_ friends: [People]) -> [UIMenuElement] {
         var friendActions: [UIMenuElement] = []
-        guard let friends = friends else {
+        
+        if friends.isEmpty {
             return [UIAction(title: "Hiç arkadaş yok!", state: .off, handler: { _ in })]
         }
 
@@ -58,7 +59,7 @@ extension AddBillViewController: AddBillViewInterface {
         friendPullDownButton.tintColor = .systemGreen
     }
     
-    func configureFriendPullDownButton(_ friends: [People]?) {
+    func configureFriendPullDownButton(_ friends: [People]) {
         friendPullDownButton.showsMenuAsPrimaryAction = true
         friendPullDownButton.changesSelectionAsPrimaryAction = true
         

@@ -11,10 +11,10 @@ final class MockAddBillView: AddBillViewInterface {
 
     var invokedConfigureFriendPullDownButton = false
     var invokedConfigureFriendPullDownButtonCount = 0
-    var invokedConfigureFriendPullDownButtonParameters: (friends: [People]?, Void)?
-    var invokedConfigureFriendPullDownButtonParametersList = [(friends: [People]?, Void)]()
+    var invokedConfigureFriendPullDownButtonParameters: (friends: [People], Void)?
+    var invokedConfigureFriendPullDownButtonParametersList = [(friends: [People], Void)]()
 
-    func configureFriendPullDownButton(_ friends: [People]?) {
+    func configureFriendPullDownButton(_ friends: [People]) {
         invokedConfigureFriendPullDownButton = true
         invokedConfigureFriendPullDownButtonCount += 1
         invokedConfigureFriendPullDownButtonParameters = (friends, ())

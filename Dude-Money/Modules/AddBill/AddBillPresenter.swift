@@ -81,7 +81,7 @@ extension AddBillPresenter: AddBillPresenterInterface {
     }
     
     func notifyViewLoaded() {
-        view?.configureFriendPullDownButton(manager?.readUser()?.friends)
+        view?.configureFriendPullDownButton(manager?.readUser()?.friends ?? [])
         selectedPeople = manager?.readUser()?.friends.first
     }
 }
