@@ -17,8 +17,8 @@ final class AddBillRouter {
     static func createModule(using navigationController: UINavigationController) -> AddBillViewController {
         let router = AddBillRouter()
         let view = AddBillViewController(nibName: "AddBillViewController", bundle: nil)
-        let interactor = AddBillInteractor()
-        let presenter = AddBillPresenter(view: view, router: router, interactor: interactor)
+        let manager = SaveManager()
+        let presenter = AddBillPresenter(view: view, router: router, manager: manager)
         
         view.presenter = presenter
         router.navigationController = navigationController

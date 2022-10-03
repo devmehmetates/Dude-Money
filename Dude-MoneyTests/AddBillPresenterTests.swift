@@ -12,56 +12,58 @@ class AddBillPresenterTests: XCTestCase {
     
     private var addBillView: MockAddBillView!
     private var addBillRouter: MockAddBillRouter!
-    private var addBillInteractor: MockAddBillInteractor!
+    private var addBillManager: MockSummaryManager!
     private var addBillPresenter: AddBillPresenterInterface!
     
     override func setUpWithError() throws {
         try super.setUpWithError()
         addBillView = MockAddBillView()
         addBillRouter = MockAddBillRouter()
-        addBillInteractor = MockAddBillInteractor()
-        addBillPresenter = AddBillPresenter(view: addBillView, router: addBillRouter, interactor: addBillInteractor)
+        addBillManager = MockSummaryManager()
+        addBillPresenter = AddBillPresenter(view: addBillView, router: addBillRouter, manager: addBillManager)
     }
 
     override func tearDownWithError() throws {
         try super.tearDownWithError()
         addBillView = nil
         addBillRouter = nil
-        addBillInteractor = nil
+        addBillManager = nil
         addBillPresenter = nil
     }
     
-    func testPriceTpyeValueChanged() {
+    func test_priceTpyeValueChanged_selectedIndexEqualPriceTypeReceivable_invokedConfigurePriceTpyeSegmentedControlByReceivable() {
         XCTAssertFalse(addBillView.invokedConfigurePriceTpyeSegmentedControlByDebt)
-        addBillPresenter.priceTpyeValueChanged(PriceType.Debt.rawValue)
-        XCTAssertTrue(addBillView.invokedConfigurePriceTpyeSegmentedControlByDebt)
-        
         XCTAssertFalse(addBillView.invokedConfigurePriceTpyeSegmentedControlByReceivable)
         addBillPresenter.priceTpyeValueChanged(PriceType.Receivable.rawValue)
+        XCTAssertFalse(addBillView.invokedConfigurePriceTpyeSegmentedControlByDebt)
         XCTAssertTrue(addBillView.invokedConfigurePriceTpyeSegmentedControlByReceivable)
+    }
+    
+    func test_priceTpyeValueChanged_selectedIndexEqualPriceTypeDebt_invokedConfigurePriceTpyeSegmentedControlByDebt() {
+        XCTAssertFalse(addBillView.invokedConfigurePriceTpyeSegmentedControlByDebt)
+        XCTAssertFalse(addBillView.invokedConfigurePriceTpyeSegmentedControlByReceivable)
+        addBillPresenter.priceTpyeValueChanged(PriceType.Debt.rawValue)
+        XCTAssertFalse(addBillView.invokedConfigurePriceTpyeSegmentedControlByReceivable)
+        XCTAssertTrue(addBillView.invokedConfigurePriceTpyeSegmentedControlByDebt)
     }
     
     func testAddBill() {
         addBillPresenter.selectFriend(People.exampleModel)
-        XCTAssertFalse(addBillInteractor.invokedSavePeople)
+        addBillManager.stubbedReadUserResult = People.exampleModel
+        XCTAssertFalse(addBillManager.invokedSaveUser)
+        XCTAssertFalse(addBillManager.invokedReadUser)
         XCTAssertFalse(addBillRouter.invokedPopView)
         addBillPresenter.addBill(amount: "100")
-        XCTAssertTrue(addBillInteractor.invokedSavePeople)
+        XCTAssertTrue(addBillManager.invokedReadUser)
+        XCTAssertTrue(addBillManager.invokedSaveUser)
         XCTAssertTrue(addBillRouter.invokedPopView)
     }
     
-    func testGetFriends() {
-        addBillInteractor.stubbedReadPeople = People.exampleModel
-        XCTAssertNil(addBillPresenter.getFriends)
-        addBillPresenter.notifyViewLoaded()
-        XCTAssertEqual(addBillPresenter.getFriends?.count, 1)
-    }
-    
     func testPullDownButtonIsEnabled() {
-        addBillInteractor.stubbedReadPeople = People.exampleModel
-        XCTAssertFalse(addBillPresenter.pullDownButtonIsEnabled)
-        addBillPresenter.notifyViewLoaded()
-        XCTAssertTrue(addBillPresenter.pullDownButtonIsEnabled)
+        XCTAssertFalse(addBillPresenter.pullDownButtonIsEnabled())
+        addBillManager.stubbedReadUserResult = People.exampleModel
+        XCTAssertTrue(addBillManager.invokedReadUser)
+        XCTAssertTrue(addBillPresenter.pullDownButtonIsEnabled())
     }
     
     func testPopView() {
@@ -71,14 +73,8 @@ class AddBillPresenterTests: XCTestCase {
     }
     
     func testNotifyViewLoaded() {
-        XCTAssertFalse(addBillInteractor.invokedReadPeopleGetter)
+        XCTAssertFalse(addBillManager.invokedReadUser)
         addBillPresenter.notifyViewLoaded()
-        XCTAssertTrue(addBillInteractor.invokedReadPeopleGetter)
-    }
-    
-    func testNotifyViewWillAppear() {
-        XCTAssertFalse(addBillView.invokedConfigureFriendPullDownButton)
-        addBillPresenter.notifyViewWillAppear()
-        XCTAssertTrue(addBillView.invokedConfigureFriendPullDownButton)
+        XCTAssertTrue(addBillManager.invokedReadUser)
     }
 }

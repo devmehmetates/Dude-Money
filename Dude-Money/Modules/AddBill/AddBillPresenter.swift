@@ -9,31 +9,32 @@ import Foundation
 
 protocol AddBillPresenterInterface: AnyObject {
     func notifyViewLoaded()
-    func notifyViewWillAppear()
     func popView()
     func addBill(amount: String?)
     func priceTpyeValueChanged(_ selectedIndex: Int)
     func selectFriend(_ people: People)
-    var getFriends: [People]? { get }
-    var pullDownButtonIsEnabled: Bool { get }
+    func pullDownButtonIsEnabled() -> Bool
 }
 
 final class AddBillPresenter {
     private weak var view: AddBillViewInterface?
     private var router: AddBillRouterInterface?
-    private var interactor: AddBillInteractorInterface?
-    private var people: People? {
-        didSet {
-            interactor?.savePeople(people)
-        }
-    }
+    private var manager: SaveManagerInterface?
     private var priceType: PriceType = .Debt
     private var selectedPeople: People?
     
-    init(view: AddBillViewInterface?, router: AddBillRouterInterface?, interactor: AddBillInteractorInterface?) {
+    init(view: AddBillViewInterface?, router: AddBillRouterInterface?, manager: SaveManagerInterface?) {
         self.view = view
         self.router = router
-        self.interactor = interactor
+        self.manager = manager
+    }
+    
+    private func savePeople(_ people: People) {
+        manager?.saveUser(people)
+    }
+    
+    private func readPeople() -> People? {
+        manager?.readUser()
     }
 }
 
@@ -56,26 +57,24 @@ extension AddBillPresenter: AddBillPresenterInterface {
     
     func addBill(amount: String?) {
         guard let whose = selectedPeople?.username, let amount = Double(amount ?? "") else { return }
+        guard var people = readPeople() else { return }
 
         let bill = Bill(whose: whose, ammount: priceType == .Debt ? -amount : amount)
         if priceType == .Debt {
-            people?.debts.append(bill)
+            people.debts.append(bill)
+            savePeople(people)
             popView()
             return
         }
         
-        people?.receivables.append(bill)
+        people.receivables.append(bill)
+        savePeople(people)
         popView()
         return
     }
     
-    var getFriends: [People]? {
-        let friends = people?.friends ?? []
-        return friends.isEmpty ? nil : friends
-    }
-    
-    var pullDownButtonIsEnabled: Bool {
-        !(people?.friends.isEmpty ?? true)
+    func pullDownButtonIsEnabled() -> Bool {
+        !(manager?.readUser()?.friends.isEmpty ?? true)
     }
     
     func popView() {
@@ -83,11 +82,7 @@ extension AddBillPresenter: AddBillPresenterInterface {
     }
     
     func notifyViewLoaded() {
-        people = interactor?.readPeople
-    }
-    
-    func notifyViewWillAppear() {
-        view?.configureFriendPullDownButton()
-        selectedPeople = people?.friends.first
+        view?.configureFriendPullDownButton(manager?.readUser()?.friends)
+        selectedPeople = manager?.readUser()?.friends.first
     }
 }

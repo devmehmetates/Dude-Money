@@ -9,26 +9,16 @@ import UIKit
 
 final class MockAddBillView: AddBillViewInterface {
 
-    var invokedCreateFriendUIActions = false
-    var invokedCreateFriendUIActionsCount = 0
-    var invokedCreateFriendUIActionsParameters: (friends: [People]?, Void)?
-    var invokedCreateFriendUIActionsParametersList = [(friends: [People]?, Void)]()
-    var stubbedCreateFriendUIActionsResult: [UIMenuElement]! = []
-
-    func createFriendUIActions(_ friends: [People]?) -> [UIMenuElement] {
-        invokedCreateFriendUIActions = true
-        invokedCreateFriendUIActionsCount += 1
-        invokedCreateFriendUIActionsParameters = (friends, ())
-        invokedCreateFriendUIActionsParametersList.append((friends, ()))
-        return stubbedCreateFriendUIActionsResult
-    }
-
     var invokedConfigureFriendPullDownButton = false
     var invokedConfigureFriendPullDownButtonCount = 0
+    var invokedConfigureFriendPullDownButtonParameters: (friends: [People]?, Void)?
+    var invokedConfigureFriendPullDownButtonParametersList = [(friends: [People]?, Void)]()
 
-    func configureFriendPullDownButton() {
+    func configureFriendPullDownButton(_ friends: [People]?) {
         invokedConfigureFriendPullDownButton = true
         invokedConfigureFriendPullDownButtonCount += 1
+        invokedConfigureFriendPullDownButtonParameters = (friends, ())
+        invokedConfigureFriendPullDownButtonParametersList.append((friends, ()))
     }
 
     var invokedConfigurePriceTpyeSegmentedControlByDebt = false
